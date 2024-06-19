@@ -5,7 +5,7 @@
 Objective: Create an application to manage a book catalog.
 
 Requirements:
-- Implement classes for users, books, authors, genre, review, user_favorite and user_to_read.
+- Implement classes for users, books, authors, genre, review, user_favorite and user_read_list.
 - create system fo automatically fill db with data (can be fictional).
 
 ### Stage 2: Book Search and Filters
