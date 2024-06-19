@@ -8,7 +8,7 @@ class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(256), nullable=False)
 
-    author_id = db.Column(db.Integer, db.ForeighKey("author.id"), nullable=False)
+    author_id = db.Column(db.Integer, db.ForeignKey("author.id"), nullable=False)
     genre_id = db.Column(db.Integer, db.ForeignKey("genre.id"), nullable=False)
 
     rating = db.relationship("Rating", backref="book", lazy=True)
@@ -29,9 +29,9 @@ class User(UserMixin, db.Model):
 
 class Rating(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    rating = db.Column(db.Integer(5))
+    rating = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
-    book_id = db.Column(db.Integer, db.ForeignKey("book.id"), nuullable=False)
+    book_id = db.Column(db.Integer, db.ForeignKey("book.id"), nullable=False)
 
 
 class Author(db.Model):

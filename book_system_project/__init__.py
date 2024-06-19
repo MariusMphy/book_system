@@ -8,8 +8,8 @@ app.config["SECRET_KEY"] = "book_system_key"
 app.config["SQLALCHEMY_DATABASE_URI"]: str = 'sqlite:///book_system.db'
 db: SQLAlchemy = SQLAlchemy(app)
 
-login_manager = LoginManager(app)
-login_manager.login_view = "login"
+# login_manager = LoginManager(app)
+# login_manager.login_view = "login"
 
 bcrypt = Bcrypt(app)
 
