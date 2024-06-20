@@ -1,7 +1,9 @@
 from flask_login import UserMixin
 from book_system_project import db
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, StringField, EmailField, PasswordField, SelectField, FloatField, TextAreaField
+from wtforms.validators import DataRequired, Length, Email, EqualTo
+from wtforms import IntegerField, StringField, EmailField, PasswordField, SelectField, FloatField, TextAreaField, SubmitField
+
 
 
 class Book(db.Model):
@@ -44,3 +46,18 @@ class Genre(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True, nullable=False)
     books = db.relationship("Book", backref="genre", lazy=True)
+
+
+class RegisterForm(FlaskForm):
+    # email = EmailField("Email: ", validators=[DataRequired(), Email()])
+    name = StringField("Name: ")
+    submit = SubmitField("Register")
+
+
+class LoginForm(FlaskForm):
+    name = StringField("Name: ")
+    submit = SubmitField("Login")
+
+
+class BookForm(FlaskForm):
+    name = StringField("Name: ")

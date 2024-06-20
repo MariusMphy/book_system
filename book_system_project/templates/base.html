@@ -4,9 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Book recommendation system{% endblock %}</title>
-
 </head>
 <body>
-TEST message
+{% block sidebar %}
+<div>
+    <a href="{{ url_for('home')}}">Home</a>
+</div>
+<div>
+<a  href="{{ url_for('register')}}">Register</a>
+</div>
+<div>
+<a  href="{{ url_for('login')}}">Login</a>
+</div>
+{% endblock %}
+<br>
+{% block content %}
+{% endblock %}
 </body>
 </html>
