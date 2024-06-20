@@ -60,3 +60,16 @@ def add_book():
         return redirect(url_for('home'))
     return render_template('add_book.html', form=form)
 
+
+@app.route("/view_books", methods=["GET", "POST"])
+def view_books():
+    books = Book.query.all()
+    return render_template("view_books.html", books=books)
+
+
+@app.route("/book/<int:book_id>")
+def book_details(book_id):
+    book = Book.query.get_or_404(book_id)
+    author = book.author
+    genre = book.genre
+    return render_template('book.html', book=book, author=author, genre=genre)
