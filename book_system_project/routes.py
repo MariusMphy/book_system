@@ -1,6 +1,7 @@
 from flask import Flask, render_template, redirect, request, url_for, flash, session
 from book_system_project import db, app, login_manager
-from book_system_project.models import Book, User, Rating, Author, Genre, RegisterForm, LoginForm
+from book_system_project.models import Book, User, Rating, Author, Genre
+from book_system_project.forms import RegisterForm, LoginForm, BookForm
 from flask_login import login_user, login_required, logout_user, current_user
 
 
@@ -40,3 +41,22 @@ def login():
         login_user(user)
         return redirect(url_for("home"))
     return render_template("login.html", form=form, user=current_user)
+
+
+@app.route("/add_book", methods=["GET", "POST"])
+def add_book():
+    form = BookForm()
+    form.author.choices = [(author.id, author.name) for author in Author.query.all()]
+    form.genre.choices = [(genre.id, genre.name) for genre in Genre.query.all()]
+
+    if form.validate_on_submit():
+        title = form.title.data
+        author_id = form.author.data
+        genre_id = form.genre.data
+
+        new_book = Book(title=title, author_id=author_id, genre_id=genre_id)
+        db.session.add(new_book)
+        db.session.commit()
+        return redirect(url_for('home'))
+    return render_template('add_book.html', form=form)
+

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+    {% block title %}Add book{% endblock %}
+
+    {% block content %}
+
+    <form method="POST">
+        {{ form.csrf_token }}
+        {{ form.title.label }} {{ form.title }}<br><br>
+        {{ form.author.label }} {{ form.author }}<br><br>
+        {{ form.genre.label }} {{ form.genre }}<br><br>
+        {{ form.submit }}
+    </form>
+
+    {% endblock %}
