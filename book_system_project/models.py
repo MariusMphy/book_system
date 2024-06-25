@@ -11,7 +11,6 @@ class Book(db.Model):
 
     # rating = db.relationship("Rating", backref="book", lazy=True)
 
-
     # user_favorites = ()
     # user_read_list = ()
     # user_review = ()
@@ -42,4 +41,3 @@ class Genre(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True, nullable=False)
     books = db.relationship("Book", backref="genre", lazy=True)
-
