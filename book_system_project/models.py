@@ -21,8 +21,12 @@ class Book(db.Model):
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(256))
-    # more user info add later, now make relations
+    email = db.Column(db.String(128), unique=True, nullable=False)
+    password = db.Column(db.String(128), nullable=False)
+    name = db.Column(db.String(36), nullable=False)
+    phone = db.Column(db.String(20), nullable=True)
+    date_of_birth = db.Column(db.Date, nullable=True)
+    gender = db.Column(db.String(20), nullable=True)
 
     rating = db.relationship("Rating", backref="user", lazy=True)
 

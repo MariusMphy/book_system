@@ -1,17 +1,23 @@
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired, Length, Email, EqualTo
-from wtforms import IntegerField, StringField, EmailField, PasswordField, SelectField, SelectMultipleField, FloatField, TextAreaField, SubmitField
+from wtforms import IntegerField, StringField, EmailField, PasswordField, SelectField, SelectMultipleField, FloatField, TextAreaField, SubmitField, DateField
 
 
 class RegisterForm(FlaskForm):
-    # email = EmailField("Email: ", validators=[DataRequired(), Email()])
-    name = StringField("Name: ")
+    email = EmailField("Email: ", validators=[DataRequired(), Email(), Length(min=3, max=128)])
+    password = PasswordField("Password: ", validators=[DataRequired(), Length(min=3, max=128)])
+    confirm_password = PasswordField('Confirm Password: ', validators=[DataRequired()])
+    name = StringField("Name: ", validators=[Length(min=1, max=36)])
+    phone = StringField("Phone: ", validators=[Length(max=20)])
+    date_of_birth = DateField("Date of birth: ", format='%Y-%m-%d')
+    gender = SelectField("Gender: ", choices=[('', 'Chose gender'), ('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')])
     submit = SubmitField("Register")
 
 
 class LoginForm(FlaskForm):
-    name = StringField("Name: ")
-    submit = SubmitField("Login")
+    email = EmailField("Email: ", validators=[DataRequired(), Email()])
+    password = PasswordField('Password: ', validators=[DataRequired()])
+    submit = SubmitField('Login')
 
 
 class BookForm(FlaskForm):

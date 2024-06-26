@@ -2,12 +2,30 @@
     {% block title %}Register{% endblock %}
 
     {% block content %}
-    Register here:
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    <span style="color: Green;">{{ message }}</span>
+                </div><br>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    Register here:<br><br>
         <form method="POST">
         <div>
             {{ form.hidden_tag() }}
-            {{ form.name.label }} {{ form.name }}
+            {{ form.email.label }} {{ form.email }}<br><br>
+            {{ form.name.label }} {{ form.name }}<br><br>
+            {{ form.password.label }} {{ form.password }}<br><br>
+            {{ form.confirm_password.label }} {{ form.confirm_password }}<br><br>
+            {{ form.phone.label }} {{ form.phone }}<br><br>
+            {{ form.date_of_birth.label }} {{ form.date_of_birth }}<br><br>
+            {{ form.gender.label }} {{ form.gender }}<br><br>
             {{ form.submit() }}
         </div>
         </form>
+
     {% endblock %}
