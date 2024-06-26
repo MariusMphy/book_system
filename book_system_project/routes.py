@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, request, url_for, flash, session
 from book_system_project import db, app, login_manager
 from book_system_project.models import Book, User, Rating, Author, Genre
-from book_system_project.forms import RegisterForm, LoginForm, BookForm
+from book_system_project.forms import RegisterForm, LoginForm, BookForm, AuthorForm
 from flask_login import login_user, login_required, logout_user, current_user
 import csv
 from sqlalchemy.exc import IntegrityError
@@ -32,20 +32,23 @@ def fill_db():
                 db.session.add(author)
                 db.session.commit()
 
-            genre_ids = []
+            genres = []
             for genre_name in genre_names:
                 genre = Genre.query.filter_by(name=genre_name).first()
                 if not genre:
                     genre = Genre(name=genre_name)
                     db.session.add(genre)
                     db.session.commit()
-                genre_ids.append(genre.id)
+                genres.append(genre)
 
             existing_book = Book.query.filter_by(title=book_title, author_id=author.id).first()
             if existing_book:
                 continue
 
-            book = Book(title=book_title, author_id=author.id, genre_id=genre_ids[0])
+            book = Book(title=book_title, author_id=author.id)
+            for genre in genres:
+                book.genres.append(genre)
+
             db.session.add(book)
 
             try:
@@ -80,6 +83,18 @@ def login():
     return render_template("login.html", form=form, user=current_user)
 
 
+@app.route("/add_author", methods=["GET", "POST"])
+def add_author():
+    form = AuthorForm()
+    if form.validate_on_submit():
+        author = form.name.data
+        new_author = Author(name=author)
+        db.session.add(new_author)
+        db.session.commit()
+        return render_template('add_author.html', form=form)
+    return render_template('add_author.html', form=form)
+
+
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
     form = BookForm()
@@ -89,12 +104,21 @@ def add_book():
     if form.validate_on_submit():
         title = form.title.data
         author_id = form.author.data
-        genre_id = form.genre.data
+        all_genres = request.form.getlist('genre')
 
-        new_book = Book(title=title, author_id=author_id, genre_id=genre_id)
+        if not all_genres:
+            return render_template('add_book.html', form=form, error='Please select at least one genre.')
+
+        new_book = Book(title=title, author_id=author_id)
+        for genre_id in all_genres:
+            genre = Genre.query.get(int(genre_id))
+            if genre:
+                new_book.genres.append(genre)
+
         db.session.add(new_book)
         db.session.commit()
         return redirect(url_for('home'))
+
     return render_template('add_book.html', form=form)
 
 
@@ -108,6 +132,6 @@ def view_books():
 def book_details(book_id):
     book = Book.query.get_or_404(book_id)
     author = book.author
-    genre = book.genre
-    return render_template('book.html', book=book, author=author, genre=genre)
+    genres = book.genres
+    return render_template('book.html', book=book, author=author, genres=genres)
 

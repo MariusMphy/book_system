@@ -5,5 +5,10 @@
 
         {{ book.title }}<br>
         by {{ author.name }}<br>
-        genres: {{ genre.name }}
+        genres: {{ genres.name }}
+        {% for genre in book.genres %}
+            {{ genre.name }}{% if not loop.last %}, {% endif %}
+        {% endfor %}
+
+
     {% endblock %}

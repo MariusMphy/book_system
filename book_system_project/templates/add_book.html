@@ -7,8 +7,14 @@
         {{ form.csrf_token }}
         {{ form.title.label }} {{ form.title }}<br><br>
         {{ form.author.label }} {{ form.author }}<br><br>
-        {{ form.genre.label }} {{ form.genre }}<br><br>
+        {{ form.genre.label }}
+        <select name="genre" multiple>
+            {% for genre_id, genre_name in form.genre.choices %}
+                <option value="{{ genre_id }}">{{ genre_name }}</option>
+            {% endfor %}
+        </select><br><br>
         {{ form.submit }}
     </form>
 
     {% endblock %}
+
