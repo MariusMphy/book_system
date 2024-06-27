@@ -126,7 +126,7 @@ def login():
 def logout():
     logout_user()
     flash('You have been successfully logged out.', 'success')
-    return redirect(url_for('login'))
+    return redirect(url_for('home'))
 
 
 @app.route("/add_author", methods=["GET", "POST"])
@@ -134,9 +134,14 @@ def add_author():
     form = AuthorForm()
     if form.validate_on_submit():
         author = form.name.data
+        check_author = Author.query.filter_by(name=author).first()
+        if check_author:
+            flash('This author already exists.', 'error')
+            return render_template('add_author.html', form=form)
         new_author = Author(name=author)
         db.session.add(new_author)
         db.session.commit()
+        flash('You have successfully added new author.', 'success')
         return render_template('add_author.html', form=form)
     return render_template('add_author.html', form=form)
 
@@ -150,21 +155,26 @@ def add_book():
     if form.validate_on_submit():
         title = form.title.data
         author_id = form.author.data
-        all_genres = request.form.getlist('genre')
 
+        existing_book = Book.query.filter_by(title=title, author_id=author_id).first()
+        if existing_book:
+            flash('This book already exists.', 'error')
+            return render_template('add_book.html', form=form)
+
+        all_genres = request.form.getlist('genre')
         if not all_genres:
-            return render_template('add_book.html', form=form, error='Please select at least one genre.')
+            flash('Please select at least one genre.', 'error')
+            return render_template('add_book.html', form=form)
 
         new_book = Book(title=title, author_id=author_id)
         for genre_id in all_genres:
             genre = Genre.query.get(int(genre_id))
             if genre:
                 new_book.genres.append(genre)
-
         db.session.add(new_book)
         db.session.commit()
-        return redirect(url_for('home'))
-
+        flash('You have successfully added new book', 'success')
+        return redirect(url_for('add_book'))
     return render_template('add_book.html', form=form)
 
 

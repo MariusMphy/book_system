@@ -1,0 +1,16 @@
+ .alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    }
+.alert-success {
+    color: Green;
+    }
+.alert-warning {
+    color: Red;
+    }
+.alert-error {
+    color: Red;
+    }
+.alert-info {
+    color: Blue;
+    }

@@ -3,6 +3,7 @@
 
     {% block content %}
 
+    Add book:<br><br>
     <form method="POST">
         {{ form.csrf_token }}
         {{ form.title.label }} {{ form.title }}<br><br>

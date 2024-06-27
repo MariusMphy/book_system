@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Book recommendation system{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 {% block sidebar %}
@@ -37,7 +38,20 @@
 
 {% endblock %}
 <br>
+{% block flash %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    <span>{{ message }}</span>
+                </div><br>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+{% endblock %}
+
 {% block content %}
+
 {% endblock %}
 </body>
 </html>
