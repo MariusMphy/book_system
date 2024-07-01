@@ -1,8 +1,11 @@
 {% extends "base.html" %}
     {% block title %}Add author{% endblock %}
 
-    {% block content %}
+    {% block subhead %}
+        Add author:
+    {% endblock %}
 
+    {% block content %}
     <form method="POST">
         {{ form.csrf_token }}
         {{ form.name.label }} {{ form.name }}<br><br>

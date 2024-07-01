@@ -1,9 +1,10 @@
 {% extends "base.html" %}
     {% block title %}Register{% endblock %}
+    {% block subhead %}
+        Register here:
+    {% endblock %}
 
     {% block content %}
-
-    Register here:<br><br>
         <form method="POST">
         <div>
             {{ form.hidden_tag() }}

@@ -1,14 +1,30 @@
 {% extends "base.html" %}
     {% block title %}Book details{% endblock %}
 
+{% block subhead %}
+    Here is the book you requested:<br><br>
+        <span style="color: DarkMagenta; padding-left: 20px">{{ book.title }}</span><br>
+        <span style="padding-left: 20px">by </span><span style="color: DarkRed;">{{ author.name }}</span>
+    {% endblock %}
+
     {% block content %}
 
-        {{ book.title }}<br>
-        by {{ author.name }}<br>
-        genres: {{ genres.name }}
+        Title: {{ book.title }}<br>
+        Author: {{ author.name }}<br>
+        Genres: {{ genres.name }}
         {% for genre in book.genres %}
             {{ genre.name }}{% if not loop.last %}, {% endif %}
-        {% endfor %}
+        {% endfor %}<br>
+        Rating: {{ avg_rating }}<br><br>
 
-
+        {% if current_user.is_authenticated %}
+        Your rating:
+        {% if rating %}
+            {{ rating.rating }}
+        {% else %}
+            Not rated
+        {% endif %}
+            <br><br><a href="{{ url_for('rate_book', book_id=book.id) }}">Rate this book</a>
+        {% else %}
+        {% endif %}
     {% endblock %}

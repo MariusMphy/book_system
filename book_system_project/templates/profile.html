@@ -1,8 +1,25 @@
 {% extends "base.html" %}
     {% block topic %}Profile{% endblock %}
 
+    {% block subhead %}
+        Welcome to your profile, {{ user.name }}!
+    {% endblock %}
+
     {% block content %}
 
-    Welcome: {{ user.name }}! This is your profile.
-
+        <div>
+        <a href="{{ url_for('edit_profile') }}">Edit profile</a>
+        </div><br>
+        <div>
+        Your ratings
+        </div>
+        <div>
+        Favorite books
+        </div>
+        <div>
+        Read list
+        </div>
+        <div>
+        Your reviews
+        </div>
     {% endblock %}

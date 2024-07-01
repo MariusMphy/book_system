@@ -1,9 +1,10 @@
 {% extends "base.html" %}
     {% block topic %}Login{% endblock %}
+    {% block subhead %}
+        Login here:
+    {% endblock %}
 
     {% block content %}
-
-    Login here:<br><br>
     <form method="POST">
     <div>
         {{ form.csrf_token }}

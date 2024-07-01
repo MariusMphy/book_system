@@ -1,9 +1,11 @@
 {% extends "base.html" %}
     {% block title %}View books{% endblock %}
 
-    {% block content %}
-    View all books:
+    {% block subhead %}
+        View all books:
+    {% endblock %}
 
+    {% block content %}
     <ol>
     {% for book in books %}
         <li><a href="{{ url_for('book_details', book_id=book.id) }}">{{ book.title }}</a></li>

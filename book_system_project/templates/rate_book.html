@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+    {% block topic %}Rate book{% endblock %}
+    {% block subhead %}
+        Rate book:
+    {% endblock %}
+
+    {% block content %}
+
+        {{ book.title }}<br>
+        by {{ author.name }}<br>
+        genres: {{ genres.name }}
+        {% for genre in book.genres %}
+            {{ genre.name }}{% if not loop.last %}, {% endif %}
+        {% endfor %}<br>
+        Rating: {{ avg_rating }}<br>
+
+        Your rating:
+        {% if current_rating %}
+            {{ current_rating.rating }}
+        {% else %}
+            Not rated
+        {% endif %}
+            <br><br><a href="{{ url_for('rate_book', book_id=book.id) }}">Rate this book:</a><br><br>
+
+    <form method="POST">
+    <div>
+        {{ form.csrf_token }}
+        {{ form.rating.label }} {{ form.rating }}<br><br>
+        {{ form.submit }}
+    </div>
+    </form>
+    {% endblock %}

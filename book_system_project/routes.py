@@ -1,10 +1,11 @@
 from flask import Flask, render_template, redirect, request, url_for, flash, session
 from book_system_project import db, app, login_manager, bcrypt
 from book_system_project.models import Book, User, Rating, Author, Genre
-from book_system_project.forms import RegisterForm, LoginForm, BookForm, AuthorForm
+from book_system_project.forms import RegisterForm, LoginForm, BookForm, AuthorForm, RateBook
 from flask_login import login_user, login_required, logout_user, current_user
 import csv
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy import func
 
 
 @login_manager.user_loader
@@ -83,7 +84,6 @@ def register():
         confirm_password = form.confirm_password.data
         phone = form.phone.data
         date_of_birth = form.date_of_birth.data
-        print(date_of_birth)
         gender = form.gender.data
         check_email = User.query.filter_by(email=email).first()
         if check_email:
@@ -189,4 +189,40 @@ def book_details(book_id):
     book = Book.query.get_or_404(book_id)
     author = book.author
     genres = book.genres
-    return render_template('book.html', book=book, author=author, genres=genres)
+    avg_rating = db.session.query(func.avg(Rating.rating)).filter_by(book_id=book_id).scalar()
+    avg_rating = round(avg_rating, 2) if avg_rating else "Not rated"
+    rating = None
+    if current_user.is_authenticated:
+        rating = Rating.query.filter_by(book_id=book_id, user_id=current_user.id).first()
+    return render_template('book.html', book=book, author=author, genres=genres, avg_rating=avg_rating, rating=rating)
+
+
+@app.route("/rate_book/<int:book_id>", methods=["GET", "POST"])
+@login_required
+def rate_book(book_id):
+    book = Book.query.get_or_404(book_id)
+    author = book.author
+    genres = book.genres
+    avg_rating = db.session.query(func.avg(Rating.rating)).filter_by(book_id=book_id).scalar()
+    avg_rating = round(avg_rating, 2) if avg_rating else "Not rated"
+    current_rating = Rating.query.filter_by(book_id=book_id, user_id=current_user.id).first()
+    form = RateBook(rating=current_rating.rating if current_rating else None)
+
+    if form.validate_on_submit():
+        rating = form.rating.data
+        if current_rating:
+            current_rating.rating = rating
+        else:
+            new_rating = Rating(rating=rating, book_id=book_id, user_id=current_user.id)
+            db.session.add(new_rating)
+        db.session.commit()
+        flash('Thank you for your rating!', 'success')
+        return redirect(url_for('book_details', book_id=book_id))
+    return render_template('rate_book.html', book=book, author=author, genres=genres, avg_rating=avg_rating, current_rating=current_rating,
+                           form=form)
+
+
+@app.route("/edit_profile", methods=["GET", "POST"])
+@login_required
+def edit_profile():
+    return render_template("edit_profile.html")

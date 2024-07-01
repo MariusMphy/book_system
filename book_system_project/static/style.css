@@ -1,16 +1,41 @@
- .alert {
+body {
+    background-color: Beige;
+    padding: 5px
+}
+.user_bar {
+    background-color: CadetBlue;
+    padding: 5px
+}
+.sidebar {
+    background-color: Tan;
+    padding: 5px
+}
+.subhead {
+    background-color: Wheat;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 10px;
+}
+.content {
+    background-color: Wheat;
+    padding: 5px
+}
+.flash {
+    background-color: Wheat;
+}
+.alert {
     padding: 15px;
     margin-bottom: 20px;
-    }
+}
 .alert-success {
     color: Green;
-    }
+}
 .alert-warning {
     color: Red;
-    }
+}
 .alert-error {
     color: Red;
-    }
+}
 .alert-info {
     color: Blue;
-    }
+}

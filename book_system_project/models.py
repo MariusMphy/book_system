@@ -5,14 +5,19 @@ book_genres = db.Table('book_genres',
                        db.Column('book_id', db.Integer, db.ForeignKey('book.id'), primary_key=True),
                        db.Column('genre_id', db.Integer, db.ForeignKey('genre.id'), primary_key=True))
 
+# user_rating = db.Table('book_genres',
+#                        db.Column('book_id', db.Integer, db.ForeignKey('book.id'), primary_key=True),
+#                        db.Column('user_id', db.Integer, db.ForeignKey('user.id'), primary_key=True))
+
 
 class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(256), nullable=False)
     author_id = db.Column(db.Integer, db.ForeignKey("author.id"), nullable=False)
     genres = db.relationship('Genre', secondary=book_genres, backref=db.backref('book_genres', lazy=True))
+    # ratings = db.relationship('Rating', secondary=user_rating, backref=db.backref('user_rating', lazy=True))
 
-    # rating = db.relationship("Rating", backref="book", lazy=True)
+    rating = db.relationship("Rating", backref="book", lazy=True)
 
     # user_favorites = ()
     # user_read_list = ()
@@ -27,6 +32,7 @@ class User(UserMixin, db.Model):
     phone = db.Column(db.String(20), nullable=True)
     date_of_birth = db.Column(db.Date, nullable=True)
     gender = db.Column(db.String(20), nullable=True)
+    # books = db.relationship('Book', secondary=book_genres, backref=db.backref('book_genres', lazy=True))
 
     rating = db.relationship("Rating", backref="user", lazy=True)
 

@@ -6,9 +6,10 @@
     <title>{% block title %}Book recommendation system{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
+<div class="user_bar">
 {% block user_bar %}
-<div>
     {% if current_user.is_authenticated %}
     Hello,&nbsp; {{ current_user.name }}!
         <a href="{{ url_for('profile') }}">Your profile</a>&nbsp;
@@ -17,9 +18,10 @@
         <a  href="{{ url_for('register')}}">Register</a>&nbsp;
         <a  href="{{ url_for('login')}}">Login</a>
     {% endif %}
-</div><br>
+</div>
 {% endblock %}
 
+<div class="sidebar">
 {% block sidebar %}
     <div>
         <a href="{{ url_for('home')}}">Home</a>
@@ -37,9 +39,17 @@
     <div>
         <a href="{{ url_for('fill_db')}}">Add multiple books (Fills db with books)</a>
     </div>
-    <br>
+
+</div>
 {% endblock %}
 
+<div class="subhead">
+{% block subhead %}
+    Welcome to the books database !
+{% endblock %}
+</div>
+
+<div class="flash">
 {% block flash %}
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -51,9 +61,11 @@
         {% endif %}
     {% endwith %}
 {% endblock %}
+</div>
 
+<div class="content">
 {% block content %}
-
 {% endblock %}
+</div>
 </body>
 </html>

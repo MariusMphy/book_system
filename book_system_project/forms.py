@@ -1,15 +1,15 @@
 from flask_wtf import FlaskForm
-from wtforms.validators import DataRequired, Length, Email, EqualTo
+from wtforms.validators import DataRequired, Length, Email, Optional
 from wtforms import IntegerField, StringField, EmailField, PasswordField, SelectField, SelectMultipleField, FloatField, TextAreaField, SubmitField, DateField
 
 
 class RegisterForm(FlaskForm):
     email = EmailField("Email: ", validators=[DataRequired(), Email(), Length(min=3, max=128)])
     password = PasswordField("Password: ", validators=[DataRequired(), Length(min=3, max=128)])
-    confirm_password = PasswordField('Confirm Password: ', validators=[DataRequired()])
-    name = StringField("Name: ", validators=[Length(min=1, max=36)])
-    phone = StringField("Phone: ", validators=[Length(max=20)])
-    date_of_birth = DateField("Date of birth: ", format='%Y-%m-%d')
+    confirm_password = PasswordField('Confirm Password: ', validators=[DataRequired(), Length(min=3, max=128)])
+    name = StringField("Name: ", validators=[DataRequired(), Length(min=1, max=36)])
+    phone = StringField("Phone: ", validators=[Optional(), Length(max=20)])
+    date_of_birth = DateField("Date of birth: ", format='%Y-%m-%d', validators=[Optional()])
     gender = SelectField("Gender: ", choices=[('', 'Chose gender'), ('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')])
     submit = SubmitField("Register")
 
@@ -32,8 +32,7 @@ class AuthorForm(FlaskForm):
     submit = SubmitField("Add author: ")
 
 
-class AddRating(FlaskForm):
-    rating = SelectField("Rating: ", choices=[(1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')], coerce=int, validators=[DataRequired()])
-    user_id = 1
-    book_id = 1
+class RateBook(FlaskForm):
+    rating = SelectField("Your rating: ", choices=[("", 'None'), (1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')], validators=[DataRequired()])
+    submit = SubmitField("Rate book")
 
