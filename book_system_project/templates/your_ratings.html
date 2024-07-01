@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+    {% block topic %}Your ratings{% endblock %}
+
+    {% block subhead %}
+        The books you rated so far:
+    {% endblock %}
+
+    {% block content %}
+    <form method="POST" action="{{ url_for('your_ratings') }}">
+    {{ form.hidden_tag() }}
+    {{ form.sorted() }} {{ form.submit() }}
+    <ol>
+        {% for book in sorted_books %}
+         <li><a href="{{ url_for('book_details', book_id=book['book'].id) }}">{{ book['book'].title }} ({{ book['rating'] }})</a></li>
+        {% endfor %}
+    </ol>
+    </form>
+    {% endblock %}

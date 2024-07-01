@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired, Length, Email, Optional
-from wtforms import IntegerField, StringField, EmailField, PasswordField, SelectField, SelectMultipleField, FloatField, TextAreaField, SubmitField, DateField
+from wtforms import IntegerField, StringField, EmailField, PasswordField, SelectField, SelectMultipleField, FloatField, \
+    TextAreaField, SubmitField, DateField
 
 
 class RegisterForm(FlaskForm):
@@ -10,7 +11,8 @@ class RegisterForm(FlaskForm):
     name = StringField("Name: ", validators=[DataRequired(), Length(min=1, max=36)])
     phone = StringField("Phone: ", validators=[Optional(), Length(max=20)])
     date_of_birth = DateField("Date of birth: ", format='%Y-%m-%d', validators=[Optional()])
-    gender = SelectField("Gender: ", choices=[('', 'Chose gender'), ('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')])
+    gender = SelectField("Gender: ",
+                         choices=[('', 'Chose gender'), ('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')])
     submit = SubmitField("Register")
 
 
@@ -50,6 +52,12 @@ class AuthorForm(FlaskForm):
 
 
 class RateBook(FlaskForm):
-    rating = SelectField("Your rating: ", choices=[("", 'None'), (1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')], validators=[DataRequired()])
+    rating = SelectField("Your rating: ", choices=[("", 'None'), (1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')],
+                         validators=[DataRequired()])
     submit = SubmitField("Rate book")
 
+
+class SortRating(FlaskForm):
+    sorted = SelectField(choices=[('best', 'Best first'), ('worst', 'Worst first'),
+                                  ('newest', 'Newest first'), ('oldest', 'Oldest first')], default='newest')
+    submit = SubmitField("Sort")

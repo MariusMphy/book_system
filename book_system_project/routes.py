@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, request, url_for, flash, session
 from book_system_project import db, app, login_manager, bcrypt
 from book_system_project.models import Book, User, Rating, Author, Genre
-from book_system_project.forms import RegisterForm, LoginForm, BookForm, AuthorForm, RateBook, EditUserForm, ChangePasswordForm
+from book_system_project.forms import RegisterForm, LoginForm, BookForm, AuthorForm, RateBook, EditUserForm, ChangePasswordForm, SortRating
 from flask_login import login_user, login_required, logout_user, current_user
 import csv
 from sqlalchemy.exc import IntegrityError
@@ -273,4 +273,27 @@ def change_password():
         flash(f'Password is updated', 'success')
         return redirect(url_for('home'))
     return render_template('change_password.html', form=form)
+
+
+@app.route("/your_ratings", methods=["GET", "POST"])
+@login_required
+def your_ratings():
+    form = SortRating()
+    ratings_with_books = db.session.query(Rating, Book).join(Book).filter(Rating.user_id == current_user.id).all()
+    rated_books = [{'book': book, 'rating': rating.rating, 'rating_id': rating.id} for rating, book in
+                   ratings_with_books]
+
+    sorted_books = sorted(rated_books, key=lambda x: x['rating_id'], reverse=True)
+    if request.method == 'POST' and form.validate_on_submit():
+        sorting = form.sorted.data
+        if sorting == "best":
+            sorted_books = sorted(rated_books, key=lambda x: x['rating'], reverse=True)
+        elif sorting == "worst":
+            sorted_books = sorted(rated_books, key=lambda x: x['rating'], reverse=False)
+        elif sorting == "newest":
+            sorted_books = sorted(rated_books, key=lambda x: x['rating_id'], reverse=True)
+        elif sorting == "oldest":
+            sorted_books = sorted(rated_books, key=lambda x: x['rating_id'], reverse=False)
+
+    return render_template("your_ratings.html", form=form, sorted_books=sorted_books)
 
