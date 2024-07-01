@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, request, url_for, flash, session
 from book_system_project import db, app, login_manager, bcrypt
 from book_system_project.models import Book, User, Rating, Author, Genre
-from book_system_project.forms import RegisterForm, LoginForm, BookForm, AuthorForm, RateBook
+from book_system_project.forms import RegisterForm, LoginForm, BookForm, AuthorForm, RateBook, EditUserForm, ChangePasswordForm
 from flask_login import login_user, login_required, logout_user, current_user
 import csv
 from sqlalchemy.exc import IntegrityError
@@ -218,11 +218,59 @@ def rate_book(book_id):
         db.session.commit()
         flash('Thank you for your rating!', 'success')
         return redirect(url_for('book_details', book_id=book_id))
-    return render_template('rate_book.html', book=book, author=author, genres=genres, avg_rating=avg_rating, current_rating=current_rating,
-                           form=form)
+    return render_template('rate_book.html', book=book, author=author, genres=genres, avg_rating=avg_rating,
+                           current_rating=current_rating, form=form)
 
 
 @app.route("/edit_profile", methods=["GET", "POST"])
 @login_required
 def edit_profile():
-    return render_template("edit_profile.html")
+    form = EditUserForm()
+    current_email = current_user.email
+    current_name = current_user.name
+    current_phone = current_user.phone
+    current_date_of_birth = current_user.date_of_birth
+    current_gender = current_user.gender
+
+    if form.validate_on_submit():
+        if bcrypt.check_password_hash(current_user.password, form.password.data):
+            if form.name.data:
+                current_user.name = form.name.data
+            if form.phone.data:
+                current_user.phone = form.phone.data
+            if form.date_of_birth.data:
+                current_user.date_of_birth = form.date_of_birth.data
+            if form.gender.data:
+                current_user.gender = form.gender.data
+            db.session.commit()
+            flash("Profile updated successfully", "success")
+        else:
+            flash("Password is incorrect", "error")
+            return redirect(url_for('edit_profile'))
+    return render_template("edit_profile.html", form=form, current_email=current_email, current_name=current_name,
+                           current_phone=current_phone, current_date_of_birth=current_date_of_birth,
+                           current_gender=current_gender)
+
+
+@app.route("/change_password", methods=["GET", "POST"])
+@login_required
+def change_password():
+    form = ChangePasswordForm()
+    if form.validate_on_submit():
+        old_password = form.old_password.data
+        new_password = form.new_password.data
+        confirm_password = form.confirm_password.data
+
+        if not bcrypt.check_password_hash(current_user.password, old_password):
+            flash("Old password is incorrect", "error")
+            return render_template('change_password.html', form=form)
+        if new_password != confirm_password:
+            flash('Passwords, do not match!', 'error')
+            return render_template('change_password.html', form=form)
+        hashed_password = bcrypt.generate_password_hash(new_password).decode('utf-8')
+        current_user.password = hashed_password
+        db.session.commit()
+        flash(f'Password is updated', 'success')
+        return redirect(url_for('home'))
+    return render_template('change_password.html', form=form)
+

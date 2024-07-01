@@ -2,11 +2,36 @@
     {% block topic %}Edit profile{% endblock %}
     {% block subhead %}
         Edit profile:
+
     {% endblock %}
 
     {% block content %}
+    <div>
+    <a href="{{ url_for('change_password') }}">Change password</a>
+    </div><br>
+
+    <form method="POST" action="{{ url_for('edit_profile') }}" autocomplete="off">
+        {{ form.hidden_tag() }}
+
         <div>
-        Name
-        </div>
+            Email: {{ current_email }}
+        </div><br>
+        <div>
+            {{ form.name.label }} {{ current_name }} {{ form.name(autocomplete="new-name") }}
+        </div><br>
+        <div>
+            {{ form.phone.label }} {{ current_phone }} {{ form.phone(autocomplete="new-phone") }}
+        </div><br>
+        <div>
+            {{ form.date_of_birth.label }} {{ current_date_of_birth }} {{ form.date_of_birth(autocomplete="new-date-of-birth") }}
+        </div><br>
+        <div>
+            {{ form.gender.label }} {{ current_gender }} {{ form.gender(autocomplete="new-gender") }}
+        </div><br>
+        <div>
+            Enter current password to make changes: {{ form.password(autocomplete="new-password") }}
+        </div><br>
+        Save changes: {{ form.submit() }}
+    </form>
 
     {% endblock %}
