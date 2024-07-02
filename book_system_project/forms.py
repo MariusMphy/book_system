@@ -61,3 +61,7 @@ class SortRating(FlaskForm):
     sorted = SelectField(choices=[('best', 'Best first'), ('worst', 'Worst first'),
                                   ('newest', 'Newest first'), ('oldest', 'Oldest first')], default='newest')
     submit = SubmitField("Sort")
+
+
+class ToReadForm(FlaskForm):
+    submit = SubmitField("Add to read list")

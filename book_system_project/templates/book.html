@@ -19,12 +19,24 @@
 
         {% if current_user.is_authenticated %}
         Your rating:
-        {% if rating %}
-            {{ rating.rating }}
+            {% if rating %}
+                {{ rating.rating }}
+            {% else %}
+                Not rated
+            {% endif %}
+            <br><a href="{{ url_for('rate_book', book_id=book.id) }}">Rate this book</a>
+            <br><br>
+
+            {% if book.id == toread.book_id %}
+                This book is in your <a href="{{ url_for('to_read') }}">read list</a>
+            {% else %}
+                <form method="POST">
+                    {{ form.hidden_tag() }}
+                    {{ form.submit() }}
+                </form>
+            {% endif %}
+
         {% else %}
-            Not rated
         {% endif %}
-            <br><br><a href="{{ url_for('rate_book', book_id=book.id) }}">Rate this book</a>
-        {% else %}
-        {% endif %}
+
     {% endblock %}

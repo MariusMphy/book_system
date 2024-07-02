@@ -13,6 +13,7 @@ class Book(db.Model):
 
     genres = db.relationship('Genre', secondary=book_genres, back_populates='books', lazy=True)
     rating = db.relationship("Rating", backref="book", lazy=True)
+    toreads = db.relationship("ToRead", backref="book", lazy=True)
 
     # user_favorites = ()
     # user_read_list = ()
@@ -28,6 +29,7 @@ class User(UserMixin, db.Model):
     date_of_birth = db.Column(db.Date, nullable=True)
     gender = db.Column(db.String(20), nullable=True)
     rating = db.relationship("Rating", backref="user", lazy=True)
+    toreads = db.relationship("ToRead", backref="user", lazy=True)
 
 
 class Rating(db.Model):
@@ -47,3 +49,10 @@ class Genre(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True, nullable=False)
     books = db.relationship('Book', secondary=book_genres, back_populates='genres', lazy=True)
+
+
+class ToRead(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    toread = db.Column(db.Boolean, default=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    book_id = db.Column(db.Integer, db.ForeignKey("book.id"), nullable=False)

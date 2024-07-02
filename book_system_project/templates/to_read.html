@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+    {% block topic %}To read list{% endblock %}
+
+    {% block subhead %}
+        Your read list:
+    {% endblock %}
+
+    {% block content %}
+        <ol>
+            {% for item in books %}
+            <li> <a href="{{ url_for('book_details', book_id=item['book'].id) }}">{{ item['book'].title }}</a>
+                &nbsp&nbsp
+                <form action="{{ url_for('remove_to_read', book_id=item['book'].id) }}" method="post" style="display:inline;">
+                    <button type="submit">Remove</button>
+                </form>
+            {% endfor %}
+        </ol>
+    {% endblock %}
