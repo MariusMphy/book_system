@@ -65,3 +65,10 @@ class SortRating(FlaskForm):
 
 class ToReadForm(FlaskForm):
     submit = SubmitField("Add to read list")
+
+
+class WriteReviewForm(FlaskForm):
+    review = TextAreaField("Review (max 1000 characters): ", validators=[DataRequired(),
+                           Length(max=1000, message="Review cannot exceed 1000 characters.")],
+                           render_kw={"rows": 8, "cols": 50})
+    submit = SubmitField("Submit review")

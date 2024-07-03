@@ -1,14 +1,11 @@
 ## Project: Book Recommendation System
 
-View page on port 5017: 
-<a href="http://127.0.0.1:5017" target="_blank">http://127.0.0.1:5017</a>
-
 ### Stage 1: Basic Book Catalog
 
 Objective: Create an application to manage a book catalog.
 
 Requirements:
-- Implement classes for users, books, authors, genre, review, user_favorite and user_read_list.
+- Implement classes for users, books, authors, genre, review and user_read_list.
 - create system fo automatically fill db with data (can be fictional).
 
 

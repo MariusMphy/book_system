@@ -18,7 +18,8 @@ body {
 }
 .content {
     background-color: Wheat;
-    padding: 5px
+    padding: 5px;
+    padding-right: 1200px;
 }
 .flash {
     background-color: Wheat;
@@ -39,3 +40,4 @@ body {
 .alert-info {
     color: Blue;
 }
+

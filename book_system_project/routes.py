@@ -1,8 +1,8 @@
 from flask import Flask, render_template, redirect, request, url_for, flash, session
 from book_system_project import db, app, login_manager, bcrypt
-from book_system_project.models import Book, User, Rating, Author, Genre, ToRead
+from book_system_project.models import Book, User, Rating, Author, Genre, ToRead, Review
 from book_system_project.forms import (RegisterForm, LoginForm, BookForm, AuthorForm, RateBook, EditUserForm,
-                                       ChangePasswordForm, SortRating, ToReadForm)
+                                       ChangePasswordForm, SortRating, ToReadForm, WriteReviewForm)
 from flask_login import login_user, login_required, logout_user, current_user
 import csv
 from sqlalchemy.exc import IntegrityError
@@ -191,6 +191,7 @@ def book_details(book_id):
     book = Book.query.get_or_404(book_id)
     author = book.author
     genres = book.genres
+    review = Review.query.filter_by(book_id=book_id, user_id=current_user.id).first()
     avg_rating = db.session.query(func.avg(Rating.rating)).filter_by(book_id=book_id).scalar()
     avg_rating = round(avg_rating, 2) if avg_rating else "Not rated"
     rating = None
@@ -209,9 +210,8 @@ def book_details(book_id):
         flash('This book is already in your read list', 'error')
         return redirect(url_for('to_read'))
     toread = ToRead.query.filter_by(user_id=current_user.id, book_id=book_id).first()
-    print(toread)
     return render_template('book.html', form=form, book=book, author=author, genres=genres, avg_rating=avg_rating,
-                           rating=rating, toread=toread)
+                           rating=rating, toread=toread, review=review)
 
 
 @app.route("/rate_book/<int:book_id>", methods=["GET", "POST"])
@@ -315,12 +315,6 @@ def your_ratings():
     return render_template("your_ratings.html", form=form, sorted_books=sorted_books)
 
 
-@app.route("/favorite_books", methods=["GET", "POST"])
-@login_required
-def favorite_books():
-    return render_template("favorite_books.html")
-
-
 @app.route("/to_read", methods=["GET", "POST"])
 @login_required
 def to_read():
@@ -340,3 +334,23 @@ def remove_to_read(book_id):
     else:
         flash('Book not found in your read list', 'error')
     return redirect(url_for('to_read'))
+
+
+@app.route("/write_review/<int:book_id>", methods=["GET", "POST"])
+@login_required
+def write_review(book_id):
+    form = WriteReviewForm()
+    old_review = Review.query.filter_by(book_id=book_id, user_id=current_user.id).first()
+
+    if form.validate_on_submit():
+        review = form.review.data
+        if old_review:
+            old_review.review = review
+        else:
+            new_review = Review(review=review, book_id=book_id, user_id=current_user.id)
+            db.session.add(new_review)
+        db.session.commit()
+        flash('Thank you for your review!', 'success')
+        return redirect(url_for('book_details', book_id=book_id))
+    return render_template('write_review.html', form=form, review=old_review)
+

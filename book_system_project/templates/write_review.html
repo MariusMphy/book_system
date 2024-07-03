@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+    {% block topic %}Write review{% endblock %}
+
+    {% block subhead %}
+        Write your review here:
+    {% endblock %}
+
+    {% block content %}
+
+        {% if review %}
+            Your current review:<br><br>
+            {{ review.review }}<br><br>
+            Update your review:
+        {% else %}
+            You didn't write review yet
+        {% endif %}
+
+        <form method="POST">
+    <div>
+        {{ form.csrf_token }}
+        {{ form.review.label }} {{ form.review }}<br><br>
+
+        {% if form.review.errors %}
+                <ul>
+                    {% for error in form.review.errors %}
+                        <li style="color: red;">{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+        {{ form.submit }}
+    </div>
+    </form>
+    {% endblock %}

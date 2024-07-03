@@ -21,19 +21,28 @@
         Your rating:
             {% if rating %}
                 {{ rating.rating }}
+                <br><a href="{{ url_for('rate_book', book_id=book.id) }}">Update your rating</a>
             {% else %}
                 Not rated
+                <br><a href="{{ url_for('rate_book', book_id=book.id) }}">Rate this book</a>
             {% endif %}
-            <br><a href="{{ url_for('rate_book', book_id=book.id) }}">Rate this book</a>
-            <br><br>
+            <br>
 
             {% if book.id == toread.book_id %}
-                This book is in your <a href="{{ url_for('to_read') }}">read list</a>
-            {% else %}
+                This book is in your <a href="{{ url_for('to_read') }}">read list</a><br>
+            {% else %}<br>
                 <form method="POST">
                     {{ form.hidden_tag() }}
                     {{ form.submit() }}
                 </form>
+            {% endif %}
+        <br>
+            {% if review %}
+                Your review:<br>
+                {{ review.review }}<br>
+                <a href="{{ url_for('write_review', book_id=book.id) }}">Update review</a>
+            {% else %}
+            <a href="{{ url_for('write_review', book_id=book.id) }}">Write review</a>
             {% endif %}
 
         {% else %}
