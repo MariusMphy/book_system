@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+    {% block topic %}Book reviews{% endblock %}
+    {% block subhead %}
+        All reviews for
+        <a href="{{ url_for('book_details', book_id=book.id)  }}"><span style="color: DarkMagenta; padding-left: 1px;">{{ book.title }}</span></a>
+        <span style="color: DarkRed;">by {{ author.name }}</span> <br>
+    {% endblock %}
+
+    {% block content %}
+
+        {% if rev_info %}
+        <ol>
+            {% for review in rev_info %}
+                <li>
+                    Reviewed by<span style="color: DarkRed;"> {{ review.name }}</span><br>
+                    {{ review.review }}
+                </li><br>
+            {% endfor %}
+        </ol>
+        {% else %}
+            You have not reviewed any books yet.
+        {% endif %}
+
+    {% endblock %}

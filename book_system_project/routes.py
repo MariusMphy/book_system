@@ -390,6 +390,26 @@ def your_reviews():
     return render_template('your_reviews.html', rev_info=rev_info)
 
 
+@app.route("/book_reviews/<int:book_id>", methods=["GET", "POST"])
+def book_reviews(book_id):
+    book = Book.query.filter_by(author_id=book_id).first()
+    author = Author.query.filter_by(id=book.author_id).first()
+
+    reviews = (db.session.query(Review.review, User.name)
+               .join(Book, Review.book_id == Book.id)
+               .join(User, Review.user_id == User.id)
+               .filter(Book.id == book_id).all())
+
+    rev_info = [
+        {
+            "review": review.review,
+            "name": review.name
+        }
+        for review in reviews
+    ]
+    return render_template('book_reviews.html', rev_info=rev_info, book=book, author=author)
+
+
 @app.route("/admin_page", methods=["GET", "POST"])
 @login_required
 def admin_page():
