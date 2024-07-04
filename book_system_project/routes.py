@@ -131,6 +131,7 @@ def logout():
 
 
 @app.route("/add_author", methods=["GET", "POST"])
+@login_required
 def add_author():
     form = AuthorForm()
     if form.validate_on_submit():
@@ -148,6 +149,7 @@ def add_author():
 
 
 @app.route("/add_book", methods=["GET", "POST"])
+@login_required
 def add_book():
     form = BookForm()
     form.author.choices = [(author.id, author.name) for author in Author.query.all()]
@@ -191,7 +193,9 @@ def book_details(book_id):
     book = Book.query.get_or_404(book_id)
     author = book.author
     genres = book.genres
-    review = Review.query.filter_by(book_id=book_id, user_id=current_user.id).first()
+    review = Review.query.filter_by(book_id=book_id, user_id=current_user.id).first()\
+        if current_user.is_authenticated else None
+
     avg_rating = db.session.query(func.avg(Rating.rating)).filter_by(book_id=book_id).scalar()
     avg_rating = round(avg_rating, 2) if avg_rating else "Not rated"
     rating = None
@@ -209,7 +213,9 @@ def book_details(book_id):
             return redirect(url_for('to_read'))
         flash('This book is already in your read list', 'error')
         return redirect(url_for('to_read'))
-    toread = ToRead.query.filter_by(user_id=current_user.id, book_id=book_id).first()
+
+    toread = ToRead.query.filter_by(user_id=current_user.id, book_id=book_id).first()\
+        if current_user.is_authenticated else None
     return render_template('book.html', form=form, book=book, author=author, genres=genres, avg_rating=avg_rating,
                            rating=rating, toread=toread, review=review)
 
@@ -382,6 +388,12 @@ def your_reviews():
         for review in reviews
     ]
     return render_template('your_reviews.html', rev_info=rev_info)
+
+
+@app.route("/admin_page", methods=["GET", "POST"])
+@login_required
+def admin_page():
+    return render_template('admin_page.html')
 
 
 @app.route("/search", methods=["GET", "POST"])

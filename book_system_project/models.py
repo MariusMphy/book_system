@@ -1,5 +1,8 @@
-from flask_login import UserMixin
-from book_system_project import db
+from flask_login import UserMixin, current_user
+from book_system_project import db, app
+from flask_admin import Admin
+from flask_admin.contrib.sqla import ModelView
+
 
 book_genres = db.Table('book_genres',
                        db.Column('book_id', db.Integer, db.ForeignKey('book.id'), primary_key=True),
@@ -61,3 +64,19 @@ class Review(db.Model):
     review = db.Column(db.String(1000), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     book_id = db.Column(db.Integer, db.ForeignKey("book.id"), nullable=False)
+
+
+class AdminModelView(ModelView):
+    def is_accessible(self):
+        return current_user.is_authenticated and current_user.name == "Admin"
+
+
+admin = Admin(app)
+
+admin.add_view(AdminModelView(User, db.session))
+admin.add_view(AdminModelView(Book, db.session))
+admin.add_view(AdminModelView(Rating, db.session))
+admin.add_view(AdminModelView(Author, db.session))
+admin.add_view(AdminModelView(Genre, db.session))
+admin.add_view(AdminModelView(ToRead, db.session))
+admin.add_view(AdminModelView(Review, db.session))

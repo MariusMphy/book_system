@@ -16,6 +16,10 @@ body {
     font-weight: bold;
     padding: 10px;
 }
+.admin_bar {
+    background-color: #FF7F7F;
+    padding: 5px;
+}
 .content {
     background-color: Wheat;
     padding: 5px;

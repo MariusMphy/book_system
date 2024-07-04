@@ -15,7 +15,5 @@ bcrypt = Bcrypt(app)
 
 app.app_context().push()
 
-
-
 # Important ! Keep this import at the end !
 from book_system_project import routes
