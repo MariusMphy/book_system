@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired, Length, Email, Optional
 from wtforms import IntegerField, StringField, EmailField, PasswordField, SelectField, SelectMultipleField, FloatField, \
-    TextAreaField, SubmitField, DateField
+    TextAreaField, SubmitField, DateField, BooleanField
 
 
 class RegisterForm(FlaskForm):
@@ -72,3 +72,13 @@ class WriteReviewForm(FlaskForm):
                            Length(max=1000, message="Review cannot exceed 1000 characters.")],
                            render_kw={"rows": 8, "cols": 50})
     submit = SubmitField("Submit review")
+
+
+class SearchForm(FlaskForm):
+    title = StringField("Title: ", validators=[Length(max=256)])
+    author = StringField("Author: ", validators=[Length(max=256)])
+    genre = StringField("Genre: ", validators=[Length(max=256)])
+    rating_min = SelectField("Rating min: ", choices=[("", 'None'), (1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')])
+    rating_max = SelectField("Rating max: ", choices=[("", 'None'), (1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')])
+    review = BooleanField("Has review")
+    submit = SubmitField("Search")

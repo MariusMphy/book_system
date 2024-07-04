@@ -6,13 +6,15 @@
     {% endblock %}
 
     {% block content %}
+                    <a href="{{ url_for('book_details', book_id=book.id)  }}"><span style="color: DarkMagenta;">{{ book.title }}</span></a>
+                    <span style="color: DarkRed;">by {{ author }}</span> <br><br>
 
         {% if review %}
             Your current review:<br><br>
             {{ review.review }}<br><br>
             Update your review:
         {% else %}
-            You didn't write review yet
+
         {% endif %}
 
         <form method="POST">

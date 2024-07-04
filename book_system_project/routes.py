@@ -2,7 +2,7 @@ from flask import Flask, render_template, redirect, request, url_for, flash, ses
 from book_system_project import db, app, login_manager, bcrypt
 from book_system_project.models import Book, User, Rating, Author, Genre, ToRead, Review
 from book_system_project.forms import (RegisterForm, LoginForm, BookForm, AuthorForm, RateBook, EditUserForm,
-                                       ChangePasswordForm, SortRating, ToReadForm, WriteReviewForm)
+                                       ChangePasswordForm, SortRating, ToReadForm, WriteReviewForm, SearchForm)
 from flask_login import login_user, login_required, logout_user, current_user
 import csv
 from sqlalchemy.exc import IntegrityError
@@ -341,7 +341,8 @@ def remove_to_read(book_id):
 def write_review(book_id):
     form = WriteReviewForm()
     old_review = Review.query.filter_by(book_id=book_id, user_id=current_user.id).first()
-
+    book = Book.query.filter_by(id=book_id).first()
+    author = db.session.query(Author.name).join(Book, Book.author_id == Author.id).filter(Book.id == book_id).scalar()
     if form.validate_on_submit():
         review = form.review.data
         if old_review:
@@ -352,5 +353,46 @@ def write_review(book_id):
         db.session.commit()
         flash('Thank you for your review!', 'success')
         return redirect(url_for('book_details', book_id=book_id))
-    return render_template('write_review.html', form=form, review=old_review)
+    return render_template('write_review.html', form=form, review=old_review, book=book, author=author)
 
+
+@app.route("/your_reviews", methods=["GET", "POST"])
+@login_required
+def your_reviews():
+    reviews = db.session.query(
+        Review.review,
+        Book.title,
+        Book.id.label('book_id'),
+        Author.name.label('author_name'),
+        User.name.label('user_name')
+    ).join(Book, Review.book_id == Book.id) \
+        .join(Author, Book.author_id == Author.id) \
+        .join(User, Review.user_id == User.id) \
+        .filter(User.id == current_user.id).all()
+
+    rev_info = [
+        {
+            "review": review.review,
+            "book_title": review.title,
+            "book_id": review.book_id,
+            "author_name": review.author_name,
+            "user_name": review.user_name,
+
+        }
+        for review in reviews
+    ]
+    return render_template('your_reviews.html', rev_info=rev_info)
+
+
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    form = SearchForm()
+    title = form.title.data
+    author = form.author.data
+    genre = form.genre.data
+    rating_min = form.rating_min.data
+    rating_max = form.rating_max.data
+    review = form.review.data
+
+    return render_template('search.html', form=form, title=title, author=author, genre=genre,
+                           rating_min=rating_min, rating_max=rating_max, review=review)

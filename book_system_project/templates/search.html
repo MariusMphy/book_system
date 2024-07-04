@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+    {% block topic %}Search{% endblock %}
+    {% block subhead %}
+        Search for book here:
+    {% endblock %}
+
+    {% block content %}
+    <form method="POST">
+        {{ form.csrf_token }}
+        {{ form.title.label }} {{ form.title }}<br><br>
+        {{ form.author.label }} {{ form.author }}<br><br>
+        {{ form.genre.label }} {{ form.genre }}<br><br>
+        {{ form.rating_min.label }} {{ form.rating_min }}<br><br>
+        {{ form.rating_max.label }} {{ form.rating_max }}<br><br>
+        {{ form.review.label }} {{ form.review }}<br><br>
+        {{ form.submit }}
+    </form>
+
+    {% endblock %}
