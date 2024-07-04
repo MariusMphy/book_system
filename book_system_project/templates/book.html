@@ -16,7 +16,7 @@
             {{ genre.name }}{% if not loop.last %}, {% endif %}
         {% endfor %}<br>
         Rating: {{ avg_rating }}<br>
-        <a href="{{ url_for('book_reviews', book_id=book.id) }}">Reviews</a><br><br>
+        <a href="{{ url_for('book_reviews', book_id=book.id) }}">Reviews</a> ({{ review_count }})<br><br>
 
         {% if current_user.is_authenticated %}
         Your rating:
@@ -48,5 +48,5 @@
 
         {% else %}
         {% endif %}
-
+{{ avv_rating }}
     {% endblock %}

@@ -19,6 +19,13 @@ class Book(db.Model):
     toreads = db.relationship("ToRead", backref="book", lazy=True)
     reviews = db.relationship("Review", backref="book", lazy=True)
 
+    @property
+    def avg_rating(self):
+        if not self.rating:
+            return None
+        total_ratings = sum(rating.rating for rating in self.rating)
+        return total_ratings / len(self.rating)
+
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)

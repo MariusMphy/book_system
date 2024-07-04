@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, request, url_for, flash, session
 from book_system_project import db, app, login_manager, bcrypt
-from book_system_project.models import Book, User, Rating, Author, Genre, ToRead, Review
+from book_system_project.models import Book, User, Rating, Author, Genre, ToRead, Review, book_genres
 from book_system_project.forms import (RegisterForm, LoginForm, BookForm, AuthorForm, RateBook, EditUserForm,
                                        ChangePasswordForm, SortRating, ToReadForm, WriteReviewForm, SearchForm)
 from flask_login import login_user, login_required, logout_user, current_user
@@ -193,11 +193,10 @@ def book_details(book_id):
     book = Book.query.get_or_404(book_id)
     author = book.author
     genres = book.genres
+    review_count = len(Review.query.filter_by(book_id=book_id).all())
     review = Review.query.filter_by(book_id=book_id, user_id=current_user.id).first()\
         if current_user.is_authenticated else None
-
-    avg_rating = db.session.query(func.avg(Rating.rating)).filter_by(book_id=book_id).scalar()
-    avg_rating = round(avg_rating, 2) if avg_rating else "Not rated"
+    avg_rating = book.avg_rating
     rating = None
 
     if current_user.is_authenticated:
@@ -217,7 +216,7 @@ def book_details(book_id):
     toread = ToRead.query.filter_by(user_id=current_user.id, book_id=book_id).first()\
         if current_user.is_authenticated else None
     return render_template('book.html', form=form, book=book, author=author, genres=genres, avg_rating=avg_rating,
-                           rating=rating, toread=toread, review=review)
+                           rating=rating, toread=toread, review=review, review_count=review_count)
 
 
 @app.route("/rate_book/<int:book_id>", methods=["GET", "POST"])
@@ -419,12 +418,37 @@ def admin_page():
 @app.route("/search", methods=["GET", "POST"])
 def search():
     form = SearchForm()
-    title = form.title.data
-    author = form.author.data
-    genre = form.genre.data
-    rating_min = form.rating_min.data
-    rating_max = form.rating_max.data
-    review = form.review.data
+    results = []
 
-    return render_template('search.html', form=form, title=title, author=author, genre=genre,
-                           rating_min=rating_min, rating_max=rating_max, review=review)
+    if form.validate_on_submit():
+        title = form.title.data
+        author = form.author.data
+        genre = form.genre.data
+        rating_min = form.rating_min.data
+        rating_max = form.rating_max.data
+
+        query = db.session.query(Book).join(Author)
+
+        if title:
+            query = query.filter(Book.title.ilike(f'%{title}%'))
+        if author:
+            query = query.filter(Author.name.ilike(f'%{author}%'))
+        if genre:
+            query = query.join(book_genres, Book.id == book_genres.c.book_id)\
+                         .join(Genre, Genre.id == book_genres.c.genre_id)\
+                         .filter(Genre.name.ilike(f'%{genre}%'))
+        if rating_min or rating_max:
+            query = query.join(Rating, Book.id == Rating.book_id).group_by(Book.id)
+
+            if rating_min:
+                query = query.having(func.avg(Rating.rating) >= int(rating_min))
+            if rating_max:
+                query = query.having(func.avg(Rating.rating) <= int(rating_max))
+
+        if form.review.data:
+            query = query.filter(Book.reviews.any())
+        results = query.all()
+        if not results:
+            flash("No books met your search criteria.", "error")
+
+    return render_template('search.html', form=form, results=results)
