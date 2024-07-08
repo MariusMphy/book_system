@@ -19,6 +19,13 @@ class Book(db.Model):
     toreads = db.relationship("ToRead", backref="book", lazy=True)
     reviews = db.relationship("Review", backref="book", lazy=True)
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'author_id': self.author_id,
+        }
+
     @property
     def avg_rating(self):
         if not self.rating:

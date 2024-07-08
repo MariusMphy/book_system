@@ -11,7 +11,8 @@ from sqlalchemy import func
 from datetime import datetime
 from random import random, randint, choice
 from book_system_project.media.books66 import books_list
-
+import json
+import os
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -582,6 +583,27 @@ def search():
                 .order_by(func.avg(Rating.rating).desc())
 
         results = query.all()
+
+        if current_user.is_authenticated:
+            serialized_results = [result.to_dict() for result in results]
+            current_time = datetime.now().isoformat()
+
+            timed_results = {
+                "user_id": current_user.id,
+                "timestamp": current_time,
+                "jsoned_results": serialized_results
+            }
+
+            if os.path.exists('book_system_project/media/search_results.json'):
+                with open('book_system_project/media/search_results.json', 'r') as file:
+                    data = json.load(file)
+            else:
+                data = []
+            data.append(timed_results)
+
+            with open('book_system_project/media/search_results.json', 'w') as file:
+                json.dump(data, file, indent=4)
+
         if not results:
             flash("No books met your search criteria.", "error")
 

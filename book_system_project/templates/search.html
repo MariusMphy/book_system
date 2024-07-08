@@ -32,5 +32,8 @@
     </ol>
     {% else %}
     {% endif %}
+    {% for time, display in search_to_display %}
+        {{ time }}
+    {% endfor %}
 
     {% endblock %}

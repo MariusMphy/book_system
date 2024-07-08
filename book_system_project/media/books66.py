@@ -1,4 +1,4 @@
-books_list =[
+books_list = [
     {"Author": "Fyodor Dostoevsky", "Title": "The Idiot", "Genres": "Fiction, Classic, Psychological"},
     {"Author": "Herman Melville", "Title": "Bartleby, the Scrivener", "Genres": "Fiction, Classic, Novella"},
     {"Author": "George Eliot", "Title": "Middlemarch", "Genres": "Fiction, Classic, Historical"},
