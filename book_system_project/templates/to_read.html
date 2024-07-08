@@ -6,6 +6,7 @@
     {% endblock %}
 
     {% block content %}
+        {% if books %}
         <ol>
             {% for item in books %}
             <li> <a href="{{ url_for('book_details', book_id=item['book'].id) }}">{{ item['book'].title }}</a>
@@ -15,4 +16,8 @@
                 </form>
             {% endfor %}
         </ol>
+        {% else %}
+            You have not added any books to your read list yet.
+        {% endif %}
+
     {% endblock %}

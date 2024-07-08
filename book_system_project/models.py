@@ -24,7 +24,7 @@ class Book(db.Model):
         if not self.rating:
             return None
         total_ratings = sum(rating.rating for rating in self.rating)
-        return total_ratings / len(self.rating)
+        return round(total_ratings / len(self.rating), 2)
 
 
 class User(UserMixin, db.Model):

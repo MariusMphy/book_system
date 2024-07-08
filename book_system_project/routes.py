@@ -1,4 +1,5 @@
 from flask import Flask, render_template, redirect, request, url_for, flash, session
+
 from book_system_project import db, app, login_manager, bcrypt
 from book_system_project.models import Book, User, Rating, Author, Genre, ToRead, Review, book_genres
 from book_system_project.forms import (RegisterForm, LoginForm, BookForm, AuthorForm, RateBook, EditUserForm,
@@ -7,6 +8,9 @@ from flask_login import login_user, login_required, logout_user, current_user
 import csv
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy import func
+from datetime import datetime
+from random import random, randint, choice
+from book_system_project.media.books66 import books_list
 
 
 @login_manager.user_loader
@@ -27,52 +31,136 @@ def profile():
 
 
 @app.route("/fill_db", methods=["GET", "POST"])
+@login_required
 def fill_db():
+    return render_template('fill_db.html')
+
+
+@app.route("/fill_book_db", methods=["GET", "POST"])
+def fill_book_db():
     books_added = 0
-    with open('book_system_project/media/top20_books.csv', mode='r', encoding='utf-8-sig') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            author_name = row['Author'].strip()
-            book_title = row['Title'].strip()
-            genre_names = [genre.strip() for genre in row['Genres'].split(',')]
+    for book in books_list:
+        author_name = book['Author']
+        book_title = book['Title']
+        genre_names = book['Genres'].split(',')
 
-            author = Author.query.filter_by(name=author_name).first()
-            if not author:
-                author = Author(name=author_name)
-                db.session.add(author)
+        author = Author.query.filter_by(name=author_name).first()
+        if not author:
+            author = Author(name=author_name)
+            db.session.add(author)
+            db.session.commit()
+
+        genres = []
+        for genre_name in genre_names:
+            genre = Genre.query.filter_by(name=genre_name.strip()).first()
+            if not genre:
+                genre = Genre(name=genre_name.strip())
+                db.session.add(genre)
                 db.session.commit()
+            genres.append(genre)
 
-            genres = []
-            for genre_name in genre_names:
-                genre = Genre.query.filter_by(name=genre_name).first()
-                if not genre:
-                    genre = Genre(name=genre_name)
-                    db.session.add(genre)
-                    db.session.commit()
-                genres.append(genre)
+        existing_book = Book.query.filter_by(title=book_title, author_id=author.id).first()
+        if existing_book:
+            continue
 
-            existing_book = Book.query.filter_by(title=book_title, author_id=author.id).first()
-            if existing_book:
-                continue
+        book = Book(title=book_title, author_id=author.id)
+        for genre in genres:
+            book.genres.append(genre)
 
-            book = Book(title=book_title, author_id=author.id)
-            for genre in genres:
-                book.genres.append(genre)
+        db.session.add(book)
 
-            db.session.add(book)
+        try:
+            db.session.commit()
+            books_added += 1
+        except IntegrityError:
+            db.session.rollback()
+            continue
 
+    if books_added == 0:
+        flash('Books you are trying to add already exists. No new books added.', 'info')
+    else:
+        flash(f'Successfully added {books_added} new book(s) to the database!', 'success')
+    return render_template("fill_db.html")
+
+
+@app.route("/fill_user_db", methods=["GET", "POST"])
+def fill_user_db():
+    if len(User.query.all()) > 50:
+        flash("We have enough users already. No new users added.", 'info')
+        return render_template("admin_page.html")
+    users_added = 0
+    with open('book_system_project/media/users60.txt', newline='') as csvfile:
+        reader = csv.DictReader(csvfile, delimiter='\t')
+        for row in reader:
+            full_name = f"{row['first_name'].strip()} {row['last_name'].strip()}"
+
+            user = User(
+                name=full_name,
+                email=row['email'],
+                password=bcrypt.generate_password_hash(row['password']).decode('utf-8'),
+                phone=row['phone'],
+                date_of_birth=datetime.strptime(row['date_of_birth'], '%Y-%m-%d').date(),
+                gender=row['gender']
+            )
+            db.session.add(user)
             try:
                 db.session.commit()
-                books_added += 1
+                users_added += 1
             except IntegrityError:
                 db.session.rollback()
                 continue
 
-        if books_added == 0:
-            flash('Books you are trying to add already exists. No new books added!', 'info')
+        if users_added == 0:
+            flash('Users you are trying to add already exists. No new users added.', 'info')
         else:
-            flash(f'Successfully added {books_added} new book(s) to the database!', 'success')
-    return render_template("fill_db.html", message="Database filled successfully.")
+            flash(f'Successfully added {users_added} new user(s) to the database!', 'success')
+
+    return render_template("fill_db.html")
+
+
+def randomize_review():
+    with open('book_system_project/media/words3000.txt', 'r') as file:
+        words = file.read()
+    words = words.split()
+
+    def get_result(word_list, sentence_length):
+        sentence = ' '.join(choice(word_list) for _ in range(sentence_length))
+        return sentence[0].upper() + sentence[1:]
+
+    number_of_sentences = randint(5, 12)
+    sentences = [get_result(words, randint(5, 15)) for _ in range(number_of_sentences)]
+    return '. '.join(sentences) + '.'
+
+
+@app.route("/fill_ratings", methods=["GET", "POST"])
+def fill_ratings():
+    user_rate = User.query.all()
+    if len(Rating.query.all()) > 50:
+        flash("We have enough data already. No new data added.", 'info')
+        return render_template("admin_page.html")
+    for user in user_rate:
+        if user.id != current_user.id:
+            book_list = Book.query.all()
+            to_rate = int(len(book_list) * 0.5)
+            counter = 0
+            for book in book_list:
+                check = Rating.query.filter_by(user_id=user.id, book_id=book.id).first()
+                if check:
+                    continue
+                if counter < to_rate:
+                    review = randomize_review()
+                    rating = randint(1, 5)
+                    add_rating = Rating(user_id=user.id, rating=rating, book_id=book.id)
+                    add_to_read = ToRead(user_id=user.id, toread=1, book_id=book.id)
+                    add_review = Review(user_id=user.id, review=review, book_id=book.id)
+                    counter += 1
+                    db.session.add(add_rating)
+                    db.session.add(add_to_read)
+                    db.session.add(add_review)
+            db.session.commit()
+
+    flash("Ratings, read list and reviews have been updated", 'success')
+    return render_template("fill_db.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -88,7 +176,7 @@ def register():
         gender = form.gender.data
         check_email = User.query.filter_by(email=email).first()
         if check_email:
-            flash('User with this email already exists', 'error')
+            flash('User with this email already exists.', 'error')
             return render_template('register.html', form=form)
         if password != confirm_password:
             flash('Passwords, do not match!', 'error')
@@ -99,7 +187,7 @@ def register():
 
         db.session.add(new_user)
         db.session.commit()
-        flash(f'You have succesfully registered, {name}! Login now.', 'success')
+        flash(f'You have successfully registered, {name}!', 'success')
         return redirect(url_for('login'))
     return render_template("register.html", form=form)
 
@@ -194,7 +282,7 @@ def book_details(book_id):
     author = book.author
     genres = book.genres
     review_count = len(Review.query.filter_by(book_id=book_id).all())
-    review = Review.query.filter_by(book_id=book_id, user_id=current_user.id).first()\
+    review = Review.query.filter_by(book_id=book_id, user_id=current_user.id).first() \
         if current_user.is_authenticated else None
     avg_rating = book.avg_rating
     rating = None
@@ -213,7 +301,7 @@ def book_details(book_id):
         flash('This book is already in your read list', 'error')
         return redirect(url_for('to_read'))
 
-    toread = ToRead.query.filter_by(user_id=current_user.id, book_id=book_id).first()\
+    toread = ToRead.query.filter_by(user_id=current_user.id, book_id=book_id).first() \
         if current_user.is_authenticated else None
     return render_template('book.html', form=form, book=book, author=author, genres=genres, avg_rating=avg_rating,
                            rating=rating, toread=toread, review=review, review_count=review_count)
@@ -317,7 +405,8 @@ def your_ratings():
         elif sorting == "oldest":
             sorted_books = sorted(rated_books, key=lambda x: x['rating_id'], reverse=False)
 
-    return render_template("your_ratings.html", form=form, sorted_books=sorted_books)
+    return render_template("your_ratings.html", form=form, sorted_books=sorted_books,
+                           ratings_with_books=ratings_with_books)
 
 
 @app.route("/to_read", methods=["GET", "POST"])
@@ -391,22 +480,38 @@ def your_reviews():
 
 @app.route("/book_reviews/<int:book_id>", methods=["GET", "POST"])
 def book_reviews(book_id):
-    book = Book.query.filter_by(author_id=book_id).first()
+    form = SortRating()
+    book = Book.query.filter_by(id=book_id).first()
     author = Author.query.filter_by(id=book.author_id).first()
 
-    reviews = (db.session.query(Review.review, User.name)
-               .join(Book, Review.book_id == Book.id)
+    reviews = (db.session.query(Review.review, Review.id, User.name, Rating.rating)
                .join(User, Review.user_id == User.id)
-               .filter(Book.id == book_id).all())
+               .outerjoin(Rating, (Rating.user_id == User.id) & (Rating.book_id == book_id))
+               .filter(Review.book_id == book_id).all())
 
     rev_info = [
         {
             "review": review.review,
-            "name": review.name
+            "name": review.name,
+            "rating": review.rating,
+            "rating_id": review.id
         }
         for review in reviews
     ]
-    return render_template('book_reviews.html', rev_info=rev_info, book=book, author=author)
+
+    sorted_rev_info = sorted(rev_info, key=lambda x: x['rating_id'], reverse=True)
+    if request.method == 'POST' and form.validate_on_submit():
+        sorting = form.sorted.data
+        if sorting == "best":
+            sorted_rev_info = sorted(rev_info, key=lambda x: x['rating'], reverse=True)
+        elif sorting == "worst":
+            sorted_rev_info = sorted(rev_info, key=lambda x: x['rating'], reverse=False)
+        elif sorting == "newest":
+            sorted_rev_info = sorted(rev_info, key=lambda x: x['rating_id'], reverse=True)
+        elif sorting == "oldest":
+            sorted_rev_info = sorted(rev_info, key=lambda x: x['rating_id'], reverse=False)
+
+    return render_template('book_reviews.html', form=form, rev_info=sorted_rev_info, book=book, author=author)
 
 
 @app.route("/admin_page", methods=["GET", "POST"])
@@ -418,37 +523,66 @@ def admin_page():
 @app.route("/search", methods=["GET", "POST"])
 def search():
     form = SearchForm()
+    form.select_author.choices = [('', 'Select an author')] + [(author.name, author.name) for author in
+                                                               Author.query.order_by(Author.name).all()]
+    select_author = form.select_author.data
+    form.select_genre.choices = [('', 'Select genre')] + [(genre.name, genre.name) for genre in
+                                                          Genre.query.order_by(Genre.name).all()]
+
+    select_genre = form.select_genre.data
     results = []
 
     if form.validate_on_submit():
         title = form.title.data
-        author = form.author.data
-        genre = form.genre.data
+        if select_author:
+            author = form.select_author.data
+        else:
+            author = form.author.data
+
+        if select_genre:
+            genre = form.select_genre.data
+        else:
+            genre = form.genre.data
+
         rating_min = form.rating_min.data
         rating_max = form.rating_max.data
+        sort_by = form.sort_by.data
 
-        query = db.session.query(Book).join(Author)
+        book_alias = db.aliased(Book)
+        rating_alias = db.aliased(Rating)
+
+        query = db.session.query(book_alias).join(Author)
 
         if title:
-            query = query.filter(Book.title.ilike(f'%{title}%'))
+            query = query.filter(book_alias.title.ilike(f'%{title}%'))
         if author:
             query = query.filter(Author.name.ilike(f'%{author}%'))
+
         if genre:
-            query = query.join(book_genres, Book.id == book_genres.c.book_id)\
-                         .join(Genre, Genre.id == book_genres.c.genre_id)\
-                         .filter(Genre.name.ilike(f'%{genre}%'))
+            query = query.join(book_genres, book_alias.id == book_genres.c.book_id) \
+                .join(Genre, Genre.id == book_genres.c.genre_id) \
+                .filter(Genre.name.ilike(f'%{genre}%'))
+
         if rating_min or rating_max:
-            query = query.join(Rating, Book.id == Rating.book_id).group_by(Book.id)
-
+            query = query.join(rating_alias, book_alias.id == rating_alias.book_id).group_by(book_alias.id)
             if rating_min:
-                query = query.having(func.avg(Rating.rating) >= int(rating_min))
+                query = query.having(func.avg(rating_alias.rating) >= int(rating_min))
             if rating_max:
-                query = query.having(func.avg(Rating.rating) <= int(rating_max))
-
+                query = query.having(func.avg(rating_alias.rating) <= int(rating_max))
         if form.review.data:
-            query = query.filter(Book.reviews.any())
+            query = query.filter(book_alias.reviews.any())
+
+        if sort_by == 'rating_asc':
+            query = query.outerjoin(Rating, book_alias.id == Rating.book_id) \
+                .group_by(book_alias.id) \
+                .order_by(func.avg(Rating.rating).asc())
+        elif sort_by == 'rating_desc':
+            query = query.outerjoin(Rating, book_alias.id == Rating.book_id) \
+                .group_by(book_alias.id) \
+                .order_by(func.avg(Rating.rating).desc())
+
         results = query.all()
         if not results:
             flash("No books met your search criteria.", "error")
 
-    return render_template('search.html', form=form, results=results)
+    return render_template('search.html', form=form, results=results, count=len(results))

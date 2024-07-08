@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired, Length, Email, Optional
-from wtforms import IntegerField, StringField, EmailField, PasswordField, SelectField, SelectMultipleField, FloatField, \
-    TextAreaField, SubmitField, DateField, BooleanField
+from wtforms import (IntegerField, StringField, EmailField, PasswordField, SelectField, SelectMultipleField, FloatField,
+                     TextAreaField, SubmitField, DateField, BooleanField)
 
 
 class RegisterForm(FlaskForm):
@@ -77,8 +77,11 @@ class WriteReviewForm(FlaskForm):
 class SearchForm(FlaskForm):
     title = StringField("Title: ", validators=[Length(max=256)])
     author = StringField("Author: ", validators=[Length(max=256)])
+    select_author = SelectField("Author: ", choices=[('', 'Select an author')])
     genre = StringField("Genre: ", validators=[Length(max=256)])
+    select_genre = SelectField("Genre: ", choices=[('', 'Select genre')])
     rating_min = SelectField("Rating min: ", choices=[("", 'None'), (1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')])
     rating_max = SelectField("Rating max: ", choices=[("", 'None'), (1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')])
+    sort_by = SelectField('Sort By', choices=[('rating_asc', 'Rating ascending'), ('rating_desc', 'Rating descending')], default='rating_desc')
     review = BooleanField("Has review")
-    submit = SubmitField("Search")
+    submit = SubmitField("Submit search")
