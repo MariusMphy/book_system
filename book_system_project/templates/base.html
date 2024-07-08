@@ -70,6 +70,30 @@
 
 <div class="content">
 {% block content %}
+    <div>
+        Top 5 rated books:
+        <ul>
+        {% for book, rating in top5_books %}
+            <li><a href="{{ url_for('book_details', book_id=book.id) }}">{{ book.title }} ({{ rating }})</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+    <div>
+        Top 5 most reviewed books:
+        <ul>
+        {% for book, review in top_reviewed_books %}
+            <li><a href="{{ url_for('book_details', book_id=book.id) }}">{{ book.title }} ({{ review }})</a></li>
+        {% endfor %}
+        </ul>
+    </div>
+    <div>
+        Top 5 books in most read lists:
+        <ul>
+        {% for book, read_listed in top_read_listed_books %}
+            <li><a href="{{ url_for('book_details', book_id=book.id) }}">{{ book.title }} ({{ read_listed }})</a></li>
+        {% endfor %}
+        </ul>
+    </div>
 {% endblock %}
 </div>
 </body>

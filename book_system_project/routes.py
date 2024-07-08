@@ -14,14 +14,52 @@ from book_system_project.media.books66 import books_list
 import json
 import os
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
 
+def paginate(data):
+    page = request.args.get('page', 1, type=int)
+    per_page = 20
+    start = (page - 1) * per_page
+    end = start + per_page
+
+    paginated_items = data[start:end]
+
+    total_pages = (len(data) + per_page - 1) // per_page
+
+    return render_template('index.html', items=paginated_items, page=page, total_pages=total_pages)
+
+
 @app.route("/")
 def home():
-    return render_template("base.html")
+    books = Book.query.all()
+    books_with_avg_rating = [(book, book.avg_rating) for book in books if book.avg_rating is not None]
+    top5_books = sorted(books_with_avg_rating, key=lambda x: x[1], reverse=True)[:5]
+
+    books_with_review_count = [(book, len(Review.query.filter_by(book_id=book.id).all())) for book in books]
+    top_reviewed_books = sorted(books_with_review_count, key=lambda x: x[1], reverse=True)[:5]
+
+    books_with_read_list_count = [(book, len(ToRead.query.filter_by(book_id=book.id).all())) for book in books]
+    top_read_listed_books = sorted(books_with_read_list_count, key=lambda x: x[1], reverse=True)[:100]
+
+    return render_template("base.html", top5_books=top5_books, top_reviewed_books=top_reviewed_books,
+                           top_read_listed_books=top_read_listed_books)
+
+
+# @app.route("/index")
+# def index():
+#     books = Book.query.all()
+#     books_with_avg_rating = [(book, book.avg_rating) for book in books if book.avg_rating is not None]
+#
+#     top5_books = sorted(books_with_avg_rating, key=lambda x: x[1], reverse=True)[:5]
+#     print(top5_books)
+#     for book, rating in top5_books:
+#         print(book.title, rating)
+#
+#     return render_template("index.html", top5_books=top5_books)
 
 
 @app.route("/profile")

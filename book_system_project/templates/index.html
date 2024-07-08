@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+    {% block content %}
+        Top 5 rated books:
+        <ul>
+        {% for book, rating in top5_books %}
+            <li>{{ book.title }} ({{ rating }})</li>
+        {% endfor %}
+        </ul>
+    {% endblock %}

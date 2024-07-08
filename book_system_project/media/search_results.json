@@ -1,0 +1,83 @@
+[
+    {
+        "user_id": 61,
+        "timestamp": "2024-07-08T19:48:43.612847",
+        "jsoned_results": [
+            {
+                "id": 45,
+                "title": "On the Road",
+                "author_id": 41
+            }
+        ]
+    },
+    {
+        "user_id": 61,
+        "timestamp": "2024-07-08T19:48:50.680283",
+        "jsoned_results": []
+    },
+    {
+        "user_id": 61,
+        "timestamp": "2024-07-08T19:48:58.073331",
+        "jsoned_results": [
+            {
+                "id": 65,
+                "title": "The Divine Comedy",
+                "author_id": 51
+            }
+        ]
+    },
+    {
+        "user_id": 61,
+        "timestamp": "2024-07-08T19:49:03.679863",
+        "jsoned_results": [
+            {
+                "id": 15,
+                "title": "The Metamorphosis",
+                "author_id": 13
+            }
+        ]
+    },
+    {
+        "user_id": 61,
+        "timestamp": "2024-07-08T19:49:09.817358",
+        "jsoned_results": [
+            {
+                "id": 1,
+                "title": "The Idiot",
+                "author_id": 1
+            },
+            {
+                "id": 51,
+                "title": "Notes from Underground",
+                "author_id": 1
+            },
+            {
+                "id": 66,
+                "title": "The Brothers Karamazov",
+                "author_id": 1
+            }
+        ]
+    },
+    {
+        "user_id": 62,
+        "timestamp": "2024-07-08T19:49:50.562985",
+        "jsoned_results": [
+            {
+                "id": 37,
+                "title": "Animal Farm",
+                "author_id": 34
+            }
+        ]
+    },
+    {
+        "user_id": 62,
+        "timestamp": "2024-07-08T19:49:55.090202",
+        "jsoned_results": [
+            {
+                "id": 64,
+                "title": "One Hundred Years of Solitude",
+                "author_id": 50
+            }
+        ]
+    }
+]
