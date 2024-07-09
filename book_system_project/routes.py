@@ -20,19 +20,6 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-def paginate(data):
-    page = request.args.get('page', 1, type=int)
-    per_page = 20
-    start = (page - 1) * per_page
-    end = start + per_page
-
-    paginated_items = data[start:end]
-
-    total_pages = (len(data) + per_page - 1) // per_page
-
-    return render_template('index.html', items=paginated_items, page=page, total_pages=total_pages)
-
-
 @app.route("/")
 def home():
     books = Book.query.all()
@@ -43,23 +30,10 @@ def home():
     top_reviewed_books = sorted(books_with_review_count, key=lambda x: x[1], reverse=True)[:5]
 
     books_with_read_list_count = [(book, len(ToRead.query.filter_by(book_id=book.id).all())) for book in books]
-    top_read_listed_books = sorted(books_with_read_list_count, key=lambda x: x[1], reverse=True)[:100]
+    top_read_listed_books = sorted(books_with_read_list_count, key=lambda x: x[1], reverse=True)[:5]
 
     return render_template("base.html", top5_books=top5_books, top_reviewed_books=top_reviewed_books,
                            top_read_listed_books=top_read_listed_books)
-
-
-# @app.route("/index")
-# def index():
-#     books = Book.query.all()
-#     books_with_avg_rating = [(book, book.avg_rating) for book in books if book.avg_rating is not None]
-#
-#     top5_books = sorted(books_with_avg_rating, key=lambda x: x[1], reverse=True)[:5]
-#     print(top5_books)
-#     for book, rating in top5_books:
-#         print(book.title, rating)
-#
-#     return render_template("index.html", top5_books=top5_books)
 
 
 @app.route("/profile")
@@ -180,7 +154,7 @@ def fill_ratings():
     for user in user_rate:
         if user.id != current_user.id:
             book_list = Book.query.all()
-            to_rate = int(len(book_list) * 0.5)
+            to_rate = int(len(book_list) * 0.9)
             counter = 0
             for book in book_list:
                 check = Rating.query.filter_by(user_id=user.id, book_id=book.id).first()
@@ -189,15 +163,23 @@ def fill_ratings():
                 if counter < to_rate:
                     review = randomize_review()
                     rating = randint(1, 5)
-                    add_rating = Rating(user_id=user.id, rating=rating, book_id=book.id)
-                    add_to_read = ToRead(user_id=user.id, toread=1, book_id=book.id)
-                    add_review = Review(user_id=user.id, review=review, book_id=book.id)
+                    if counter <= 30:
+                        add_rating = Rating(user_id=user.id, rating=rating, book_id=book.id)
+                        db.session.add(add_rating)
+                    if 30 < counter <= 40:
+                        add_rating = Rating(user_id=user.id, rating=randint(4, 5), book_id=book.id)
+                        db.session.add(add_rating)
+                    if 40 < counter <= 50:
+                        add_rating = Rating(user_id=user.id, rating=randint(1, 2), book_id=book.id)
+                        db.session.add(add_rating)
+                    if 10 < counter <= 50 and randint(1, 3) > 1:
+                        add_to_read = ToRead(user_id=user.id, toread=1, book_id=book.id)
+                        db.session.add(add_to_read)
+                    if 20 < counter <= 60 and randint(1, 3) > 1:
+                        add_review = Review(user_id=user.id, review=review, book_id=book.id)
+                        db.session.add(add_review)
                     counter += 1
-                    db.session.add(add_rating)
-                    db.session.add(add_to_read)
-                    db.session.add(add_review)
             db.session.commit()
-
     flash("Ratings, read list and reviews have been updated", 'success')
     return render_template("fill_db.html")
 
