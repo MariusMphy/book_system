@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+    {% block title %}All read listed books{% endblock %}
+
+    {% block subhead %}
+        All read listed books:
+    {% endblock %}
+
+    {% block content %}
+    <div>
+        <ol>
+        {% for book, rating in sorted_books %}
+            <li><a href="{{ url_for('book_details', book_id=book.id) }}">{{ book.title }} ({{ rating }})</a></li>
+        {% endfor %}
+        </ol>
+    </div>
+    {% endblock %}

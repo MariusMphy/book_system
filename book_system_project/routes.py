@@ -324,8 +324,10 @@ def book_details(book_id):
 
     toread = ToRead.query.filter_by(user_id=current_user.id, book_id=book_id).first() \
         if current_user.is_authenticated else None
+    read_listed = len(ToRead.query.filter_by(book_id=book_id).all())
     return render_template('book.html', form=form, book=book, author=author, genres=genres, avg_rating=avg_rating,
-                           rating=rating, toread=toread, review=review, review_count=review_count)
+                           rating=rating, toread=toread, review=review, review_count=review_count,
+                           read_listed=read_listed)
 
 
 @app.route("/rate_book/<int:book_id>", methods=["GET", "POST"])
@@ -628,3 +630,27 @@ def search():
             flash("No books met your search criteria.", "error")
 
     return render_template('search.html', form=form, results=results, count=len(results))
+
+
+@app.route("/all_ratings", methods=["GET", "POST"])
+def all_ratings():
+    books = Book.query.all()
+    books_with_avg_rating = [(book, book.avg_rating) for book in books if book.avg_rating is not None]
+    sorted_books = sorted(books_with_avg_rating, key=lambda x: x[1], reverse=True)
+    return render_template("all_ratings.html", sorted_books=sorted_books)
+
+
+@app.route("/all_reviews", methods=["GET", "POST"])
+def all_reviews():
+    books = Book.query.all()
+    books_with_review_count = [(book, len(Review.query.filter_by(book_id=book.id).all())) for book in books]
+    sorted_books = sorted(books_with_review_count, key=lambda x: x[1], reverse=True)
+    return render_template("all_reviews.html", sorted_books=sorted_books)
+
+
+@app.route("/all_read_listed", methods=["GET", "POST"])
+def all_read_listed():
+    books = Book.query.all()
+    books_with_read_list_count = [(book, len(ToRead.query.filter_by(book_id=book.id).all())) for book in books]
+    sorted_books = sorted(books_with_read_list_count, key=lambda x: x[1], reverse=True)
+    return render_template("all_read_listed.html", sorted_books=sorted_books)
