@@ -654,3 +654,23 @@ def all_read_listed():
     books_with_read_list_count = [(book, len(ToRead.query.filter_by(book_id=book.id).all())) for book in books]
     sorted_books = sorted(books_with_read_list_count, key=lambda x: x[1], reverse=True)
     return render_template("all_read_listed.html", sorted_books=sorted_books)
+
+
+@app.route("/recommended_for_you", methods=["GET", "POST"])
+@login_required
+def recommended_for_you():
+    your_rated5 = Rating.query.filter_by(user_id=current_user.id, rating=5).all()
+    book_ids = [rating.book_id for rating in your_rated5]
+    your_rated5_books = Book.query.filter(Book.id.in_(book_ids)).all()
+    print(your_rated5_books)
+    users_alike = Rating.query.filter(Rating.book_id.in_(book_ids), Rating.rating == 5,
+                                      Rating.user_id != current_user.id).all()
+    users_alike_ids = [user.user_id for user in users_alike]
+    books_alike = Rating.query.filter(Rating.user_id.in_(users_alike_ids), Rating.rating == 5, ~Rating.book_id.in_(book_ids)).all()
+    recommended_books_ids = set([book.book_id for book in books_alike])
+    books = Book.query.all()
+    books_with_avg_rating = [(book, book.avg_rating) for book in books if book.id in recommended_books_ids
+                             and book.avg_rating is not None]
+    sorted_books = sorted(books_with_avg_rating, key=lambda x: x[1], reverse=True)
+
+    return render_template("recommended_for_you.html", sorted_books=sorted_books)

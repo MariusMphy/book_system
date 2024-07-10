@@ -45,7 +45,6 @@ Objective: Develop a recommendation engine for books.
 Requirements:
 - Implement a basic recommendation algorithm (e.g., collaborative filtering).
 - Allow users to view personalized book recommendations.
-- Use AI for advanced recommendations (optional)
 
 ### Stage 6: Deployment and API Integration
     
