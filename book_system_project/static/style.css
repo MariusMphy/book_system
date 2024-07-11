@@ -23,7 +23,10 @@ body {
 .content {
     background-color: Wheat;
     padding: 5px;
-    padding-right: 1100px;
+    padding-right----------removed: 1100px;
+}
+.block{
+    display: inline-block;
 }
 .flash {
     background-color: Wheat;

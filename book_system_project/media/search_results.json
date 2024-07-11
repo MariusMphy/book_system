@@ -4097,5 +4097,4037 @@
                 "author_id": 1
             }
         ]
+    },
+    {
+        "user_id": 62,
+        "timestamp": "2024-07-11T06:44:22.047606",
+        "jsoned_results": [
+            {
+                "id": 55,
+                "title": "The Hobbit",
+                "author_id": 47
+            },
+            {
+                "id": 34,
+                "title": "Orlando",
+                "author_id": 31
+            },
+            {
+                "id": 38,
+                "title": "Lord of the Flies",
+                "author_id": 35
+            },
+            {
+                "id": 41,
+                "title": "The Exemplary Novels of Cervantes",
+                "author_id": 38
+            },
+            {
+                "id": 33,
+                "title": "Brave New World",
+                "author_id": 30
+            },
+            {
+                "id": 39,
+                "title": "The Complete Tales and Poems of Edgar Allan Poe",
+                "author_id": 36
+            },
+            {
+                "id": 32,
+                "title": "Finnegans Wake",
+                "author_id": 29
+            },
+            {
+                "id": 36,
+                "title": "Treasure Island",
+                "author_id": 33
+            },
+            {
+                "id": 35,
+                "title": "The Picture of Dorian Gray",
+                "author_id": 32
+            },
+            {
+                "id": 40,
+                "title": "Alice's Adventures in Wonderland",
+                "author_id": 37
+            },
+            {
+                "id": 37,
+                "title": "Animal Farm",
+                "author_id": 34
+            },
+            {
+                "id": 53,
+                "title": "The Little Prince",
+                "author_id": 45
+            },
+            {
+                "id": 56,
+                "title": "Don Quixote",
+                "author_id": 38
+            },
+            {
+                "id": 59,
+                "title": "The Great Gatsby",
+                "author_id": 14
+            },
+            {
+                "id": 27,
+                "title": "The Adventures of Tom Sawyer",
+                "author_id": 24
+            },
+            {
+                "id": 15,
+                "title": "The Metamorphosis",
+                "author_id": 13
+            },
+            {
+                "id": 14,
+                "title": "The Complete Poems of Emily Dickinson",
+                "author_id": 12
+            },
+            {
+                "id": 22,
+                "title": "David Copperfield",
+                "author_id": 20
+            },
+            {
+                "id": 31,
+                "title": "Lolita",
+                "author_id": 28
+            },
+            {
+                "id": 6,
+                "title": "As I Lay Dying",
+                "author_id": 5
+            },
+            {
+                "id": 8,
+                "title": "The Catcher in the Rye",
+                "author_id": 7
+            },
+            {
+                "id": 29,
+                "title": "Invisible Man",
+                "author_id": 26
+            },
+            {
+                "id": 10,
+                "title": "The Plague",
+                "author_id": 9
+            },
+            {
+                "id": 13,
+                "title": "Harry Potter Series",
+                "author_id": 11
+            },
+            {
+                "id": 25,
+                "title": "To Kill a Mockingbird",
+                "author_id": 23
+            },
+            {
+                "id": 28,
+                "title": "The Portrait of a Lady",
+                "author_id": 25
+            },
+            {
+                "id": 17,
+                "title": "The Old Man and the Sea",
+                "author_id": 15
+            },
+            {
+                "id": 9,
+                "title": "The Call of the Wild",
+                "author_id": 8
+            },
+            {
+                "id": 21,
+                "title": "Sentimental Education",
+                "author_id": 19
+            },
+            {
+                "id": 12,
+                "title": "Swann's Way",
+                "author_id": 10
+            },
+            {
+                "id": 18,
+                "title": "Of Mice and Men",
+                "author_id": 16
+            },
+            {
+                "id": 62,
+                "title": "Hamlet",
+                "author_id": 48
+            },
+            {
+                "id": 1,
+                "title": "The Idiot",
+                "author_id": 1
+            },
+            {
+                "id": 4,
+                "title": "Jane Eyre",
+                "author_id": 4
+            },
+            {
+                "id": 30,
+                "title": "Go Tell It on the Mountain",
+                "author_id": 27
+            },
+            {
+                "id": 11,
+                "title": "The Fall",
+                "author_id": 9
+            },
+            {
+                "id": 16,
+                "title": "Tender is the Night",
+                "author_id": 14
+            },
+            {
+                "id": 23,
+                "title": "The Magic Mountain",
+                "author_id": 21
+            },
+            {
+                "id": 2,
+                "title": "Bartleby, the Scrivener",
+                "author_id": 2
+            },
+            {
+                "id": 3,
+                "title": "Middlemarch",
+                "author_id": 3
+            },
+            {
+                "id": 7,
+                "title": "Catch-22",
+                "author_id": 6
+            },
+            {
+                "id": 26,
+                "title": "Childhood, Boyhood, and Youth",
+                "author_id": 17
+            },
+            {
+                "id": 19,
+                "title": "Resurrection",
+                "author_id": 17
+            },
+            {
+                "id": 20,
+                "title": "The Age of Innocence",
+                "author_id": 18
+            },
+            {
+                "id": 24,
+                "title": "Steppenwolf",
+                "author_id": 22
+            },
+            {
+                "id": 5,
+                "title": "The Sound and the Fury",
+                "author_id": 5
+            },
+            {
+                "id": 49,
+                "title": "The Master and Margarita",
+                "author_id": 44
+            },
+            {
+                "id": 50,
+                "title": "Dubliners",
+                "author_id": 29
+            },
+            {
+                "id": 51,
+                "title": "Notes from Underground",
+                "author_id": 1
+            },
+            {
+                "id": 48,
+                "title": "Slaughterhouse-Five",
+                "author_id": 43
+            },
+            {
+                "id": 46,
+                "title": "Billy Budd, Sailor",
+                "author_id": 2
+            },
+            {
+                "id": 47,
+                "title": "The Crucible",
+                "author_id": 42
+            },
+            {
+                "id": 42,
+                "title": "Time Regained",
+                "author_id": 10
+            },
+            {
+                "id": 43,
+                "title": "Tess of the d'Urbervilles",
+                "author_id": 39
+            },
+            {
+                "id": 45,
+                "title": "On the Road",
+                "author_id": 41
+            },
+            {
+                "id": 44,
+                "title": "Lord Jim",
+                "author_id": 40
+            },
+            {
+                "id": 52,
+                "title": "The Myth of Sisyphus",
+                "author_id": 9
+            },
+            {
+                "id": 54,
+                "title": "Fahrenheit 451",
+                "author_id": 46
+            },
+            {
+                "id": 57,
+                "title": "In Search of Lost Time",
+                "author_id": 10
+            },
+            {
+                "id": 58,
+                "title": "Ulysses",
+                "author_id": 29
+            },
+            {
+                "id": 60,
+                "title": "Moby Dick",
+                "author_id": 2
+            },
+            {
+                "id": 61,
+                "title": "War and Peace",
+                "author_id": 17
+            },
+            {
+                "id": 63,
+                "title": "The Odyssey",
+                "author_id": 49
+            },
+            {
+                "id": 64,
+                "title": "One Hundred Years of Solitude",
+                "author_id": 50
+            },
+            {
+                "id": 65,
+                "title": "The Divine Comedy",
+                "author_id": 51
+            },
+            {
+                "id": 66,
+                "title": "The Brothers Karamazov",
+                "author_id": 1
+            }
+        ]
+    },
+    {
+        "user_id": 62,
+        "timestamp": "2024-07-11T06:44:57.854848",
+        "jsoned_results": [
+            {
+                "id": 54,
+                "title": "Fahrenheit 451",
+                "author_id": 46
+            },
+            {
+                "id": 55,
+                "title": "The Hobbit",
+                "author_id": 47
+            },
+            {
+                "id": 34,
+                "title": "Orlando",
+                "author_id": 31
+            },
+            {
+                "id": 38,
+                "title": "Lord of the Flies",
+                "author_id": 35
+            },
+            {
+                "id": 41,
+                "title": "The Exemplary Novels of Cervantes",
+                "author_id": 38
+            },
+            {
+                "id": 33,
+                "title": "Brave New World",
+                "author_id": 30
+            },
+            {
+                "id": 39,
+                "title": "The Complete Tales and Poems of Edgar Allan Poe",
+                "author_id": 36
+            },
+            {
+                "id": 32,
+                "title": "Finnegans Wake",
+                "author_id": 29
+            },
+            {
+                "id": 36,
+                "title": "Treasure Island",
+                "author_id": 33
+            },
+            {
+                "id": 35,
+                "title": "The Picture of Dorian Gray",
+                "author_id": 32
+            },
+            {
+                "id": 40,
+                "title": "Alice's Adventures in Wonderland",
+                "author_id": 37
+            },
+            {
+                "id": 37,
+                "title": "Animal Farm",
+                "author_id": 34
+            },
+            {
+                "id": 53,
+                "title": "The Little Prince",
+                "author_id": 45
+            },
+            {
+                "id": 56,
+                "title": "Don Quixote",
+                "author_id": 38
+            },
+            {
+                "id": 59,
+                "title": "The Great Gatsby",
+                "author_id": 14
+            },
+            {
+                "id": 27,
+                "title": "The Adventures of Tom Sawyer",
+                "author_id": 24
+            },
+            {
+                "id": 15,
+                "title": "The Metamorphosis",
+                "author_id": 13
+            },
+            {
+                "id": 14,
+                "title": "The Complete Poems of Emily Dickinson",
+                "author_id": 12
+            },
+            {
+                "id": 22,
+                "title": "David Copperfield",
+                "author_id": 20
+            },
+            {
+                "id": 31,
+                "title": "Lolita",
+                "author_id": 28
+            },
+            {
+                "id": 6,
+                "title": "As I Lay Dying",
+                "author_id": 5
+            },
+            {
+                "id": 8,
+                "title": "The Catcher in the Rye",
+                "author_id": 7
+            },
+            {
+                "id": 29,
+                "title": "Invisible Man",
+                "author_id": 26
+            },
+            {
+                "id": 10,
+                "title": "The Plague",
+                "author_id": 9
+            },
+            {
+                "id": 13,
+                "title": "Harry Potter Series",
+                "author_id": 11
+            },
+            {
+                "id": 25,
+                "title": "To Kill a Mockingbird",
+                "author_id": 23
+            },
+            {
+                "id": 28,
+                "title": "The Portrait of a Lady",
+                "author_id": 25
+            },
+            {
+                "id": 17,
+                "title": "The Old Man and the Sea",
+                "author_id": 15
+            },
+            {
+                "id": 9,
+                "title": "The Call of the Wild",
+                "author_id": 8
+            },
+            {
+                "id": 21,
+                "title": "Sentimental Education",
+                "author_id": 19
+            },
+            {
+                "id": 12,
+                "title": "Swann's Way",
+                "author_id": 10
+            },
+            {
+                "id": 18,
+                "title": "Of Mice and Men",
+                "author_id": 16
+            },
+            {
+                "id": 62,
+                "title": "Hamlet",
+                "author_id": 48
+            },
+            {
+                "id": 1,
+                "title": "The Idiot",
+                "author_id": 1
+            },
+            {
+                "id": 4,
+                "title": "Jane Eyre",
+                "author_id": 4
+            },
+            {
+                "id": 30,
+                "title": "Go Tell It on the Mountain",
+                "author_id": 27
+            },
+            {
+                "id": 11,
+                "title": "The Fall",
+                "author_id": 9
+            },
+            {
+                "id": 16,
+                "title": "Tender is the Night",
+                "author_id": 14
+            },
+            {
+                "id": 23,
+                "title": "The Magic Mountain",
+                "author_id": 21
+            },
+            {
+                "id": 2,
+                "title": "Bartleby, the Scrivener",
+                "author_id": 2
+            },
+            {
+                "id": 3,
+                "title": "Middlemarch",
+                "author_id": 3
+            },
+            {
+                "id": 7,
+                "title": "Catch-22",
+                "author_id": 6
+            },
+            {
+                "id": 26,
+                "title": "Childhood, Boyhood, and Youth",
+                "author_id": 17
+            },
+            {
+                "id": 19,
+                "title": "Resurrection",
+                "author_id": 17
+            },
+            {
+                "id": 20,
+                "title": "The Age of Innocence",
+                "author_id": 18
+            },
+            {
+                "id": 24,
+                "title": "Steppenwolf",
+                "author_id": 22
+            },
+            {
+                "id": 5,
+                "title": "The Sound and the Fury",
+                "author_id": 5
+            },
+            {
+                "id": 49,
+                "title": "The Master and Margarita",
+                "author_id": 44
+            },
+            {
+                "id": 50,
+                "title": "Dubliners",
+                "author_id": 29
+            },
+            {
+                "id": 51,
+                "title": "Notes from Underground",
+                "author_id": 1
+            },
+            {
+                "id": 48,
+                "title": "Slaughterhouse-Five",
+                "author_id": 43
+            },
+            {
+                "id": 46,
+                "title": "Billy Budd, Sailor",
+                "author_id": 2
+            },
+            {
+                "id": 47,
+                "title": "The Crucible",
+                "author_id": 42
+            },
+            {
+                "id": 42,
+                "title": "Time Regained",
+                "author_id": 10
+            },
+            {
+                "id": 43,
+                "title": "Tess of the d'Urbervilles",
+                "author_id": 39
+            },
+            {
+                "id": 45,
+                "title": "On the Road",
+                "author_id": 41
+            },
+            {
+                "id": 44,
+                "title": "Lord Jim",
+                "author_id": 40
+            },
+            {
+                "id": 52,
+                "title": "The Myth of Sisyphus",
+                "author_id": 9
+            },
+            {
+                "id": 57,
+                "title": "In Search of Lost Time",
+                "author_id": 10
+            },
+            {
+                "id": 58,
+                "title": "Ulysses",
+                "author_id": 29
+            },
+            {
+                "id": 60,
+                "title": "Moby Dick",
+                "author_id": 2
+            },
+            {
+                "id": 61,
+                "title": "War and Peace",
+                "author_id": 17
+            },
+            {
+                "id": 63,
+                "title": "The Odyssey",
+                "author_id": 49
+            },
+            {
+                "id": 64,
+                "title": "One Hundred Years of Solitude",
+                "author_id": 50
+            },
+            {
+                "id": 65,
+                "title": "The Divine Comedy",
+                "author_id": 51
+            },
+            {
+                "id": 66,
+                "title": "The Brothers Karamazov",
+                "author_id": 1
+            }
+        ]
+    },
+    {
+        "user_id": 63,
+        "timestamp": "2024-07-11T06:45:45.056826",
+        "jsoned_results": [
+            {
+                "id": 54,
+                "title": "Fahrenheit 451",
+                "author_id": 46
+            },
+            {
+                "id": 55,
+                "title": "The Hobbit",
+                "author_id": 47
+            },
+            {
+                "id": 65,
+                "title": "The Divine Comedy",
+                "author_id": 51
+            },
+            {
+                "id": 34,
+                "title": "Orlando",
+                "author_id": 31
+            },
+            {
+                "id": 38,
+                "title": "Lord of the Flies",
+                "author_id": 35
+            },
+            {
+                "id": 41,
+                "title": "The Exemplary Novels of Cervantes",
+                "author_id": 38
+            },
+            {
+                "id": 33,
+                "title": "Brave New World",
+                "author_id": 30
+            },
+            {
+                "id": 39,
+                "title": "The Complete Tales and Poems of Edgar Allan Poe",
+                "author_id": 36
+            },
+            {
+                "id": 32,
+                "title": "Finnegans Wake",
+                "author_id": 29
+            },
+            {
+                "id": 36,
+                "title": "Treasure Island",
+                "author_id": 33
+            },
+            {
+                "id": 35,
+                "title": "The Picture of Dorian Gray",
+                "author_id": 32
+            },
+            {
+                "id": 40,
+                "title": "Alice's Adventures in Wonderland",
+                "author_id": 37
+            },
+            {
+                "id": 37,
+                "title": "Animal Farm",
+                "author_id": 34
+            },
+            {
+                "id": 53,
+                "title": "The Little Prince",
+                "author_id": 45
+            },
+            {
+                "id": 56,
+                "title": "Don Quixote",
+                "author_id": 38
+            },
+            {
+                "id": 59,
+                "title": "The Great Gatsby",
+                "author_id": 14
+            },
+            {
+                "id": 27,
+                "title": "The Adventures of Tom Sawyer",
+                "author_id": 24
+            },
+            {
+                "id": 15,
+                "title": "The Metamorphosis",
+                "author_id": 13
+            },
+            {
+                "id": 14,
+                "title": "The Complete Poems of Emily Dickinson",
+                "author_id": 12
+            },
+            {
+                "id": 22,
+                "title": "David Copperfield",
+                "author_id": 20
+            },
+            {
+                "id": 31,
+                "title": "Lolita",
+                "author_id": 28
+            },
+            {
+                "id": 6,
+                "title": "As I Lay Dying",
+                "author_id": 5
+            },
+            {
+                "id": 8,
+                "title": "The Catcher in the Rye",
+                "author_id": 7
+            },
+            {
+                "id": 29,
+                "title": "Invisible Man",
+                "author_id": 26
+            },
+            {
+                "id": 10,
+                "title": "The Plague",
+                "author_id": 9
+            },
+            {
+                "id": 13,
+                "title": "Harry Potter Series",
+                "author_id": 11
+            },
+            {
+                "id": 25,
+                "title": "To Kill a Mockingbird",
+                "author_id": 23
+            },
+            {
+                "id": 28,
+                "title": "The Portrait of a Lady",
+                "author_id": 25
+            },
+            {
+                "id": 17,
+                "title": "The Old Man and the Sea",
+                "author_id": 15
+            },
+            {
+                "id": 9,
+                "title": "The Call of the Wild",
+                "author_id": 8
+            },
+            {
+                "id": 21,
+                "title": "Sentimental Education",
+                "author_id": 19
+            },
+            {
+                "id": 12,
+                "title": "Swann's Way",
+                "author_id": 10
+            },
+            {
+                "id": 18,
+                "title": "Of Mice and Men",
+                "author_id": 16
+            },
+            {
+                "id": 62,
+                "title": "Hamlet",
+                "author_id": 48
+            },
+            {
+                "id": 1,
+                "title": "The Idiot",
+                "author_id": 1
+            },
+            {
+                "id": 4,
+                "title": "Jane Eyre",
+                "author_id": 4
+            },
+            {
+                "id": 30,
+                "title": "Go Tell It on the Mountain",
+                "author_id": 27
+            },
+            {
+                "id": 11,
+                "title": "The Fall",
+                "author_id": 9
+            },
+            {
+                "id": 16,
+                "title": "Tender is the Night",
+                "author_id": 14
+            },
+            {
+                "id": 23,
+                "title": "The Magic Mountain",
+                "author_id": 21
+            },
+            {
+                "id": 2,
+                "title": "Bartleby, the Scrivener",
+                "author_id": 2
+            },
+            {
+                "id": 3,
+                "title": "Middlemarch",
+                "author_id": 3
+            },
+            {
+                "id": 7,
+                "title": "Catch-22",
+                "author_id": 6
+            },
+            {
+                "id": 26,
+                "title": "Childhood, Boyhood, and Youth",
+                "author_id": 17
+            },
+            {
+                "id": 19,
+                "title": "Resurrection",
+                "author_id": 17
+            },
+            {
+                "id": 20,
+                "title": "The Age of Innocence",
+                "author_id": 18
+            },
+            {
+                "id": 24,
+                "title": "Steppenwolf",
+                "author_id": 22
+            },
+            {
+                "id": 5,
+                "title": "The Sound and the Fury",
+                "author_id": 5
+            },
+            {
+                "id": 49,
+                "title": "The Master and Margarita",
+                "author_id": 44
+            },
+            {
+                "id": 50,
+                "title": "Dubliners",
+                "author_id": 29
+            },
+            {
+                "id": 51,
+                "title": "Notes from Underground",
+                "author_id": 1
+            },
+            {
+                "id": 48,
+                "title": "Slaughterhouse-Five",
+                "author_id": 43
+            },
+            {
+                "id": 46,
+                "title": "Billy Budd, Sailor",
+                "author_id": 2
+            },
+            {
+                "id": 47,
+                "title": "The Crucible",
+                "author_id": 42
+            },
+            {
+                "id": 42,
+                "title": "Time Regained",
+                "author_id": 10
+            },
+            {
+                "id": 43,
+                "title": "Tess of the d'Urbervilles",
+                "author_id": 39
+            },
+            {
+                "id": 45,
+                "title": "On the Road",
+                "author_id": 41
+            },
+            {
+                "id": 44,
+                "title": "Lord Jim",
+                "author_id": 40
+            },
+            {
+                "id": 52,
+                "title": "The Myth of Sisyphus",
+                "author_id": 9
+            },
+            {
+                "id": 57,
+                "title": "In Search of Lost Time",
+                "author_id": 10
+            },
+            {
+                "id": 58,
+                "title": "Ulysses",
+                "author_id": 29
+            },
+            {
+                "id": 60,
+                "title": "Moby Dick",
+                "author_id": 2
+            },
+            {
+                "id": 61,
+                "title": "War and Peace",
+                "author_id": 17
+            },
+            {
+                "id": 63,
+                "title": "The Odyssey",
+                "author_id": 49
+            },
+            {
+                "id": 64,
+                "title": "One Hundred Years of Solitude",
+                "author_id": 50
+            },
+            {
+                "id": 66,
+                "title": "The Brothers Karamazov",
+                "author_id": 1
+            }
+        ]
+    },
+    {
+        "user_id": 63,
+        "timestamp": "2024-07-11T06:46:31.891840",
+        "jsoned_results": [
+            {
+                "id": 54,
+                "title": "Fahrenheit 451",
+                "author_id": 46
+            },
+            {
+                "id": 55,
+                "title": "The Hobbit",
+                "author_id": 47
+            },
+            {
+                "id": 65,
+                "title": "The Divine Comedy",
+                "author_id": 51
+            },
+            {
+                "id": 34,
+                "title": "Orlando",
+                "author_id": 31
+            },
+            {
+                "id": 38,
+                "title": "Lord of the Flies",
+                "author_id": 35
+            },
+            {
+                "id": 41,
+                "title": "The Exemplary Novels of Cervantes",
+                "author_id": 38
+            },
+            {
+                "id": 33,
+                "title": "Brave New World",
+                "author_id": 30
+            },
+            {
+                "id": 39,
+                "title": "The Complete Tales and Poems of Edgar Allan Poe",
+                "author_id": 36
+            },
+            {
+                "id": 32,
+                "title": "Finnegans Wake",
+                "author_id": 29
+            },
+            {
+                "id": 36,
+                "title": "Treasure Island",
+                "author_id": 33
+            },
+            {
+                "id": 35,
+                "title": "The Picture of Dorian Gray",
+                "author_id": 32
+            },
+            {
+                "id": 40,
+                "title": "Alice's Adventures in Wonderland",
+                "author_id": 37
+            },
+            {
+                "id": 37,
+                "title": "Animal Farm",
+                "author_id": 34
+            },
+            {
+                "id": 53,
+                "title": "The Little Prince",
+                "author_id": 45
+            },
+            {
+                "id": 56,
+                "title": "Don Quixote",
+                "author_id": 38
+            },
+            {
+                "id": 59,
+                "title": "The Great Gatsby",
+                "author_id": 14
+            },
+            {
+                "id": 27,
+                "title": "The Adventures of Tom Sawyer",
+                "author_id": 24
+            },
+            {
+                "id": 15,
+                "title": "The Metamorphosis",
+                "author_id": 13
+            },
+            {
+                "id": 14,
+                "title": "The Complete Poems of Emily Dickinson",
+                "author_id": 12
+            },
+            {
+                "id": 22,
+                "title": "David Copperfield",
+                "author_id": 20
+            },
+            {
+                "id": 31,
+                "title": "Lolita",
+                "author_id": 28
+            },
+            {
+                "id": 6,
+                "title": "As I Lay Dying",
+                "author_id": 5
+            },
+            {
+                "id": 8,
+                "title": "The Catcher in the Rye",
+                "author_id": 7
+            },
+            {
+                "id": 29,
+                "title": "Invisible Man",
+                "author_id": 26
+            },
+            {
+                "id": 10,
+                "title": "The Plague",
+                "author_id": 9
+            },
+            {
+                "id": 13,
+                "title": "Harry Potter Series",
+                "author_id": 11
+            },
+            {
+                "id": 25,
+                "title": "To Kill a Mockingbird",
+                "author_id": 23
+            },
+            {
+                "id": 28,
+                "title": "The Portrait of a Lady",
+                "author_id": 25
+            },
+            {
+                "id": 17,
+                "title": "The Old Man and the Sea",
+                "author_id": 15
+            },
+            {
+                "id": 9,
+                "title": "The Call of the Wild",
+                "author_id": 8
+            },
+            {
+                "id": 21,
+                "title": "Sentimental Education",
+                "author_id": 19
+            },
+            {
+                "id": 12,
+                "title": "Swann's Way",
+                "author_id": 10
+            },
+            {
+                "id": 18,
+                "title": "Of Mice and Men",
+                "author_id": 16
+            },
+            {
+                "id": 62,
+                "title": "Hamlet",
+                "author_id": 48
+            },
+            {
+                "id": 1,
+                "title": "The Idiot",
+                "author_id": 1
+            },
+            {
+                "id": 4,
+                "title": "Jane Eyre",
+                "author_id": 4
+            },
+            {
+                "id": 30,
+                "title": "Go Tell It on the Mountain",
+                "author_id": 27
+            },
+            {
+                "id": 11,
+                "title": "The Fall",
+                "author_id": 9
+            },
+            {
+                "id": 16,
+                "title": "Tender is the Night",
+                "author_id": 14
+            },
+            {
+                "id": 23,
+                "title": "The Magic Mountain",
+                "author_id": 21
+            },
+            {
+                "id": 2,
+                "title": "Bartleby, the Scrivener",
+                "author_id": 2
+            },
+            {
+                "id": 3,
+                "title": "Middlemarch",
+                "author_id": 3
+            },
+            {
+                "id": 7,
+                "title": "Catch-22",
+                "author_id": 6
+            },
+            {
+                "id": 26,
+                "title": "Childhood, Boyhood, and Youth",
+                "author_id": 17
+            },
+            {
+                "id": 19,
+                "title": "Resurrection",
+                "author_id": 17
+            },
+            {
+                "id": 20,
+                "title": "The Age of Innocence",
+                "author_id": 18
+            },
+            {
+                "id": 24,
+                "title": "Steppenwolf",
+                "author_id": 22
+            },
+            {
+                "id": 5,
+                "title": "The Sound and the Fury",
+                "author_id": 5
+            },
+            {
+                "id": 49,
+                "title": "The Master and Margarita",
+                "author_id": 44
+            },
+            {
+                "id": 50,
+                "title": "Dubliners",
+                "author_id": 29
+            },
+            {
+                "id": 51,
+                "title": "Notes from Underground",
+                "author_id": 1
+            },
+            {
+                "id": 48,
+                "title": "Slaughterhouse-Five",
+                "author_id": 43
+            },
+            {
+                "id": 46,
+                "title": "Billy Budd, Sailor",
+                "author_id": 2
+            },
+            {
+                "id": 47,
+                "title": "The Crucible",
+                "author_id": 42
+            },
+            {
+                "id": 42,
+                "title": "Time Regained",
+                "author_id": 10
+            },
+            {
+                "id": 43,
+                "title": "Tess of the d'Urbervilles",
+                "author_id": 39
+            },
+            {
+                "id": 45,
+                "title": "On the Road",
+                "author_id": 41
+            },
+            {
+                "id": 44,
+                "title": "Lord Jim",
+                "author_id": 40
+            },
+            {
+                "id": 52,
+                "title": "The Myth of Sisyphus",
+                "author_id": 9
+            },
+            {
+                "id": 57,
+                "title": "In Search of Lost Time",
+                "author_id": 10
+            },
+            {
+                "id": 58,
+                "title": "Ulysses",
+                "author_id": 29
+            },
+            {
+                "id": 60,
+                "title": "Moby Dick",
+                "author_id": 2
+            },
+            {
+                "id": 61,
+                "title": "War and Peace",
+                "author_id": 17
+            },
+            {
+                "id": 63,
+                "title": "The Odyssey",
+                "author_id": 49
+            },
+            {
+                "id": 64,
+                "title": "One Hundred Years of Solitude",
+                "author_id": 50
+            },
+            {
+                "id": 66,
+                "title": "The Brothers Karamazov",
+                "author_id": 1
+            }
+        ]
+    },
+    {
+        "user_id": 62,
+        "timestamp": "2024-07-11T06:47:00.906657",
+        "jsoned_results": [
+            {
+                "id": 54,
+                "title": "Fahrenheit 451",
+                "author_id": 46
+            },
+            {
+                "id": 55,
+                "title": "The Hobbit",
+                "author_id": 47
+            },
+            {
+                "id": 65,
+                "title": "The Divine Comedy",
+                "author_id": 51
+            },
+            {
+                "id": 66,
+                "title": "The Brothers Karamazov",
+                "author_id": 1
+            },
+            {
+                "id": 34,
+                "title": "Orlando",
+                "author_id": 31
+            },
+            {
+                "id": 38,
+                "title": "Lord of the Flies",
+                "author_id": 35
+            },
+            {
+                "id": 41,
+                "title": "The Exemplary Novels of Cervantes",
+                "author_id": 38
+            },
+            {
+                "id": 33,
+                "title": "Brave New World",
+                "author_id": 30
+            },
+            {
+                "id": 39,
+                "title": "The Complete Tales and Poems of Edgar Allan Poe",
+                "author_id": 36
+            },
+            {
+                "id": 32,
+                "title": "Finnegans Wake",
+                "author_id": 29
+            },
+            {
+                "id": 36,
+                "title": "Treasure Island",
+                "author_id": 33
+            },
+            {
+                "id": 35,
+                "title": "The Picture of Dorian Gray",
+                "author_id": 32
+            },
+            {
+                "id": 40,
+                "title": "Alice's Adventures in Wonderland",
+                "author_id": 37
+            },
+            {
+                "id": 37,
+                "title": "Animal Farm",
+                "author_id": 34
+            },
+            {
+                "id": 53,
+                "title": "The Little Prince",
+                "author_id": 45
+            },
+            {
+                "id": 56,
+                "title": "Don Quixote",
+                "author_id": 38
+            },
+            {
+                "id": 59,
+                "title": "The Great Gatsby",
+                "author_id": 14
+            },
+            {
+                "id": 27,
+                "title": "The Adventures of Tom Sawyer",
+                "author_id": 24
+            },
+            {
+                "id": 15,
+                "title": "The Metamorphosis",
+                "author_id": 13
+            },
+            {
+                "id": 14,
+                "title": "The Complete Poems of Emily Dickinson",
+                "author_id": 12
+            },
+            {
+                "id": 22,
+                "title": "David Copperfield",
+                "author_id": 20
+            },
+            {
+                "id": 31,
+                "title": "Lolita",
+                "author_id": 28
+            },
+            {
+                "id": 6,
+                "title": "As I Lay Dying",
+                "author_id": 5
+            },
+            {
+                "id": 8,
+                "title": "The Catcher in the Rye",
+                "author_id": 7
+            },
+            {
+                "id": 29,
+                "title": "Invisible Man",
+                "author_id": 26
+            },
+            {
+                "id": 10,
+                "title": "The Plague",
+                "author_id": 9
+            },
+            {
+                "id": 13,
+                "title": "Harry Potter Series",
+                "author_id": 11
+            },
+            {
+                "id": 25,
+                "title": "To Kill a Mockingbird",
+                "author_id": 23
+            },
+            {
+                "id": 28,
+                "title": "The Portrait of a Lady",
+                "author_id": 25
+            },
+            {
+                "id": 17,
+                "title": "The Old Man and the Sea",
+                "author_id": 15
+            },
+            {
+                "id": 9,
+                "title": "The Call of the Wild",
+                "author_id": 8
+            },
+            {
+                "id": 21,
+                "title": "Sentimental Education",
+                "author_id": 19
+            },
+            {
+                "id": 12,
+                "title": "Swann's Way",
+                "author_id": 10
+            },
+            {
+                "id": 18,
+                "title": "Of Mice and Men",
+                "author_id": 16
+            },
+            {
+                "id": 62,
+                "title": "Hamlet",
+                "author_id": 48
+            },
+            {
+                "id": 1,
+                "title": "The Idiot",
+                "author_id": 1
+            },
+            {
+                "id": 4,
+                "title": "Jane Eyre",
+                "author_id": 4
+            },
+            {
+                "id": 30,
+                "title": "Go Tell It on the Mountain",
+                "author_id": 27
+            },
+            {
+                "id": 11,
+                "title": "The Fall",
+                "author_id": 9
+            },
+            {
+                "id": 16,
+                "title": "Tender is the Night",
+                "author_id": 14
+            },
+            {
+                "id": 23,
+                "title": "The Magic Mountain",
+                "author_id": 21
+            },
+            {
+                "id": 2,
+                "title": "Bartleby, the Scrivener",
+                "author_id": 2
+            },
+            {
+                "id": 3,
+                "title": "Middlemarch",
+                "author_id": 3
+            },
+            {
+                "id": 7,
+                "title": "Catch-22",
+                "author_id": 6
+            },
+            {
+                "id": 26,
+                "title": "Childhood, Boyhood, and Youth",
+                "author_id": 17
+            },
+            {
+                "id": 19,
+                "title": "Resurrection",
+                "author_id": 17
+            },
+            {
+                "id": 20,
+                "title": "The Age of Innocence",
+                "author_id": 18
+            },
+            {
+                "id": 24,
+                "title": "Steppenwolf",
+                "author_id": 22
+            },
+            {
+                "id": 5,
+                "title": "The Sound and the Fury",
+                "author_id": 5
+            },
+            {
+                "id": 49,
+                "title": "The Master and Margarita",
+                "author_id": 44
+            },
+            {
+                "id": 50,
+                "title": "Dubliners",
+                "author_id": 29
+            },
+            {
+                "id": 51,
+                "title": "Notes from Underground",
+                "author_id": 1
+            },
+            {
+                "id": 48,
+                "title": "Slaughterhouse-Five",
+                "author_id": 43
+            },
+            {
+                "id": 46,
+                "title": "Billy Budd, Sailor",
+                "author_id": 2
+            },
+            {
+                "id": 47,
+                "title": "The Crucible",
+                "author_id": 42
+            },
+            {
+                "id": 42,
+                "title": "Time Regained",
+                "author_id": 10
+            },
+            {
+                "id": 43,
+                "title": "Tess of the d'Urbervilles",
+                "author_id": 39
+            },
+            {
+                "id": 45,
+                "title": "On the Road",
+                "author_id": 41
+            },
+            {
+                "id": 44,
+                "title": "Lord Jim",
+                "author_id": 40
+            },
+            {
+                "id": 52,
+                "title": "The Myth of Sisyphus",
+                "author_id": 9
+            },
+            {
+                "id": 57,
+                "title": "In Search of Lost Time",
+                "author_id": 10
+            },
+            {
+                "id": 58,
+                "title": "Ulysses",
+                "author_id": 29
+            },
+            {
+                "id": 60,
+                "title": "Moby Dick",
+                "author_id": 2
+            },
+            {
+                "id": 61,
+                "title": "War and Peace",
+                "author_id": 17
+            },
+            {
+                "id": 63,
+                "title": "The Odyssey",
+                "author_id": 49
+            },
+            {
+                "id": 64,
+                "title": "One Hundred Years of Solitude",
+                "author_id": 50
+            }
+        ]
+    },
+    {
+        "user_id": 62,
+        "timestamp": "2024-07-11T06:47:33.503554",
+        "jsoned_results": [
+            {
+                "id": 54,
+                "title": "Fahrenheit 451",
+                "author_id": 46
+            },
+            {
+                "id": 55,
+                "title": "The Hobbit",
+                "author_id": 47
+            },
+            {
+                "id": 65,
+                "title": "The Divine Comedy",
+                "author_id": 51
+            },
+            {
+                "id": 66,
+                "title": "The Brothers Karamazov",
+                "author_id": 1
+            },
+            {
+                "id": 34,
+                "title": "Orlando",
+                "author_id": 31
+            },
+            {
+                "id": 38,
+                "title": "Lord of the Flies",
+                "author_id": 35
+            },
+            {
+                "id": 41,
+                "title": "The Exemplary Novels of Cervantes",
+                "author_id": 38
+            },
+            {
+                "id": 33,
+                "title": "Brave New World",
+                "author_id": 30
+            },
+            {
+                "id": 39,
+                "title": "The Complete Tales and Poems of Edgar Allan Poe",
+                "author_id": 36
+            },
+            {
+                "id": 32,
+                "title": "Finnegans Wake",
+                "author_id": 29
+            },
+            {
+                "id": 36,
+                "title": "Treasure Island",
+                "author_id": 33
+            },
+            {
+                "id": 35,
+                "title": "The Picture of Dorian Gray",
+                "author_id": 32
+            },
+            {
+                "id": 40,
+                "title": "Alice's Adventures in Wonderland",
+                "author_id": 37
+            },
+            {
+                "id": 37,
+                "title": "Animal Farm",
+                "author_id": 34
+            },
+            {
+                "id": 53,
+                "title": "The Little Prince",
+                "author_id": 45
+            },
+            {
+                "id": 56,
+                "title": "Don Quixote",
+                "author_id": 38
+            },
+            {
+                "id": 59,
+                "title": "The Great Gatsby",
+                "author_id": 14
+            },
+            {
+                "id": 27,
+                "title": "The Adventures of Tom Sawyer",
+                "author_id": 24
+            },
+            {
+                "id": 15,
+                "title": "The Metamorphosis",
+                "author_id": 13
+            },
+            {
+                "id": 14,
+                "title": "The Complete Poems of Emily Dickinson",
+                "author_id": 12
+            },
+            {
+                "id": 22,
+                "title": "David Copperfield",
+                "author_id": 20
+            },
+            {
+                "id": 31,
+                "title": "Lolita",
+                "author_id": 28
+            },
+            {
+                "id": 6,
+                "title": "As I Lay Dying",
+                "author_id": 5
+            },
+            {
+                "id": 8,
+                "title": "The Catcher in the Rye",
+                "author_id": 7
+            },
+            {
+                "id": 29,
+                "title": "Invisible Man",
+                "author_id": 26
+            },
+            {
+                "id": 10,
+                "title": "The Plague",
+                "author_id": 9
+            },
+            {
+                "id": 13,
+                "title": "Harry Potter Series",
+                "author_id": 11
+            },
+            {
+                "id": 25,
+                "title": "To Kill a Mockingbird",
+                "author_id": 23
+            },
+            {
+                "id": 28,
+                "title": "The Portrait of a Lady",
+                "author_id": 25
+            },
+            {
+                "id": 17,
+                "title": "The Old Man and the Sea",
+                "author_id": 15
+            },
+            {
+                "id": 9,
+                "title": "The Call of the Wild",
+                "author_id": 8
+            },
+            {
+                "id": 21,
+                "title": "Sentimental Education",
+                "author_id": 19
+            },
+            {
+                "id": 12,
+                "title": "Swann's Way",
+                "author_id": 10
+            },
+            {
+                "id": 18,
+                "title": "Of Mice and Men",
+                "author_id": 16
+            },
+            {
+                "id": 62,
+                "title": "Hamlet",
+                "author_id": 48
+            },
+            {
+                "id": 1,
+                "title": "The Idiot",
+                "author_id": 1
+            },
+            {
+                "id": 4,
+                "title": "Jane Eyre",
+                "author_id": 4
+            },
+            {
+                "id": 30,
+                "title": "Go Tell It on the Mountain",
+                "author_id": 27
+            },
+            {
+                "id": 11,
+                "title": "The Fall",
+                "author_id": 9
+            },
+            {
+                "id": 16,
+                "title": "Tender is the Night",
+                "author_id": 14
+            },
+            {
+                "id": 23,
+                "title": "The Magic Mountain",
+                "author_id": 21
+            },
+            {
+                "id": 2,
+                "title": "Bartleby, the Scrivener",
+                "author_id": 2
+            },
+            {
+                "id": 3,
+                "title": "Middlemarch",
+                "author_id": 3
+            },
+            {
+                "id": 7,
+                "title": "Catch-22",
+                "author_id": 6
+            },
+            {
+                "id": 26,
+                "title": "Childhood, Boyhood, and Youth",
+                "author_id": 17
+            },
+            {
+                "id": 19,
+                "title": "Resurrection",
+                "author_id": 17
+            },
+            {
+                "id": 20,
+                "title": "The Age of Innocence",
+                "author_id": 18
+            },
+            {
+                "id": 24,
+                "title": "Steppenwolf",
+                "author_id": 22
+            },
+            {
+                "id": 5,
+                "title": "The Sound and the Fury",
+                "author_id": 5
+            },
+            {
+                "id": 49,
+                "title": "The Master and Margarita",
+                "author_id": 44
+            },
+            {
+                "id": 50,
+                "title": "Dubliners",
+                "author_id": 29
+            },
+            {
+                "id": 51,
+                "title": "Notes from Underground",
+                "author_id": 1
+            },
+            {
+                "id": 48,
+                "title": "Slaughterhouse-Five",
+                "author_id": 43
+            },
+            {
+                "id": 46,
+                "title": "Billy Budd, Sailor",
+                "author_id": 2
+            },
+            {
+                "id": 47,
+                "title": "The Crucible",
+                "author_id": 42
+            },
+            {
+                "id": 42,
+                "title": "Time Regained",
+                "author_id": 10
+            },
+            {
+                "id": 43,
+                "title": "Tess of the d'Urbervilles",
+                "author_id": 39
+            },
+            {
+                "id": 45,
+                "title": "On the Road",
+                "author_id": 41
+            },
+            {
+                "id": 44,
+                "title": "Lord Jim",
+                "author_id": 40
+            },
+            {
+                "id": 52,
+                "title": "The Myth of Sisyphus",
+                "author_id": 9
+            },
+            {
+                "id": 57,
+                "title": "In Search of Lost Time",
+                "author_id": 10
+            },
+            {
+                "id": 58,
+                "title": "Ulysses",
+                "author_id": 29
+            },
+            {
+                "id": 60,
+                "title": "Moby Dick",
+                "author_id": 2
+            },
+            {
+                "id": 61,
+                "title": "War and Peace",
+                "author_id": 17
+            },
+            {
+                "id": 63,
+                "title": "The Odyssey",
+                "author_id": 49
+            },
+            {
+                "id": 64,
+                "title": "One Hundred Years of Solitude",
+                "author_id": 50
+            }
+        ]
+    },
+    {
+        "user_id": 63,
+        "timestamp": "2024-07-11T06:49:18.172306",
+        "jsoned_results": [
+            {
+                "id": 54,
+                "title": "Fahrenheit 451",
+                "author_id": 46
+            },
+            {
+                "id": 55,
+                "title": "The Hobbit",
+                "author_id": 47
+            },
+            {
+                "id": 63,
+                "title": "The Odyssey",
+                "author_id": 49
+            },
+            {
+                "id": 65,
+                "title": "The Divine Comedy",
+                "author_id": 51
+            },
+            {
+                "id": 66,
+                "title": "The Brothers Karamazov",
+                "author_id": 1
+            },
+            {
+                "id": 34,
+                "title": "Orlando",
+                "author_id": 31
+            },
+            {
+                "id": 38,
+                "title": "Lord of the Flies",
+                "author_id": 35
+            },
+            {
+                "id": 41,
+                "title": "The Exemplary Novels of Cervantes",
+                "author_id": 38
+            },
+            {
+                "id": 33,
+                "title": "Brave New World",
+                "author_id": 30
+            },
+            {
+                "id": 39,
+                "title": "The Complete Tales and Poems of Edgar Allan Poe",
+                "author_id": 36
+            },
+            {
+                "id": 32,
+                "title": "Finnegans Wake",
+                "author_id": 29
+            },
+            {
+                "id": 36,
+                "title": "Treasure Island",
+                "author_id": 33
+            },
+            {
+                "id": 35,
+                "title": "The Picture of Dorian Gray",
+                "author_id": 32
+            },
+            {
+                "id": 40,
+                "title": "Alice's Adventures in Wonderland",
+                "author_id": 37
+            },
+            {
+                "id": 37,
+                "title": "Animal Farm",
+                "author_id": 34
+            },
+            {
+                "id": 53,
+                "title": "The Little Prince",
+                "author_id": 45
+            },
+            {
+                "id": 56,
+                "title": "Don Quixote",
+                "author_id": 38
+            },
+            {
+                "id": 59,
+                "title": "The Great Gatsby",
+                "author_id": 14
+            },
+            {
+                "id": 27,
+                "title": "The Adventures of Tom Sawyer",
+                "author_id": 24
+            },
+            {
+                "id": 15,
+                "title": "The Metamorphosis",
+                "author_id": 13
+            },
+            {
+                "id": 14,
+                "title": "The Complete Poems of Emily Dickinson",
+                "author_id": 12
+            },
+            {
+                "id": 22,
+                "title": "David Copperfield",
+                "author_id": 20
+            },
+            {
+                "id": 31,
+                "title": "Lolita",
+                "author_id": 28
+            },
+            {
+                "id": 6,
+                "title": "As I Lay Dying",
+                "author_id": 5
+            },
+            {
+                "id": 8,
+                "title": "The Catcher in the Rye",
+                "author_id": 7
+            },
+            {
+                "id": 29,
+                "title": "Invisible Man",
+                "author_id": 26
+            },
+            {
+                "id": 10,
+                "title": "The Plague",
+                "author_id": 9
+            },
+            {
+                "id": 13,
+                "title": "Harry Potter Series",
+                "author_id": 11
+            },
+            {
+                "id": 25,
+                "title": "To Kill a Mockingbird",
+                "author_id": 23
+            },
+            {
+                "id": 28,
+                "title": "The Portrait of a Lady",
+                "author_id": 25
+            },
+            {
+                "id": 17,
+                "title": "The Old Man and the Sea",
+                "author_id": 15
+            },
+            {
+                "id": 9,
+                "title": "The Call of the Wild",
+                "author_id": 8
+            },
+            {
+                "id": 21,
+                "title": "Sentimental Education",
+                "author_id": 19
+            },
+            {
+                "id": 12,
+                "title": "Swann's Way",
+                "author_id": 10
+            },
+            {
+                "id": 18,
+                "title": "Of Mice and Men",
+                "author_id": 16
+            },
+            {
+                "id": 62,
+                "title": "Hamlet",
+                "author_id": 48
+            },
+            {
+                "id": 1,
+                "title": "The Idiot",
+                "author_id": 1
+            },
+            {
+                "id": 4,
+                "title": "Jane Eyre",
+                "author_id": 4
+            },
+            {
+                "id": 30,
+                "title": "Go Tell It on the Mountain",
+                "author_id": 27
+            },
+            {
+                "id": 11,
+                "title": "The Fall",
+                "author_id": 9
+            },
+            {
+                "id": 16,
+                "title": "Tender is the Night",
+                "author_id": 14
+            },
+            {
+                "id": 23,
+                "title": "The Magic Mountain",
+                "author_id": 21
+            },
+            {
+                "id": 2,
+                "title": "Bartleby, the Scrivener",
+                "author_id": 2
+            },
+            {
+                "id": 3,
+                "title": "Middlemarch",
+                "author_id": 3
+            },
+            {
+                "id": 7,
+                "title": "Catch-22",
+                "author_id": 6
+            },
+            {
+                "id": 26,
+                "title": "Childhood, Boyhood, and Youth",
+                "author_id": 17
+            },
+            {
+                "id": 19,
+                "title": "Resurrection",
+                "author_id": 17
+            },
+            {
+                "id": 20,
+                "title": "The Age of Innocence",
+                "author_id": 18
+            },
+            {
+                "id": 24,
+                "title": "Steppenwolf",
+                "author_id": 22
+            },
+            {
+                "id": 5,
+                "title": "The Sound and the Fury",
+                "author_id": 5
+            },
+            {
+                "id": 49,
+                "title": "The Master and Margarita",
+                "author_id": 44
+            },
+            {
+                "id": 50,
+                "title": "Dubliners",
+                "author_id": 29
+            },
+            {
+                "id": 51,
+                "title": "Notes from Underground",
+                "author_id": 1
+            },
+            {
+                "id": 48,
+                "title": "Slaughterhouse-Five",
+                "author_id": 43
+            },
+            {
+                "id": 46,
+                "title": "Billy Budd, Sailor",
+                "author_id": 2
+            },
+            {
+                "id": 47,
+                "title": "The Crucible",
+                "author_id": 42
+            },
+            {
+                "id": 42,
+                "title": "Time Regained",
+                "author_id": 10
+            },
+            {
+                "id": 43,
+                "title": "Tess of the d'Urbervilles",
+                "author_id": 39
+            },
+            {
+                "id": 45,
+                "title": "On the Road",
+                "author_id": 41
+            },
+            {
+                "id": 44,
+                "title": "Lord Jim",
+                "author_id": 40
+            },
+            {
+                "id": 52,
+                "title": "The Myth of Sisyphus",
+                "author_id": 9
+            },
+            {
+                "id": 57,
+                "title": "In Search of Lost Time",
+                "author_id": 10
+            },
+            {
+                "id": 58,
+                "title": "Ulysses",
+                "author_id": 29
+            },
+            {
+                "id": 60,
+                "title": "Moby Dick",
+                "author_id": 2
+            },
+            {
+                "id": 61,
+                "title": "War and Peace",
+                "author_id": 17
+            },
+            {
+                "id": 64,
+                "title": "One Hundred Years of Solitude",
+                "author_id": 50
+            }
+        ]
+    },
+    {
+        "user_id": 61,
+        "timestamp": "2024-07-11T06:51:09.426826",
+        "jsoned_results": [
+            {
+                "id": 54,
+                "title": "Fahrenheit 451",
+                "author_id": 46
+            },
+            {
+                "id": 63,
+                "title": "The Odyssey",
+                "author_id": 49
+            },
+            {
+                "id": 65,
+                "title": "The Divine Comedy",
+                "author_id": 51
+            },
+            {
+                "id": 66,
+                "title": "The Brothers Karamazov",
+                "author_id": 1
+            },
+            {
+                "id": 34,
+                "title": "Orlando",
+                "author_id": 31
+            },
+            {
+                "id": 38,
+                "title": "Lord of the Flies",
+                "author_id": 35
+            },
+            {
+                "id": 41,
+                "title": "The Exemplary Novels of Cervantes",
+                "author_id": 38
+            },
+            {
+                "id": 33,
+                "title": "Brave New World",
+                "author_id": 30
+            },
+            {
+                "id": 39,
+                "title": "The Complete Tales and Poems of Edgar Allan Poe",
+                "author_id": 36
+            },
+            {
+                "id": 32,
+                "title": "Finnegans Wake",
+                "author_id": 29
+            },
+            {
+                "id": 36,
+                "title": "Treasure Island",
+                "author_id": 33
+            },
+            {
+                "id": 35,
+                "title": "The Picture of Dorian Gray",
+                "author_id": 32
+            },
+            {
+                "id": 40,
+                "title": "Alice's Adventures in Wonderland",
+                "author_id": 37
+            },
+            {
+                "id": 37,
+                "title": "Animal Farm",
+                "author_id": 34
+            },
+            {
+                "id": 53,
+                "title": "The Little Prince",
+                "author_id": 45
+            },
+            {
+                "id": 56,
+                "title": "Don Quixote",
+                "author_id": 38
+            },
+            {
+                "id": 59,
+                "title": "The Great Gatsby",
+                "author_id": 14
+            },
+            {
+                "id": 27,
+                "title": "The Adventures of Tom Sawyer",
+                "author_id": 24
+            },
+            {
+                "id": 15,
+                "title": "The Metamorphosis",
+                "author_id": 13
+            },
+            {
+                "id": 14,
+                "title": "The Complete Poems of Emily Dickinson",
+                "author_id": 12
+            },
+            {
+                "id": 22,
+                "title": "David Copperfield",
+                "author_id": 20
+            },
+            {
+                "id": 31,
+                "title": "Lolita",
+                "author_id": 28
+            },
+            {
+                "id": 6,
+                "title": "As I Lay Dying",
+                "author_id": 5
+            },
+            {
+                "id": 8,
+                "title": "The Catcher in the Rye",
+                "author_id": 7
+            },
+            {
+                "id": 29,
+                "title": "Invisible Man",
+                "author_id": 26
+            },
+            {
+                "id": 10,
+                "title": "The Plague",
+                "author_id": 9
+            },
+            {
+                "id": 13,
+                "title": "Harry Potter Series",
+                "author_id": 11
+            },
+            {
+                "id": 25,
+                "title": "To Kill a Mockingbird",
+                "author_id": 23
+            },
+            {
+                "id": 28,
+                "title": "The Portrait of a Lady",
+                "author_id": 25
+            },
+            {
+                "id": 9,
+                "title": "The Call of the Wild",
+                "author_id": 8
+            },
+            {
+                "id": 21,
+                "title": "Sentimental Education",
+                "author_id": 19
+            },
+            {
+                "id": 12,
+                "title": "Swann's Way",
+                "author_id": 10
+            },
+            {
+                "id": 18,
+                "title": "Of Mice and Men",
+                "author_id": 16
+            },
+            {
+                "id": 17,
+                "title": "The Old Man and the Sea",
+                "author_id": 15
+            },
+            {
+                "id": 62,
+                "title": "Hamlet",
+                "author_id": 48
+            },
+            {
+                "id": 1,
+                "title": "The Idiot",
+                "author_id": 1
+            },
+            {
+                "id": 4,
+                "title": "Jane Eyre",
+                "author_id": 4
+            },
+            {
+                "id": 30,
+                "title": "Go Tell It on the Mountain",
+                "author_id": 27
+            },
+            {
+                "id": 11,
+                "title": "The Fall",
+                "author_id": 9
+            },
+            {
+                "id": 16,
+                "title": "Tender is the Night",
+                "author_id": 14
+            },
+            {
+                "id": 23,
+                "title": "The Magic Mountain",
+                "author_id": 21
+            },
+            {
+                "id": 2,
+                "title": "Bartleby, the Scrivener",
+                "author_id": 2
+            },
+            {
+                "id": 3,
+                "title": "Middlemarch",
+                "author_id": 3
+            },
+            {
+                "id": 7,
+                "title": "Catch-22",
+                "author_id": 6
+            },
+            {
+                "id": 26,
+                "title": "Childhood, Boyhood, and Youth",
+                "author_id": 17
+            },
+            {
+                "id": 19,
+                "title": "Resurrection",
+                "author_id": 17
+            },
+            {
+                "id": 20,
+                "title": "The Age of Innocence",
+                "author_id": 18
+            },
+            {
+                "id": 24,
+                "title": "Steppenwolf",
+                "author_id": 22
+            },
+            {
+                "id": 5,
+                "title": "The Sound and the Fury",
+                "author_id": 5
+            },
+            {
+                "id": 55,
+                "title": "The Hobbit",
+                "author_id": 47
+            },
+            {
+                "id": 49,
+                "title": "The Master and Margarita",
+                "author_id": 44
+            },
+            {
+                "id": 50,
+                "title": "Dubliners",
+                "author_id": 29
+            },
+            {
+                "id": 51,
+                "title": "Notes from Underground",
+                "author_id": 1
+            },
+            {
+                "id": 48,
+                "title": "Slaughterhouse-Five",
+                "author_id": 43
+            },
+            {
+                "id": 46,
+                "title": "Billy Budd, Sailor",
+                "author_id": 2
+            },
+            {
+                "id": 47,
+                "title": "The Crucible",
+                "author_id": 42
+            },
+            {
+                "id": 42,
+                "title": "Time Regained",
+                "author_id": 10
+            },
+            {
+                "id": 43,
+                "title": "Tess of the d'Urbervilles",
+                "author_id": 39
+            },
+            {
+                "id": 45,
+                "title": "On the Road",
+                "author_id": 41
+            },
+            {
+                "id": 44,
+                "title": "Lord Jim",
+                "author_id": 40
+            },
+            {
+                "id": 52,
+                "title": "The Myth of Sisyphus",
+                "author_id": 9
+            },
+            {
+                "id": 57,
+                "title": "In Search of Lost Time",
+                "author_id": 10
+            },
+            {
+                "id": 58,
+                "title": "Ulysses",
+                "author_id": 29
+            },
+            {
+                "id": 60,
+                "title": "Moby Dick",
+                "author_id": 2
+            },
+            {
+                "id": 61,
+                "title": "War and Peace",
+                "author_id": 17
+            },
+            {
+                "id": 64,
+                "title": "One Hundred Years of Solitude",
+                "author_id": 50
+            }
+        ]
+    },
+    {
+        "user_id": 61,
+        "timestamp": "2024-07-11T06:51:17.419297",
+        "jsoned_results": [
+            {
+                "id": 54,
+                "title": "Fahrenheit 451",
+                "author_id": 46
+            },
+            {
+                "id": 63,
+                "title": "The Odyssey",
+                "author_id": 49
+            },
+            {
+                "id": 65,
+                "title": "The Divine Comedy",
+                "author_id": 51
+            },
+            {
+                "id": 66,
+                "title": "The Brothers Karamazov",
+                "author_id": 1
+            },
+            {
+                "id": 34,
+                "title": "Orlando",
+                "author_id": 31
+            },
+            {
+                "id": 38,
+                "title": "Lord of the Flies",
+                "author_id": 35
+            },
+            {
+                "id": 41,
+                "title": "The Exemplary Novels of Cervantes",
+                "author_id": 38
+            },
+            {
+                "id": 33,
+                "title": "Brave New World",
+                "author_id": 30
+            },
+            {
+                "id": 39,
+                "title": "The Complete Tales and Poems of Edgar Allan Poe",
+                "author_id": 36
+            },
+            {
+                "id": 32,
+                "title": "Finnegans Wake",
+                "author_id": 29
+            },
+            {
+                "id": 36,
+                "title": "Treasure Island",
+                "author_id": 33
+            },
+            {
+                "id": 35,
+                "title": "The Picture of Dorian Gray",
+                "author_id": 32
+            },
+            {
+                "id": 40,
+                "title": "Alice's Adventures in Wonderland",
+                "author_id": 37
+            },
+            {
+                "id": 37,
+                "title": "Animal Farm",
+                "author_id": 34
+            },
+            {
+                "id": 53,
+                "title": "The Little Prince",
+                "author_id": 45
+            },
+            {
+                "id": 56,
+                "title": "Don Quixote",
+                "author_id": 38
+            },
+            {
+                "id": 59,
+                "title": "The Great Gatsby",
+                "author_id": 14
+            },
+            {
+                "id": 27,
+                "title": "The Adventures of Tom Sawyer",
+                "author_id": 24
+            },
+            {
+                "id": 15,
+                "title": "The Metamorphosis",
+                "author_id": 13
+            },
+            {
+                "id": 14,
+                "title": "The Complete Poems of Emily Dickinson",
+                "author_id": 12
+            },
+            {
+                "id": 22,
+                "title": "David Copperfield",
+                "author_id": 20
+            },
+            {
+                "id": 31,
+                "title": "Lolita",
+                "author_id": 28
+            },
+            {
+                "id": 6,
+                "title": "As I Lay Dying",
+                "author_id": 5
+            },
+            {
+                "id": 8,
+                "title": "The Catcher in the Rye",
+                "author_id": 7
+            },
+            {
+                "id": 29,
+                "title": "Invisible Man",
+                "author_id": 26
+            },
+            {
+                "id": 10,
+                "title": "The Plague",
+                "author_id": 9
+            },
+            {
+                "id": 13,
+                "title": "Harry Potter Series",
+                "author_id": 11
+            },
+            {
+                "id": 25,
+                "title": "To Kill a Mockingbird",
+                "author_id": 23
+            },
+            {
+                "id": 28,
+                "title": "The Portrait of a Lady",
+                "author_id": 25
+            },
+            {
+                "id": 9,
+                "title": "The Call of the Wild",
+                "author_id": 8
+            },
+            {
+                "id": 21,
+                "title": "Sentimental Education",
+                "author_id": 19
+            },
+            {
+                "id": 12,
+                "title": "Swann's Way",
+                "author_id": 10
+            },
+            {
+                "id": 18,
+                "title": "Of Mice and Men",
+                "author_id": 16
+            },
+            {
+                "id": 17,
+                "title": "The Old Man and the Sea",
+                "author_id": 15
+            },
+            {
+                "id": 62,
+                "title": "Hamlet",
+                "author_id": 48
+            },
+            {
+                "id": 1,
+                "title": "The Idiot",
+                "author_id": 1
+            },
+            {
+                "id": 4,
+                "title": "Jane Eyre",
+                "author_id": 4
+            },
+            {
+                "id": 30,
+                "title": "Go Tell It on the Mountain",
+                "author_id": 27
+            },
+            {
+                "id": 11,
+                "title": "The Fall",
+                "author_id": 9
+            },
+            {
+                "id": 16,
+                "title": "Tender is the Night",
+                "author_id": 14
+            },
+            {
+                "id": 23,
+                "title": "The Magic Mountain",
+                "author_id": 21
+            },
+            {
+                "id": 2,
+                "title": "Bartleby, the Scrivener",
+                "author_id": 2
+            },
+            {
+                "id": 3,
+                "title": "Middlemarch",
+                "author_id": 3
+            },
+            {
+                "id": 7,
+                "title": "Catch-22",
+                "author_id": 6
+            },
+            {
+                "id": 26,
+                "title": "Childhood, Boyhood, and Youth",
+                "author_id": 17
+            },
+            {
+                "id": 19,
+                "title": "Resurrection",
+                "author_id": 17
+            },
+            {
+                "id": 20,
+                "title": "The Age of Innocence",
+                "author_id": 18
+            },
+            {
+                "id": 24,
+                "title": "Steppenwolf",
+                "author_id": 22
+            },
+            {
+                "id": 5,
+                "title": "The Sound and the Fury",
+                "author_id": 5
+            },
+            {
+                "id": 55,
+                "title": "The Hobbit",
+                "author_id": 47
+            },
+            {
+                "id": 49,
+                "title": "The Master and Margarita",
+                "author_id": 44
+            },
+            {
+                "id": 50,
+                "title": "Dubliners",
+                "author_id": 29
+            },
+            {
+                "id": 51,
+                "title": "Notes from Underground",
+                "author_id": 1
+            },
+            {
+                "id": 48,
+                "title": "Slaughterhouse-Five",
+                "author_id": 43
+            },
+            {
+                "id": 46,
+                "title": "Billy Budd, Sailor",
+                "author_id": 2
+            },
+            {
+                "id": 47,
+                "title": "The Crucible",
+                "author_id": 42
+            },
+            {
+                "id": 42,
+                "title": "Time Regained",
+                "author_id": 10
+            },
+            {
+                "id": 43,
+                "title": "Tess of the d'Urbervilles",
+                "author_id": 39
+            },
+            {
+                "id": 45,
+                "title": "On the Road",
+                "author_id": 41
+            },
+            {
+                "id": 44,
+                "title": "Lord Jim",
+                "author_id": 40
+            },
+            {
+                "id": 52,
+                "title": "The Myth of Sisyphus",
+                "author_id": 9
+            },
+            {
+                "id": 57,
+                "title": "In Search of Lost Time",
+                "author_id": 10
+            },
+            {
+                "id": 58,
+                "title": "Ulysses",
+                "author_id": 29
+            },
+            {
+                "id": 60,
+                "title": "Moby Dick",
+                "author_id": 2
+            },
+            {
+                "id": 61,
+                "title": "War and Peace",
+                "author_id": 17
+            },
+            {
+                "id": 64,
+                "title": "One Hundred Years of Solitude",
+                "author_id": 50
+            }
+        ]
+    },
+    {
+        "user_id": 61,
+        "timestamp": "2024-07-11T07:01:34.329404",
+        "jsoned_results": [
+            {
+                "id": 54,
+                "title": "Fahrenheit 451",
+                "author_id": 46
+            },
+            {
+                "id": 63,
+                "title": "The Odyssey",
+                "author_id": 49
+            },
+            {
+                "id": 65,
+                "title": "The Divine Comedy",
+                "author_id": 51
+            },
+            {
+                "id": 66,
+                "title": "The Brothers Karamazov",
+                "author_id": 1
+            },
+            {
+                "id": 34,
+                "title": "Orlando",
+                "author_id": 31
+            },
+            {
+                "id": 38,
+                "title": "Lord of the Flies",
+                "author_id": 35
+            },
+            {
+                "id": 41,
+                "title": "The Exemplary Novels of Cervantes",
+                "author_id": 38
+            },
+            {
+                "id": 33,
+                "title": "Brave New World",
+                "author_id": 30
+            },
+            {
+                "id": 39,
+                "title": "The Complete Tales and Poems of Edgar Allan Poe",
+                "author_id": 36
+            },
+            {
+                "id": 32,
+                "title": "Finnegans Wake",
+                "author_id": 29
+            },
+            {
+                "id": 36,
+                "title": "Treasure Island",
+                "author_id": 33
+            },
+            {
+                "id": 35,
+                "title": "The Picture of Dorian Gray",
+                "author_id": 32
+            },
+            {
+                "id": 40,
+                "title": "Alice's Adventures in Wonderland",
+                "author_id": 37
+            },
+            {
+                "id": 37,
+                "title": "Animal Farm",
+                "author_id": 34
+            },
+            {
+                "id": 53,
+                "title": "The Little Prince",
+                "author_id": 45
+            },
+            {
+                "id": 56,
+                "title": "Don Quixote",
+                "author_id": 38
+            },
+            {
+                "id": 59,
+                "title": "The Great Gatsby",
+                "author_id": 14
+            },
+            {
+                "id": 27,
+                "title": "The Adventures of Tom Sawyer",
+                "author_id": 24
+            },
+            {
+                "id": 15,
+                "title": "The Metamorphosis",
+                "author_id": 13
+            },
+            {
+                "id": 14,
+                "title": "The Complete Poems of Emily Dickinson",
+                "author_id": 12
+            },
+            {
+                "id": 22,
+                "title": "David Copperfield",
+                "author_id": 20
+            },
+            {
+                "id": 31,
+                "title": "Lolita",
+                "author_id": 28
+            },
+            {
+                "id": 6,
+                "title": "As I Lay Dying",
+                "author_id": 5
+            },
+            {
+                "id": 8,
+                "title": "The Catcher in the Rye",
+                "author_id": 7
+            },
+            {
+                "id": 29,
+                "title": "Invisible Man",
+                "author_id": 26
+            },
+            {
+                "id": 10,
+                "title": "The Plague",
+                "author_id": 9
+            },
+            {
+                "id": 13,
+                "title": "Harry Potter Series",
+                "author_id": 11
+            },
+            {
+                "id": 25,
+                "title": "To Kill a Mockingbird",
+                "author_id": 23
+            },
+            {
+                "id": 28,
+                "title": "The Portrait of a Lady",
+                "author_id": 25
+            },
+            {
+                "id": 9,
+                "title": "The Call of the Wild",
+                "author_id": 8
+            },
+            {
+                "id": 21,
+                "title": "Sentimental Education",
+                "author_id": 19
+            },
+            {
+                "id": 12,
+                "title": "Swann's Way",
+                "author_id": 10
+            },
+            {
+                "id": 18,
+                "title": "Of Mice and Men",
+                "author_id": 16
+            },
+            {
+                "id": 17,
+                "title": "The Old Man and the Sea",
+                "author_id": 15
+            },
+            {
+                "id": 62,
+                "title": "Hamlet",
+                "author_id": 48
+            },
+            {
+                "id": 1,
+                "title": "The Idiot",
+                "author_id": 1
+            },
+            {
+                "id": 4,
+                "title": "Jane Eyre",
+                "author_id": 4
+            },
+            {
+                "id": 30,
+                "title": "Go Tell It on the Mountain",
+                "author_id": 27
+            },
+            {
+                "id": 11,
+                "title": "The Fall",
+                "author_id": 9
+            },
+            {
+                "id": 16,
+                "title": "Tender is the Night",
+                "author_id": 14
+            },
+            {
+                "id": 23,
+                "title": "The Magic Mountain",
+                "author_id": 21
+            },
+            {
+                "id": 2,
+                "title": "Bartleby, the Scrivener",
+                "author_id": 2
+            },
+            {
+                "id": 3,
+                "title": "Middlemarch",
+                "author_id": 3
+            },
+            {
+                "id": 7,
+                "title": "Catch-22",
+                "author_id": 6
+            },
+            {
+                "id": 26,
+                "title": "Childhood, Boyhood, and Youth",
+                "author_id": 17
+            },
+            {
+                "id": 19,
+                "title": "Resurrection",
+                "author_id": 17
+            },
+            {
+                "id": 20,
+                "title": "The Age of Innocence",
+                "author_id": 18
+            },
+            {
+                "id": 24,
+                "title": "Steppenwolf",
+                "author_id": 22
+            },
+            {
+                "id": 5,
+                "title": "The Sound and the Fury",
+                "author_id": 5
+            },
+            {
+                "id": 55,
+                "title": "The Hobbit",
+                "author_id": 47
+            },
+            {
+                "id": 49,
+                "title": "The Master and Margarita",
+                "author_id": 44
+            },
+            {
+                "id": 50,
+                "title": "Dubliners",
+                "author_id": 29
+            },
+            {
+                "id": 51,
+                "title": "Notes from Underground",
+                "author_id": 1
+            },
+            {
+                "id": 48,
+                "title": "Slaughterhouse-Five",
+                "author_id": 43
+            },
+            {
+                "id": 46,
+                "title": "Billy Budd, Sailor",
+                "author_id": 2
+            },
+            {
+                "id": 47,
+                "title": "The Crucible",
+                "author_id": 42
+            },
+            {
+                "id": 42,
+                "title": "Time Regained",
+                "author_id": 10
+            },
+            {
+                "id": 43,
+                "title": "Tess of the d'Urbervilles",
+                "author_id": 39
+            },
+            {
+                "id": 45,
+                "title": "On the Road",
+                "author_id": 41
+            },
+            {
+                "id": 44,
+                "title": "Lord Jim",
+                "author_id": 40
+            },
+            {
+                "id": 52,
+                "title": "The Myth of Sisyphus",
+                "author_id": 9
+            },
+            {
+                "id": 57,
+                "title": "In Search of Lost Time",
+                "author_id": 10
+            },
+            {
+                "id": 58,
+                "title": "Ulysses",
+                "author_id": 29
+            },
+            {
+                "id": 60,
+                "title": "Moby Dick",
+                "author_id": 2
+            },
+            {
+                "id": 61,
+                "title": "War and Peace",
+                "author_id": 17
+            },
+            {
+                "id": 64,
+                "title": "One Hundred Years of Solitude",
+                "author_id": 50
+            }
+        ]
+    },
+    {
+        "user_id": 63,
+        "timestamp": "2024-07-11T07:12:19.276617",
+        "jsoned_results": [
+            {
+                "id": 54,
+                "title": "Fahrenheit 451",
+                "author_id": 46
+            },
+            {
+                "id": 63,
+                "title": "The Odyssey",
+                "author_id": 49
+            },
+            {
+                "id": 66,
+                "title": "The Brothers Karamazov",
+                "author_id": 1
+            },
+            {
+                "id": 34,
+                "title": "Orlando",
+                "author_id": 31
+            },
+            {
+                "id": 38,
+                "title": "Lord of the Flies",
+                "author_id": 35
+            },
+            {
+                "id": 41,
+                "title": "The Exemplary Novels of Cervantes",
+                "author_id": 38
+            },
+            {
+                "id": 33,
+                "title": "Brave New World",
+                "author_id": 30
+            },
+            {
+                "id": 65,
+                "title": "The Divine Comedy",
+                "author_id": 51
+            },
+            {
+                "id": 39,
+                "title": "The Complete Tales and Poems of Edgar Allan Poe",
+                "author_id": 36
+            },
+            {
+                "id": 32,
+                "title": "Finnegans Wake",
+                "author_id": 29
+            },
+            {
+                "id": 36,
+                "title": "Treasure Island",
+                "author_id": 33
+            },
+            {
+                "id": 35,
+                "title": "The Picture of Dorian Gray",
+                "author_id": 32
+            },
+            {
+                "id": 40,
+                "title": "Alice's Adventures in Wonderland",
+                "author_id": 37
+            },
+            {
+                "id": 37,
+                "title": "Animal Farm",
+                "author_id": 34
+            },
+            {
+                "id": 53,
+                "title": "The Little Prince",
+                "author_id": 45
+            },
+            {
+                "id": 56,
+                "title": "Don Quixote",
+                "author_id": 38
+            },
+            {
+                "id": 59,
+                "title": "The Great Gatsby",
+                "author_id": 14
+            },
+            {
+                "id": 27,
+                "title": "The Adventures of Tom Sawyer",
+                "author_id": 24
+            },
+            {
+                "id": 15,
+                "title": "The Metamorphosis",
+                "author_id": 13
+            },
+            {
+                "id": 14,
+                "title": "The Complete Poems of Emily Dickinson",
+                "author_id": 12
+            },
+            {
+                "id": 22,
+                "title": "David Copperfield",
+                "author_id": 20
+            },
+            {
+                "id": 31,
+                "title": "Lolita",
+                "author_id": 28
+            },
+            {
+                "id": 6,
+                "title": "As I Lay Dying",
+                "author_id": 5
+            },
+            {
+                "id": 8,
+                "title": "The Catcher in the Rye",
+                "author_id": 7
+            },
+            {
+                "id": 29,
+                "title": "Invisible Man",
+                "author_id": 26
+            },
+            {
+                "id": 10,
+                "title": "The Plague",
+                "author_id": 9
+            },
+            {
+                "id": 13,
+                "title": "Harry Potter Series",
+                "author_id": 11
+            },
+            {
+                "id": 25,
+                "title": "To Kill a Mockingbird",
+                "author_id": 23
+            },
+            {
+                "id": 28,
+                "title": "The Portrait of a Lady",
+                "author_id": 25
+            },
+            {
+                "id": 9,
+                "title": "The Call of the Wild",
+                "author_id": 8
+            },
+            {
+                "id": 21,
+                "title": "Sentimental Education",
+                "author_id": 19
+            },
+            {
+                "id": 12,
+                "title": "Swann's Way",
+                "author_id": 10
+            },
+            {
+                "id": 18,
+                "title": "Of Mice and Men",
+                "author_id": 16
+            },
+            {
+                "id": 17,
+                "title": "The Old Man and the Sea",
+                "author_id": 15
+            },
+            {
+                "id": 62,
+                "title": "Hamlet",
+                "author_id": 48
+            },
+            {
+                "id": 1,
+                "title": "The Idiot",
+                "author_id": 1
+            },
+            {
+                "id": 4,
+                "title": "Jane Eyre",
+                "author_id": 4
+            },
+            {
+                "id": 30,
+                "title": "Go Tell It on the Mountain",
+                "author_id": 27
+            },
+            {
+                "id": 11,
+                "title": "The Fall",
+                "author_id": 9
+            },
+            {
+                "id": 16,
+                "title": "Tender is the Night",
+                "author_id": 14
+            },
+            {
+                "id": 23,
+                "title": "The Magic Mountain",
+                "author_id": 21
+            },
+            {
+                "id": 2,
+                "title": "Bartleby, the Scrivener",
+                "author_id": 2
+            },
+            {
+                "id": 3,
+                "title": "Middlemarch",
+                "author_id": 3
+            },
+            {
+                "id": 7,
+                "title": "Catch-22",
+                "author_id": 6
+            },
+            {
+                "id": 26,
+                "title": "Childhood, Boyhood, and Youth",
+                "author_id": 17
+            },
+            {
+                "id": 19,
+                "title": "Resurrection",
+                "author_id": 17
+            },
+            {
+                "id": 20,
+                "title": "The Age of Innocence",
+                "author_id": 18
+            },
+            {
+                "id": 24,
+                "title": "Steppenwolf",
+                "author_id": 22
+            },
+            {
+                "id": 5,
+                "title": "The Sound and the Fury",
+                "author_id": 5
+            },
+            {
+                "id": 55,
+                "title": "The Hobbit",
+                "author_id": 47
+            },
+            {
+                "id": 49,
+                "title": "The Master and Margarita",
+                "author_id": 44
+            },
+            {
+                "id": 50,
+                "title": "Dubliners",
+                "author_id": 29
+            },
+            {
+                "id": 51,
+                "title": "Notes from Underground",
+                "author_id": 1
+            },
+            {
+                "id": 48,
+                "title": "Slaughterhouse-Five",
+                "author_id": 43
+            },
+            {
+                "id": 46,
+                "title": "Billy Budd, Sailor",
+                "author_id": 2
+            },
+            {
+                "id": 47,
+                "title": "The Crucible",
+                "author_id": 42
+            },
+            {
+                "id": 42,
+                "title": "Time Regained",
+                "author_id": 10
+            },
+            {
+                "id": 43,
+                "title": "Tess of the d'Urbervilles",
+                "author_id": 39
+            },
+            {
+                "id": 45,
+                "title": "On the Road",
+                "author_id": 41
+            },
+            {
+                "id": 44,
+                "title": "Lord Jim",
+                "author_id": 40
+            },
+            {
+                "id": 52,
+                "title": "The Myth of Sisyphus",
+                "author_id": 9
+            },
+            {
+                "id": 57,
+                "title": "In Search of Lost Time",
+                "author_id": 10
+            },
+            {
+                "id": 58,
+                "title": "Ulysses",
+                "author_id": 29
+            },
+            {
+                "id": 60,
+                "title": "Moby Dick",
+                "author_id": 2
+            },
+            {
+                "id": 61,
+                "title": "War and Peace",
+                "author_id": 17
+            },
+            {
+                "id": 64,
+                "title": "One Hundred Years of Solitude",
+                "author_id": 50
+            }
+        ]
+    },
+    {
+        "user_id": 61,
+        "timestamp": "2024-07-11T07:56:50.704651",
+        "jsoned_results": [
+            {
+                "id": 54,
+                "title": "Fahrenheit 451",
+                "author_id": 46
+            },
+            {
+                "id": 63,
+                "title": "The Odyssey",
+                "author_id": 49
+            },
+            {
+                "id": 66,
+                "title": "The Brothers Karamazov",
+                "author_id": 1
+            },
+            {
+                "id": 34,
+                "title": "Orlando",
+                "author_id": 31
+            },
+            {
+                "id": 38,
+                "title": "Lord of the Flies",
+                "author_id": 35
+            },
+            {
+                "id": 41,
+                "title": "The Exemplary Novels of Cervantes",
+                "author_id": 38
+            },
+            {
+                "id": 33,
+                "title": "Brave New World",
+                "author_id": 30
+            },
+            {
+                "id": 65,
+                "title": "The Divine Comedy",
+                "author_id": 51
+            },
+            {
+                "id": 39,
+                "title": "The Complete Tales and Poems of Edgar Allan Poe",
+                "author_id": 36
+            },
+            {
+                "id": 32,
+                "title": "Finnegans Wake",
+                "author_id": 29
+            },
+            {
+                "id": 36,
+                "title": "Treasure Island",
+                "author_id": 33
+            },
+            {
+                "id": 35,
+                "title": "The Picture of Dorian Gray",
+                "author_id": 32
+            },
+            {
+                "id": 40,
+                "title": "Alice's Adventures in Wonderland",
+                "author_id": 37
+            },
+            {
+                "id": 37,
+                "title": "Animal Farm",
+                "author_id": 34
+            },
+            {
+                "id": 53,
+                "title": "The Little Prince",
+                "author_id": 45
+            },
+            {
+                "id": 56,
+                "title": "Don Quixote",
+                "author_id": 38
+            },
+            {
+                "id": 59,
+                "title": "The Great Gatsby",
+                "author_id": 14
+            },
+            {
+                "id": 27,
+                "title": "The Adventures of Tom Sawyer",
+                "author_id": 24
+            },
+            {
+                "id": 15,
+                "title": "The Metamorphosis",
+                "author_id": 13
+            },
+            {
+                "id": 14,
+                "title": "The Complete Poems of Emily Dickinson",
+                "author_id": 12
+            },
+            {
+                "id": 22,
+                "title": "David Copperfield",
+                "author_id": 20
+            },
+            {
+                "id": 31,
+                "title": "Lolita",
+                "author_id": 28
+            },
+            {
+                "id": 6,
+                "title": "As I Lay Dying",
+                "author_id": 5
+            },
+            {
+                "id": 8,
+                "title": "The Catcher in the Rye",
+                "author_id": 7
+            },
+            {
+                "id": 29,
+                "title": "Invisible Man",
+                "author_id": 26
+            },
+            {
+                "id": 10,
+                "title": "The Plague",
+                "author_id": 9
+            },
+            {
+                "id": 13,
+                "title": "Harry Potter Series",
+                "author_id": 11
+            },
+            {
+                "id": 25,
+                "title": "To Kill a Mockingbird",
+                "author_id": 23
+            },
+            {
+                "id": 28,
+                "title": "The Portrait of a Lady",
+                "author_id": 25
+            },
+            {
+                "id": 9,
+                "title": "The Call of the Wild",
+                "author_id": 8
+            },
+            {
+                "id": 21,
+                "title": "Sentimental Education",
+                "author_id": 19
+            },
+            {
+                "id": 12,
+                "title": "Swann's Way",
+                "author_id": 10
+            },
+            {
+                "id": 18,
+                "title": "Of Mice and Men",
+                "author_id": 16
+            },
+            {
+                "id": 17,
+                "title": "The Old Man and the Sea",
+                "author_id": 15
+            },
+            {
+                "id": 1,
+                "title": "The Idiot",
+                "author_id": 1
+            },
+            {
+                "id": 62,
+                "title": "Hamlet",
+                "author_id": 48
+            },
+            {
+                "id": 4,
+                "title": "Jane Eyre",
+                "author_id": 4
+            },
+            {
+                "id": 30,
+                "title": "Go Tell It on the Mountain",
+                "author_id": 27
+            },
+            {
+                "id": 11,
+                "title": "The Fall",
+                "author_id": 9
+            },
+            {
+                "id": 16,
+                "title": "Tender is the Night",
+                "author_id": 14
+            },
+            {
+                "id": 23,
+                "title": "The Magic Mountain",
+                "author_id": 21
+            },
+            {
+                "id": 2,
+                "title": "Bartleby, the Scrivener",
+                "author_id": 2
+            },
+            {
+                "id": 3,
+                "title": "Middlemarch",
+                "author_id": 3
+            },
+            {
+                "id": 7,
+                "title": "Catch-22",
+                "author_id": 6
+            },
+            {
+                "id": 26,
+                "title": "Childhood, Boyhood, and Youth",
+                "author_id": 17
+            },
+            {
+                "id": 19,
+                "title": "Resurrection",
+                "author_id": 17
+            },
+            {
+                "id": 20,
+                "title": "The Age of Innocence",
+                "author_id": 18
+            },
+            {
+                "id": 24,
+                "title": "Steppenwolf",
+                "author_id": 22
+            },
+            {
+                "id": 5,
+                "title": "The Sound and the Fury",
+                "author_id": 5
+            },
+            {
+                "id": 55,
+                "title": "The Hobbit",
+                "author_id": 47
+            },
+            {
+                "id": 49,
+                "title": "The Master and Margarita",
+                "author_id": 44
+            },
+            {
+                "id": 50,
+                "title": "Dubliners",
+                "author_id": 29
+            },
+            {
+                "id": 51,
+                "title": "Notes from Underground",
+                "author_id": 1
+            },
+            {
+                "id": 48,
+                "title": "Slaughterhouse-Five",
+                "author_id": 43
+            },
+            {
+                "id": 46,
+                "title": "Billy Budd, Sailor",
+                "author_id": 2
+            },
+            {
+                "id": 47,
+                "title": "The Crucible",
+                "author_id": 42
+            },
+            {
+                "id": 42,
+                "title": "Time Regained",
+                "author_id": 10
+            },
+            {
+                "id": 43,
+                "title": "Tess of the d'Urbervilles",
+                "author_id": 39
+            },
+            {
+                "id": 45,
+                "title": "On the Road",
+                "author_id": 41
+            },
+            {
+                "id": 44,
+                "title": "Lord Jim",
+                "author_id": 40
+            },
+            {
+                "id": 52,
+                "title": "The Myth of Sisyphus",
+                "author_id": 9
+            },
+            {
+                "id": 57,
+                "title": "In Search of Lost Time",
+                "author_id": 10
+            },
+            {
+                "id": 58,
+                "title": "Ulysses",
+                "author_id": 29
+            },
+            {
+                "id": 60,
+                "title": "Moby Dick",
+                "author_id": 2
+            },
+            {
+                "id": 61,
+                "title": "War and Peace",
+                "author_id": 17
+            },
+            {
+                "id": 64,
+                "title": "One Hundred Years of Solitude",
+                "author_id": 50
+            }
+        ]
     }
 ]
