@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Book recommendation system{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 
 <body>
@@ -27,6 +28,7 @@
     <a  href="{{ url_for('admin_page')}}">Administrator area</a>&nbsp|&nbsp
     <a  href="{{ url_for('add_author')}}">Add author</a>&nbsp|&nbsp
     <a  href="{{ url_for('add_book')}}">Add book</a>&nbsp|&nbsp
+    <a  href="{{ url_for('view_users')}}">View users</a>&nbsp|&nbsp
     <a href="/admin">Flask-admin</a>&nbsp|&nbsp
     <a href="{{ url_for('fill_db')}}">Fill DB</a>
     {% endif %}
@@ -36,21 +38,16 @@
 <div class="sidebar">
 {% block sidebar %}
     <div>
-        <a href="{{ url_for('home')}}">Home</a>
-    </div>
-    <div>
+    <a href="{{ url_for('home')}}">Home</a>
+
     <a  href="{{ url_for('view_books')}}">View all books</a>
-    </div>
-        <div>
+
     <a  href="{{ url_for('all_ratings')}}">View rated books</a>
-    </div>
-        <div>
+
     <a  href="{{ url_for('all_reviews')}}">View all reviewed books</a>
-    </div>
-        <div>
+
     <a  href="{{ url_for('all_read_listed')}}">View read listed books</a>
-    </div>
-    <div>
+
     <a  href="{{ url_for('search')}}">Search</a>
     </div>
 

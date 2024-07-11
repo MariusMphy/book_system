@@ -42,7 +42,7 @@
         <br>
             {% if review %}
                 Your review:<br>
-                {{ review.review }}<br>
+                <span style="padding-right: 1100px">{{ review.review }}</span><br>
                 <a href="{{ url_for('write_review', book_id=book.id) }}">Update review</a>
             {% else %}
             <a href="{{ url_for('write_review', book_id=book.id) }}">Write review</a>

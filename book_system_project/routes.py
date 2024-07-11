@@ -11,6 +11,7 @@ from sqlalchemy import func
 from datetime import datetime
 from random import random, randint, choice
 from book_system_project.media.books66 import books_list
+from flask_paginate import Pagination, get_page_parameter
 import json
 import os
 
@@ -46,11 +47,19 @@ def profile():
 @app.route("/fill_db", methods=["GET", "POST"])
 @login_required
 def fill_db():
+    if current_user.name != "Admin":
+        flash("You dont have permits to access this page!", "error")
+        return redirect('/')
     return render_template('fill_db.html')
 
 
+
 @app.route("/fill_book_db", methods=["GET", "POST"])
+@login_required
 def fill_book_db():
+    if current_user.name != "Admin":
+        flash("You dont have permits to access this page!", "error")
+        return redirect('/')
     books_added = 0
     for book in books_list:
         author_name = book['Author']
@@ -97,7 +106,11 @@ def fill_book_db():
 
 
 @app.route("/fill_user_db", methods=["GET", "POST"])
+@login_required
 def fill_user_db():
+    if current_user.name != "Admin":
+        flash("You dont have permits to access this page!", "error")
+        return redirect('/')
     if len(User.query.all()) > 50:
         flash("We have enough users already. No new users added.", 'info')
         return render_template("admin_page.html")
@@ -146,7 +159,11 @@ def randomize_review():
 
 
 @app.route("/fill_ratings", methods=["GET", "POST"])
+@login_required
 def fill_ratings():
+    if current_user.name != "Admin":
+        flash("You dont have permits to access this page!", "error")
+        return redirect('/')
     user_rate = User.query.all()
     if len(Rating.query.all()) > 50:
         flash("We have enough data already. No new data added.", 'info')
@@ -242,6 +259,9 @@ def logout():
 @app.route("/add_author", methods=["GET", "POST"])
 @login_required
 def add_author():
+    if current_user.name != "Admin":
+        flash("You dont have permits to access this page!", "error")
+        return redirect('/')
     form = AuthorForm()
     if form.validate_on_submit():
         author = form.name.data
@@ -257,9 +277,31 @@ def add_author():
     return render_template('add_author.html', form=form)
 
 
+@app.route("/view_users", methods=["GET", "POST"])
+@login_required
+def view_users():
+    if current_user.name != "Admin":
+        flash("You dont have permits to access this page!", "error")
+        return redirect('/')
+    users_query = User.query
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    per_page = 10
+    users_pagination = users_query.paginate(page=page, per_page=per_page)
+    users = users_pagination.items
+    total = users_pagination.total
+    pagination = Pagination(page=page, total=total, per_page=per_page, css_framework='bootstrap4')
+    start_num = (page - 1) * per_page + 1
+    if users:
+        return render_template('view_users.html', users=users, pagination=pagination, start_num=start_num)
+    return render_template('admin_page.html')
+
+
 @app.route("/add_book", methods=["GET", "POST"])
 @login_required
 def add_book():
+    if current_user.name != "Admin":
+        flash("You dont have permits to access this page!", "error")
+        return redirect('/')
     form = BookForm()
     form.author.choices = [(author.id, author.name) for author in Author.query.all()]
     form.genre.choices = [(genre.id, genre.name) for genre in Genre.query.all()]
@@ -540,6 +582,9 @@ def book_reviews(book_id):
 @app.route("/admin_page", methods=["GET", "POST"])
 @login_required
 def admin_page():
+    if current_user.name != "Admin":
+        flash("You dont have permits to access this page!", "error")
+        return redirect('/')
     return render_template('admin_page.html')
 
 
@@ -696,6 +741,4 @@ def recommended_for_you():
         original_book = book
         recommended_books = recommended_for_each_book(book.id)
         separate_results.append((original_book, recommended_books))
-    print(f"separate results: {separate_results}")
-
     return render_template("recommended_for_you.html", sorted_books=sorted_books, separate_results=separate_results)

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+    {% block title %}View users{% endblock %}
+
+    {% block subhead %}
+        View all users:
+    {% endblock %}
+
+    {% block content %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+    <ol start="{{ start_num }}">
+    {% for user in users %}
+        <li>{{ user.name }}, {{ user.phone }}, {{ user.date_of_birth }}, {{ user.gender }}</li>
+    {% endfor %}
+    </ol>
+    {{ pagination.links }}
+
+    {% endblock %}

@@ -8,8 +8,8 @@
     {% block content %}
     <div>
         <ol>
-        {% for book, rating in sorted_books %}
-            <li><a href="{{ url_for('book_details', book_id=book.id) }}">{{ book.title }} ({{ rating }})</a></li>
+        {% for book, read_listed in sorted_books if read_listed %}
+            <li><a href="{{ url_for('book_details', book_id=book.id) }}">{{ book.title }} ({{ read_listed }})</a></li>
         {% endfor %}
         </ol>
     </div>

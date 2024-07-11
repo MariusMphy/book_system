@@ -8,8 +8,18 @@ body {
 }
 .sidebar {
     background-color: Tan;
-    padding: 5px
+    padding: 5px;
+
 }
+.sidebar a {
+    margin-right: 5px;
+}
+
+.sidebar a:not(:first-child)::before {
+    content: "|";
+    margin-right: 5px;
+}
+
 .subhead {
     background-color: Wheat;
     font-size: 1em;
