@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
+import logging.config
 
 app: Flask = Flask(__name__)
 app.config["SECRET_KEY"] = "book_system_key"
@@ -10,6 +11,9 @@ db: SQLAlchemy = SQLAlchemy(app)
 
 login_manager = LoginManager(app)
 login_manager.login_view = "login"
+
+logging.config.fileConfig('logging.conf')
+logger = logging.getLogger('sLogger')
 
 bcrypt = Bcrypt(app)
 

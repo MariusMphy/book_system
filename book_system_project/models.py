@@ -2,6 +2,7 @@ from flask_login import UserMixin, current_user
 from book_system_project import db, app
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
+from flask import flash
 
 
 book_genres = db.Table('book_genres',
@@ -82,7 +83,10 @@ class Review(db.Model):
 
 class AdminModelView(ModelView):
     def is_accessible(self):
-        return current_user.is_authenticated and current_user.name == "Admin"
+        is_admin = current_user.is_authenticated and current_user.name == "Admin"
+        if not is_admin:
+            flash("You dont have permits to access this page!", "error")
+        return is_admin
 
 
 admin = Admin(app)

@@ -9386,5 +9386,53 @@
                 "author_id": 50
             }
         ]
+    },
+    {
+        "user_id": 63,
+        "timestamp": "2024-07-15T20:46:04.380463",
+        "jsoned_results": [
+            {
+                "id": 53,
+                "title": "The Little Prince",
+                "author_id": 45
+            }
+        ]
+    },
+    {
+        "user_id": 63,
+        "timestamp": "2024-07-15T20:47:34.587697",
+        "jsoned_results": [
+            {
+                "id": 10,
+                "title": "The Plague",
+                "author_id": 9
+            },
+            {
+                "id": 11,
+                "title": "The Fall",
+                "author_id": 9
+            },
+            {
+                "id": 52,
+                "title": "The Myth of Sisyphus",
+                "author_id": 9
+            }
+        ]
+    },
+    {
+        "user_id": 61,
+        "timestamp": "2024-07-15T20:51:40.076826",
+        "jsoned_results": [
+            {
+                "id": 38,
+                "title": "Lord of the Flies",
+                "author_id": 35
+            },
+            {
+                "id": 37,
+                "title": "Animal Farm",
+                "author_id": 34
+            }
+        ]
     }
 ]

@@ -1,6 +1,6 @@
 from flask import Flask, render_template, redirect, request, url_for, flash, session
 
-from book_system_project import db, app, login_manager, bcrypt
+from book_system_project import db, app, login_manager, bcrypt, logger
 from book_system_project.models import Book, User, Rating, Author, Genre, ToRead, Review, book_genres
 from book_system_project.forms import (RegisterForm, LoginForm, BookForm, AuthorForm, RateBook, EditUserForm,
                                        ChangePasswordForm, SortRating, ToReadForm, WriteReviewForm, SearchForm)
@@ -18,7 +18,9 @@ import os
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
+    user = User.query.get(int(user_id))
+    # logger.info(f"Loaded user_id: {user_id}, email: {user.email}")
+    return user
 
 
 @app.route("/")
@@ -48,16 +50,17 @@ def profile():
 @login_required
 def fill_db():
     if current_user.name != "Admin":
+        logger.warning(f"Unauthorized access attempt to /fill_db by user: {current_user.id}")
         flash("You dont have permits to access this page!", "error")
         return redirect('/')
     return render_template('fill_db.html')
-
 
 
 @app.route("/fill_book_db", methods=["GET", "POST"])
 @login_required
 def fill_book_db():
     if current_user.name != "Admin":
+        logger.warning(f"Unauthorized access attempt to /fill_book_db by user: {current_user.id}")
         flash("You dont have permits to access this page!", "error")
         return redirect('/')
     books_added = 0
@@ -109,6 +112,7 @@ def fill_book_db():
 @login_required
 def fill_user_db():
     if current_user.name != "Admin":
+        logger.warning(f"Unauthorized access attempt to /fill_user_db by user: {current_user.id}")
         flash("You dont have permits to access this page!", "error")
         return redirect('/')
     if len(User.query.all()) > 50:
@@ -162,6 +166,7 @@ def randomize_review():
 @login_required
 def fill_ratings():
     if current_user.name != "Admin":
+        logger.warning(f"Unauthorized access attempt to /fill_ratings by user: {current_user.id}")
         flash("You dont have permits to access this page!", "error")
         return redirect('/')
     user_rate = User.query.all()
@@ -214,6 +219,7 @@ def register():
         gender = form.gender.data
         check_email = User.query.filter_by(email=email).first()
         if check_email:
+            logger.warning(f"Trying to register with existing email: {check_email.email}")
             flash('User with this email already exists.', 'error')
             return render_template('register.html', form=form)
         if password != confirm_password:
@@ -225,6 +231,7 @@ def register():
 
         db.session.add(new_user)
         db.session.commit()
+        logger.info(f"Successfully registered user_id: {new_user.id} email: {new_user.email}")
         flash(f'You have successfully registered, {name}!', 'success')
         return redirect(url_for('login'))
     return render_template("register.html", form=form)
@@ -240,9 +247,11 @@ def login():
         user = User.query.filter_by(email=email).first()
         if user and bcrypt.check_password_hash(user.password, password):
             login_user(user)
+            logger.info(f"Logged in user_id: {user.id}, email: {user.email}")
             flash(' You have logged in successfully!', 'success')
             return redirect(url_for('profile'))
         else:
+            logger.warning(f"Failed to login in user_id: {user.id}, email: {user.email}")
             flash('Invalid email or password. Please try again.', 'error')
             return render_template('login.html', form=form)
     return render_template('login.html', form=form, user=current_user)
@@ -251,6 +260,7 @@ def login():
 @app.route('/logout')
 @login_required
 def logout():
+    logger.info(f"Logged out user_id: {current_user.id}, email: {current_user.email}")
     logout_user()
     flash('You have been successfully logged out.', 'success')
     return redirect(url_for('home'))
@@ -272,6 +282,7 @@ def add_author():
         new_author = Author(name=author)
         db.session.add(new_author)
         db.session.commit()
+        logger.info(f"User_id: {current_user.id}, added new author: {new_author.name}")
         flash('You have successfully added new author.', 'success')
         return render_template('add_author.html', form=form)
     return render_template('add_author.html', form=form)
@@ -281,6 +292,7 @@ def add_author():
 @login_required
 def view_users():
     if current_user.name != "Admin":
+        logger.warning(f"Unauthorized access attempt to /view_users by user: {current_user.id}")
         flash("You dont have permits to access this page!", "error")
         return redirect('/')
     users_query = User.query
@@ -300,6 +312,7 @@ def view_users():
 @login_required
 def add_book():
     if current_user.name != "Admin":
+        logger.warning(f"Unauthorized access attempt to /add_book by user: {current_user.id}")
         flash("You dont have permits to access this page!", "error")
         return redirect('/')
     form = BookForm()
@@ -391,6 +404,7 @@ def rate_book(book_id):
             new_rating = Rating(rating=rating, book_id=book_id, user_id=current_user.id)
             db.session.add(new_rating)
         db.session.commit()
+        logger.info(f"User_id: {current_user.id}, rated book_id: {book_id}, book_name: {book.title}")
         flash('Thank you for your rating!', 'success')
         return redirect(url_for('book_details', book_id=book_id))
     return render_template('rate_book.html', book=book, author=author, genres=genres, avg_rating=avg_rating,
@@ -418,8 +432,10 @@ def edit_profile():
             if form.gender.data:
                 current_user.gender = form.gender.data
             db.session.commit()
+            logger.info(f"User_id: {current_user.id} updated profile")
             flash("Profile updated successfully", "success")
         else:
+            logger.warning(f"User_id: {current_user.id} failed password, while updating profile")
             flash("Password is incorrect", "error")
             return redirect(url_for('edit_profile'))
     return render_template("edit_profile.html", form=form, current_email=current_email, current_name=current_name,
@@ -437,14 +453,17 @@ def change_password():
         confirm_password = form.confirm_password.data
 
         if not bcrypt.check_password_hash(current_user.password, old_password):
+            logger.warning(f"User_id: {current_user.id} failed old password, while updating password")
             flash("Old password is incorrect", "error")
             return render_template('change_password.html', form=form)
         if new_password != confirm_password:
+            logger.warning(f"User_id: {current_user.id} failed to confirm new password, while updating password")
             flash('Passwords, do not match!', 'error')
             return render_template('change_password.html', form=form)
         hashed_password = bcrypt.generate_password_hash(new_password).decode('utf-8')
         current_user.password = hashed_password
         db.session.commit()
+        logger.info(f"User_id: {current_user.id} changed password")
         flash(f'Password is updated', 'success')
         return redirect(url_for('home'))
     return render_template('change_password.html', form=form)
@@ -489,6 +508,7 @@ def remove_to_read(book_id):
     if toread_to_remove:
         db.session.delete(toread_to_remove)
         db.session.commit()
+        logger.info(f"User_id: {current_user.id}, removed book_id {book_id} from read list")
         flash('Book has been removed from your read list', 'success')
     else:
         flash('Book not found in your read list', 'error')
@@ -510,6 +530,7 @@ def write_review(book_id):
             new_review = Review(review=review, book_id=book_id, user_id=current_user.id)
             db.session.add(new_review)
         db.session.commit()
+        logger.info(f"User_id: {current_user.id}, wrote review for book_id: {book_id}")
         flash('Thank you for your review!', 'success')
         return redirect(url_for('book_details', book_id=book_id))
     return render_template('write_review.html', form=form, review=old_review, book=book, author=author)
@@ -583,8 +604,10 @@ def book_reviews(book_id):
 @login_required
 def admin_page():
     if current_user.name != "Admin":
+        logger.warning(f"Unauthorized access attempt to /admin_page by user: {current_user.id}")
         flash("You dont have permits to access this page!", "error")
         return redirect('/')
+    logger.info(f"Admin_page accessed by admin: {current_user.id}")
     return render_template('admin_page.html')
 
 
@@ -673,7 +696,7 @@ def search():
 
         if not results:
             flash("No books met your search criteria.", "error")
-
+        logger.info(f"Search performed by user_id: {current_user.id}")
     return render_template('search.html', form=form, results=results, count=len(results))
 
 
