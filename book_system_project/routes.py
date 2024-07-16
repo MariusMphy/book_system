@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, url_for, flash, session
+from flask import render_template, redirect, request, url_for, flash
 
 from book_system_project import db, app, login_manager, bcrypt, logger
 from book_system_project.models import Book, User, Rating, Author, Genre, ToRead, Review, book_genres
@@ -9,17 +9,17 @@ import csv
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy import func
 from datetime import datetime
-from random import random, randint, choice
+from random import randint, choice
 from book_system_project.media.books66 import books_list
 from flask_paginate import Pagination, get_page_parameter
 import json
 import os
+import uuid
 
 
 @login_manager.user_loader
 def load_user(user_id):
     user = User.query.get(int(user_id))
-    # logger.info(f"Loaded user_id: {user_id}, email: {user.email}")
     return user
 
 
@@ -616,32 +616,25 @@ def search():
     form = SearchForm()
     form.select_author.choices = [('', 'Select an author')] + [(author.name, author.name) for author in
                                                                Author.query.order_by(Author.name).all()]
-    select_author = form.select_author.data
     form.select_genre.choices = [('', 'Select genre')] + [(genre.name, genre.name) for genre in
                                                           Genre.query.order_by(Genre.name).all()]
-
-    select_genre = form.select_genre.data
     results = []
+
+    saved_searches = []
+    if os.path.exists('instance/search_results.json'):
+        with open('instance/search_results.json', 'r') as file:
+            saved_searches = json.load(file)
 
     if form.validate_on_submit():
         title = form.title.data
-        if select_author:
-            author = form.select_author.data
-        else:
-            author = form.author.data
-
-        if select_genre:
-            genre = form.select_genre.data
-        else:
-            genre = form.genre.data
-
+        author = form.select_author.data or form.author.data
+        genre = form.select_genre.data or form.genre.data
         rating_min = form.rating_min.data
         rating_max = form.rating_max.data
         sort_by = form.sort_by.data
 
         book_alias = db.aliased(Book)
         rating_alias = db.aliased(Rating)
-
         query = db.session.query(book_alias).join(Author)
 
         if title:
@@ -675,29 +668,55 @@ def search():
         results = query.all()
 
         if current_user.is_authenticated:
-            serialized_results = [result.to_dict() for result in results]
+            serialized_results = []
+            for result in results:
+                serialized_results.append({
+                    'id': result.id,
+                    'title': result.title,
+                    'author': {'name': result.author.name},
+                    'genres': [{'name': genre.name} for genre in result.genres],
+                    'avg_rating': result.avg_rating
+                })
             current_time = datetime.now().isoformat()
+            search_id = str(uuid.uuid4())
 
             timed_results = {
+                "search_id": search_id,
                 "user_id": current_user.id,
                 "timestamp": current_time,
                 "jsoned_results": serialized_results
             }
 
-            if os.path.exists('book_system_project/media/search_results.json'):
-                with open('book_system_project/media/search_results.json', 'r') as file:
+            if os.path.exists('instance/search_results.json'):
+                with open('instance/search_results.json', 'r') as file:
                     data = json.load(file)
             else:
                 data = []
             data.append(timed_results)
 
-            with open('book_system_project/media/search_results.json', 'w') as file:
+            with open('instance/search_results.json', 'w') as file:
                 json.dump(data, file, indent=4)
-
+            logger.info(f"Search performed by user_id: {current_user.id}")
         if not results:
             flash("No books met your search criteria.", "error")
-        logger.info(f"Search performed by user_id: {current_user.id}")
-    return render_template('search.html', form=form, results=results, count=len(results))
+
+    return render_template('search.html', form=form, results=results, count=len(results), saved_searches=saved_searches)
+
+
+@app.route("/saved_search/<search_id>", methods=["GET"])
+@login_required
+def load_saved_search(search_id):
+    if os.path.exists('instance/search_results.json'):
+        with open('instance/search_results.json', 'r') as file:
+            saved_searches = json.load(file)
+        saved_search = next((item for item in saved_searches if item["search_id"] == search_id), None)
+        if saved_search:
+            results = saved_search['jsoned_results']
+            logger.info(f"Saved search results accessed by user_id: {current_user.id}")
+            return render_template('search.html', form=None, results=results, count=len(results),
+                                   saved_searches=saved_searches)
+    flash("Saved search results not found.", "error")
+    return redirect(url_for('search'))
 
 
 @app.route("/all_ratings", methods=["GET", "POST"])
