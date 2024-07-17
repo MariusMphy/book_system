@@ -9,10 +9,10 @@
             {% for review in rev_info %}
               <ul>
                 <li>
-                    <a href="{{ url_for('book_details', book_id=review.book_id)  }}"><span style="color: DarkMagenta;">{{ review.book_title }}</span></a>
+                    <a href="{{ url_for('main.book_details', book_id=review.book_id)  }}"><span style="color: DarkMagenta;">{{ review.book_title }}</span></a>
                     <span style="color: DarkRed;">by {{ review.author_name }}</span> <br>
                     {{ review.review }}<br>
-                    <a href="{{ url_for('write_review', book_id=review.book_id) }}">Update review</a>
+                    <a href="{{ url_for('main.write_review', book_id=review.book_id) }}">Update review</a>
                 </li>
               </ul>
             {% endfor %}

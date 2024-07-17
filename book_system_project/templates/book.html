@@ -17,22 +17,22 @@
         {% endfor %}<br>
         Rating: {{ avg_rating }}<br>
         In read list of {{ read_listed }} people<br>
-        <a href="{{ url_for('book_reviews', book_id=book.id) }}">Reviews</a> ({{ review_count }})<br><br>
+        <a href="{{ url_for('main.book_reviews', book_id=book.id) }}">Reviews</a> ({{ review_count }})<br><br>
 
 
         {% if current_user.is_authenticated %}
         Your rating:
             {% if rating %}
                 {{ rating.rating }}
-                <br><a href="{{ url_for('rate_book', book_id=book.id) }}">Update your rating</a>
+                <br><a href="{{ url_for('main.rate_book', book_id=book.id) }}">Update your rating</a>
             {% else %}
                 Not rated
-                <br><a href="{{ url_for('rate_book', book_id=book.id) }}">Rate this book</a>
+                <br><a href="{{ url_for('main.rate_book', book_id=book.id) }}">Rate this book</a>
             {% endif %}
             <br>
 
             {% if book.id == toread.book_id %}
-                This book is in your <a href="{{ url_for('to_read') }}">read list</a><br>
+                This book is in your <a href="{{ url_for('main.to_read') }}">read list</a><br>
             {% else %}<br>
                 <form method="POST">
                     {{ form.hidden_tag() }}
@@ -43,9 +43,9 @@
             {% if review %}
                 Your review:<br>
                 <span style="padding-right: 1100px">{{ review.review }}</span><br>
-                <a href="{{ url_for('write_review', book_id=book.id) }}">Update review</a>
+                <a href="{{ url_for('main.write_review', book_id=book.id) }}">Update review</a>
             {% else %}
-            <a href="{{ url_for('write_review', book_id=book.id) }}">Write review</a>
+            <a href="{{ url_for('main.write_review', book_id=book.id) }}">Write review</a>
             {% endif %}
 
         {% else %}

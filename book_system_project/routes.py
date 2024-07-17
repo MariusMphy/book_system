@@ -1,7 +1,7 @@
 from flask import render_template, redirect, request, url_for, flash
 
-from book_system_project import db, app, login_manager, bcrypt, logger
-from book_system_project.models import Book, User, Rating, Author, Genre, ToRead, Review, book_genres
+from book_system_project import login_manager, bcrypt, logger
+from book_system_project.models import db, Book, User, Rating, Author, Genre, ToRead, Review, book_genres
 from book_system_project.forms import (RegisterForm, LoginForm, BookForm, AuthorForm, RateBook, EditUserForm,
                                        ChangePasswordForm, SortRating, ToReadForm, WriteReviewForm, SearchForm)
 from flask_login import login_user, login_required, logout_user, current_user
@@ -15,6 +15,7 @@ from flask_paginate import Pagination, get_page_parameter
 import json
 import os
 import uuid
+from book_system_project.blueprints import bp
 
 
 @login_manager.user_loader
@@ -23,7 +24,7 @@ def load_user(user_id):
     return user
 
 
-@app.route("/")
+@bp.route("/")
 def home():
     books = Book.query.all()
     books_with_avg_rating = [(book, book.avg_rating) for book in books if book.avg_rating is not None]
@@ -39,14 +40,14 @@ def home():
                            top_read_listed_books=top_read_listed_books)
 
 
-@app.route("/profile")
+@bp.route("/profile")
 @login_required
 def profile():
     user = current_user
     return render_template("profile.html", user=user)
 
 
-@app.route("/fill_db", methods=["GET", "POST"])
+@bp.route("/fill_db", methods=["GET", "POST"])
 @login_required
 def fill_db():
     if current_user.name != "Admin":
@@ -56,7 +57,7 @@ def fill_db():
     return render_template('fill_db.html')
 
 
-@app.route("/fill_book_db", methods=["GET", "POST"])
+@bp.route("/fill_book_db", methods=["GET", "POST"])
 @login_required
 def fill_book_db():
     if current_user.name != "Admin":
@@ -108,7 +109,7 @@ def fill_book_db():
     return render_template("fill_db.html")
 
 
-@app.route("/fill_user_db", methods=["GET", "POST"])
+@bp.route("/fill_user_db", methods=["GET", "POST"])
 @login_required
 def fill_user_db():
     if current_user.name != "Admin":
@@ -162,7 +163,7 @@ def randomize_review():
     return '. '.join(sentences) + '.'
 
 
-@app.route("/fill_ratings", methods=["GET", "POST"])
+@bp.route("/fill_ratings", methods=["GET", "POST"])
 @login_required
 def fill_ratings():
     if current_user.name != "Admin":
@@ -206,7 +207,7 @@ def fill_ratings():
     return render_template("fill_db.html")
 
 
-@app.route("/register", methods=["GET", "POST"])
+@bp.route("/register", methods=["GET", "POST"])
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
@@ -233,11 +234,11 @@ def register():
         db.session.commit()
         logger.info(f"Successfully registered user_id: {new_user.id} email: {new_user.email}")
         flash(f'You have successfully registered, {name}!', 'success')
-        return redirect(url_for('login'))
+        return redirect(url_for('main.login'))
     return render_template("register.html", form=form)
 
 
-@app.route("/login", methods=["GET", "POST"])
+@bp.route("/login", methods=["GET", "POST"])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -249,7 +250,7 @@ def login():
             login_user(user)
             logger.info(f"Logged in user_id: {user.id}, email: {user.email}")
             flash(' You have logged in successfully!', 'success')
-            return redirect(url_for('profile'))
+            return redirect(url_for('main.profile'))
         else:
             logger.warning(f"Failed to login in user_id: {user.id}, email: {user.email}")
             flash('Invalid email or password. Please try again.', 'error')
@@ -257,16 +258,16 @@ def login():
     return render_template('login.html', form=form, user=current_user)
 
 
-@app.route('/logout')
+@bp.route('/logout')
 @login_required
 def logout():
     logger.info(f"Logged out user_id: {current_user.id}, email: {current_user.email}")
     logout_user()
     flash('You have been successfully logged out.', 'success')
-    return redirect(url_for('home'))
+    return redirect(url_for('main.home'))
 
 
-@app.route("/add_author", methods=["GET", "POST"])
+@bp.route("/add_author", methods=["GET", "POST"])
 @login_required
 def add_author():
     if current_user.name != "Admin":
@@ -288,7 +289,7 @@ def add_author():
     return render_template('add_author.html', form=form)
 
 
-@app.route("/view_users", methods=["GET", "POST"])
+@bp.route("/view_users", methods=["GET", "POST"])
 @login_required
 def view_users():
     if current_user.name != "Admin":
@@ -308,7 +309,7 @@ def view_users():
     return render_template('admin_page.html')
 
 
-@app.route("/add_book", methods=["GET", "POST"])
+@bp.route("/add_book", methods=["GET", "POST"])
 @login_required
 def add_book():
     if current_user.name != "Admin":
@@ -341,17 +342,17 @@ def add_book():
         db.session.add(new_book)
         db.session.commit()
         flash('You have successfully added new book', 'success')
-        return redirect(url_for('add_book'))
+        return redirect(url_for('main.add_book'))
     return render_template('add_book.html', form=form)
 
 
-@app.route("/view_books", methods=["GET", "POST"])
+@bp.route("/view_books", methods=["GET", "POST"])
 def view_books():
     books = Book.query.all()
     return render_template("view_books.html", books=books)
 
 
-@app.route("/book/<int:book_id>", methods=["GET", "POST"])
+@bp.route("/book/<int:book_id>", methods=["GET", "POST"])
 def book_details(book_id):
     form = ToReadForm()
     book = Book.query.get_or_404(book_id)
@@ -373,9 +374,9 @@ def book_details(book_id):
             db.session.add(new_toread)
             db.session.commit()
             flash('You have successfully added this book to your read list', 'success')
-            return redirect(url_for('to_read'))
+            return redirect(url_for('main.to_read'))
         flash('This book is already in your read list', 'error')
-        return redirect(url_for('to_read'))
+        return redirect(url_for('main.to_read'))
 
     toread = ToRead.query.filter_by(user_id=current_user.id, book_id=book_id).first() \
         if current_user.is_authenticated else None
@@ -385,7 +386,7 @@ def book_details(book_id):
                            read_listed=read_listed)
 
 
-@app.route("/rate_book/<int:book_id>", methods=["GET", "POST"])
+@bp.route("/rate_book/<int:book_id>", methods=["GET", "POST"])
 @login_required
 def rate_book(book_id):
     book = Book.query.get_or_404(book_id)
@@ -406,12 +407,12 @@ def rate_book(book_id):
         db.session.commit()
         logger.info(f"User_id: {current_user.id}, rated book_id: {book_id}, book_name: {book.title}")
         flash('Thank you for your rating!', 'success')
-        return redirect(url_for('book_details', book_id=book_id))
+        return redirect(url_for('main.book_details', book_id=book_id))
     return render_template('rate_book.html', book=book, author=author, genres=genres, avg_rating=avg_rating,
                            current_rating=current_rating, form=form)
 
 
-@app.route("/edit_profile", methods=["GET", "POST"])
+@bp.route("/edit_profile", methods=["GET", "POST"])
 @login_required
 def edit_profile():
     form = EditUserForm()
@@ -437,13 +438,13 @@ def edit_profile():
         else:
             logger.warning(f"User_id: {current_user.id} failed password, while updating profile")
             flash("Password is incorrect", "error")
-            return redirect(url_for('edit_profile'))
+            return redirect(url_for('main.edit_profile'))
     return render_template("edit_profile.html", form=form, current_email=current_email, current_name=current_name,
                            current_phone=current_phone, current_date_of_birth=current_date_of_birth,
                            current_gender=current_gender)
 
 
-@app.route("/change_password", methods=["GET", "POST"])
+@bp.route("/change_password", methods=["GET", "POST"])
 @login_required
 def change_password():
     form = ChangePasswordForm()
@@ -465,11 +466,11 @@ def change_password():
         db.session.commit()
         logger.info(f"User_id: {current_user.id} changed password")
         flash(f'Password is updated', 'success')
-        return redirect(url_for('home'))
+        return redirect(url_for('main.home'))
     return render_template('change_password.html', form=form)
 
 
-@app.route("/your_ratings", methods=["GET", "POST"])
+@bp.route("/your_ratings", methods=["GET", "POST"])
 @login_required
 def your_ratings():
     form = SortRating()
@@ -493,7 +494,7 @@ def your_ratings():
                            ratings_with_books=ratings_with_books)
 
 
-@app.route("/to_read", methods=["GET", "POST"])
+@bp.route("/to_read", methods=["GET", "POST"])
 @login_required
 def to_read():
     toread_list = db.session.query(ToRead, Book).join(Book).filter(ToRead.user_id == current_user.id).all()
@@ -501,7 +502,7 @@ def to_read():
     return render_template("to_read.html", books=books)
 
 
-@app.route("/remove_to_read/<int:book_id>", methods=["GET", "POST"])
+@bp.route("/remove_to_read/<int:book_id>", methods=["GET", "POST"])
 @login_required
 def remove_to_read(book_id):
     toread_to_remove = ToRead.query.filter_by(book_id=book_id, user_id=current_user.id).first()
@@ -512,10 +513,10 @@ def remove_to_read(book_id):
         flash('Book has been removed from your read list', 'success')
     else:
         flash('Book not found in your read list', 'error')
-    return redirect(url_for('to_read'))
+    return redirect(url_for('main.to_read'))
 
 
-@app.route("/write_review/<int:book_id>", methods=["GET", "POST"])
+@bp.route("/write_review/<int:book_id>", methods=["GET", "POST"])
 @login_required
 def write_review(book_id):
     form = WriteReviewForm()
@@ -532,11 +533,11 @@ def write_review(book_id):
         db.session.commit()
         logger.info(f"User_id: {current_user.id}, wrote review for book_id: {book_id}")
         flash('Thank you for your review!', 'success')
-        return redirect(url_for('book_details', book_id=book_id))
+        return redirect(url_for('main.book_details', book_id=book_id))
     return render_template('write_review.html', form=form, review=old_review, book=book, author=author)
 
 
-@app.route("/your_reviews", methods=["GET", "POST"])
+@bp.route("/your_reviews", methods=["GET", "POST"])
 @login_required
 def your_reviews():
     reviews = db.session.query(
@@ -564,7 +565,7 @@ def your_reviews():
     return render_template('your_reviews.html', rev_info=rev_info)
 
 
-@app.route("/book_reviews/<int:book_id>", methods=["GET", "POST"])
+@bp.route("/book_reviews/<int:book_id>", methods=["GET", "POST"])
 def book_reviews(book_id):
     form = SortRating()
     book = Book.query.filter_by(id=book_id).first()
@@ -600,7 +601,7 @@ def book_reviews(book_id):
     return render_template('book_reviews.html', form=form, rev_info=sorted_rev_info, book=book, author=author)
 
 
-@app.route("/admin_page", methods=["GET", "POST"])
+@bp.route("/admin_page", methods=["GET", "POST"])
 @login_required
 def admin_page():
     if current_user.name != "Admin":
@@ -611,7 +612,7 @@ def admin_page():
     return render_template('admin_page.html')
 
 
-@app.route("/search", methods=["GET", "POST"])
+@bp.route("/search", methods=["GET", "POST"])
 def search():
     form = SearchForm()
     form.select_author.choices = [('', 'Select an author')] + [(author.name, author.name) for author in
@@ -703,7 +704,7 @@ def search():
     return render_template('search.html', form=form, results=results, count=len(results), saved_searches=saved_searches)
 
 
-@app.route("/saved_search/<search_id>", methods=["GET"])
+@bp.route("/saved_search/<search_id>", methods=["GET"])
 @login_required
 def load_saved_search(search_id):
     if os.path.exists('instance/search_results.json'):
@@ -716,10 +717,10 @@ def load_saved_search(search_id):
             return render_template('search.html', form=None, results=results, count=len(results),
                                    saved_searches=saved_searches)
     flash("Saved search results not found.", "error")
-    return redirect(url_for('search'))
+    return redirect(url_for('main.search'))
 
 
-@app.route("/all_ratings", methods=["GET", "POST"])
+@bp.route("/all_ratings", methods=["GET", "POST"])
 def all_ratings():
     books = Book.query.all()
     books_with_avg_rating = [(book, book.avg_rating) for book in books if book.avg_rating is not None]
@@ -727,7 +728,7 @@ def all_ratings():
     return render_template("all_ratings.html", sorted_books=sorted_books)
 
 
-@app.route("/all_reviews", methods=["GET", "POST"])
+@bp.route("/all_reviews", methods=["GET", "POST"])
 def all_reviews():
     books = Book.query.all()
     books_with_review_count = [(book, len(Review.query.filter_by(book_id=book.id).all())) for book in books]
@@ -735,7 +736,7 @@ def all_reviews():
     return render_template("all_reviews.html", sorted_books=sorted_books)
 
 
-@app.route("/all_read_listed", methods=["GET", "POST"])
+@bp.route("/all_read_listed", methods=["GET", "POST"])
 def all_read_listed():
     books = Book.query.all()
     books_with_read_list_count = [(book, len(ToRead.query.filter_by(book_id=book.id).all())) for book in books]
@@ -762,7 +763,7 @@ def recommended_for_each_book(best_book):
         return sorted_books
 
 
-@app.route("/recommended_for_you", methods=["GET", "POST"])
+@bp.route("/recommended_for_you", methods=["GET", "POST"])
 @login_required
 def recommended_for_you():
     your_rated5 = Rating.query.filter_by(user_id=current_user.id, rating=5).all()

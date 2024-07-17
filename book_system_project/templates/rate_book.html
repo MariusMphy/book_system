@@ -20,7 +20,7 @@
         {% else %}
             Not rated
         {% endif %}
-            <br><br><a href="{{ url_for('rate_book', book_id=book.id) }}">Rate this book:</a><br><br>
+            <br><br><a href="{{ url_for('main.rate_book', book_id=book.id) }}">Rate this book:</a><br><br>
 
     <form method="POST">
     <div>

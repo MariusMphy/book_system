@@ -11,11 +11,11 @@
      <div class="block">
         {% for original_book, sub_results in separate_results %}
          <div class="block_in">Users who liked
-            <a href="{{ url_for('book_details', book_id=original_book.id) }}">{{ original_book.title }} ({{ original_book.avg_rating }})</a>
+            <a href="{{ url_for('main.book_details', book_id=original_book.id) }}">{{ original_book.title }} ({{ original_book.avg_rating }})</a>
             also liked:
             <ul>{% for book, avg_rating in sub_results %}
                 <li>
-                    <a href="{{ url_for('book_details', book_id=book.id) }}">{{ book.title }} ({{ avg_rating }})</a>
+                    <a href="{{ url_for('main.book_details', book_id=book.id) }}">{{ book.title }} ({{ avg_rating }})</a>
                     <br>
                 </li>
             {% endfor %}</ul>
@@ -29,7 +29,7 @@
         <div>
             <ol>
             {% for book, rating in sorted_books %}
-                <li><a href="{{ url_for('book_details', book_id=book.id) }}">{{ book.title }} ({{ rating }})</a></li>
+                <li><a href="{{ url_for('main.book_details', book_id=book.id) }}">{{ book.title }} ({{ rating }})</a></li>
             {% endfor %}
             </ol>
         </div>

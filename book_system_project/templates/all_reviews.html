@@ -9,7 +9,7 @@
     <div>
         <ol>
         {% for book, review_count in sorted_books if review_count %}
-            <li><a href="{{ url_for('book_details', book_id=book.id) }}">{{ book.title }} ({{ review_count }})</a></li>
+            <li><a href="{{ url_for('main.book_details', book_id=book.id) }}">{{ book.title }} ({{ review_count }})</a></li>
         {% endfor %}
         </ol>
     </div>

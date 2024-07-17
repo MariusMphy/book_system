@@ -6,7 +6,7 @@
     {% endblock %}
 
     {% block content %}
-    <a  href="{{ url_for('fill_book_db')}}">Fill database with books, authors and genres</a><br>
-    <a  href="{{ url_for('fill_user_db')}}">Fill database with users (might take 20 secs)</a><br>
-    <a  href="{{ url_for('fill_ratings')}}">Fill ratings, read list and reviews (might take 10 secs)</a>
+    <a  href="{{ url_for('main.fill_book_db')}}">Fill database with books, authors and genres</a><br>
+    <a  href="{{ url_for('main.fill_user_db')}}">Fill database with users (might take 20 secs)</a><br>
+    <a  href="{{ url_for('main.fill_ratings')}}">Fill ratings, read list and reviews (might take 10 secs)</a>
     {% endblock %}

@@ -1,8 +1,9 @@
 from flask_login import UserMixin, current_user
-from book_system_project import db, app
-from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask import flash
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
 
 
 book_genres = db.Table('book_genres',
@@ -88,13 +89,3 @@ class AdminModelView(ModelView):
             flash("You dont have permits to access this page!", "error")
         return is_admin
 
-
-admin = Admin(app)
-
-admin.add_view(AdminModelView(User, db.session))
-admin.add_view(AdminModelView(Book, db.session))
-admin.add_view(AdminModelView(Rating, db.session))
-admin.add_view(AdminModelView(Author, db.session))
-admin.add_view(AdminModelView(Genre, db.session))
-admin.add_view(AdminModelView(ToRead, db.session))
-admin.add_view(AdminModelView(Review, db.session))

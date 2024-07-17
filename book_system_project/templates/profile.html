@@ -8,18 +8,18 @@
     {% block content %}
 
         <div>
-        <a href="{{ url_for('edit_profile') }}">Edit profile</a>
+        <a href="{{ url_for('main.edit_profile') }}">Edit profile</a>
         </div><br>
         <div>
-        <a href="{{ url_for('your_ratings') }}">Your ratings</a>
+        <a href="{{ url_for('main.your_ratings') }}">Your ratings</a>
         </div>
         <div>
-        <a href="{{ url_for('to_read') }}">Your read list</a>
+        <a href="{{ url_for('main.to_read') }}">Your read list</a>
         </div>
         <div>
-        <a href="{{ url_for('your_reviews') }}">Your reviews</a>
+        <a href="{{ url_for('main.your_reviews') }}">Your reviews</a>
         </div><br>
         <div>
-        <a href="{{ url_for('recommended_for_you') }}">Recommended for you</a>
+        <a href="{{ url_for('main.recommended_for_you') }}">Recommended for you</a>
         </div>
     {% endblock %}
