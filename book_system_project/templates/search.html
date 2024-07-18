@@ -37,7 +37,7 @@
     </ol>
 {% endif %}
 {% if current_user.is_authenticated %}
-<h2>Your previous searches</h2>
+<h4>Your previous searches:</h4>
 <ul>
     {% for search in saved_searches %}
         {% if current_user.id == search['user_id'] %}

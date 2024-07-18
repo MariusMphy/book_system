@@ -252,7 +252,7 @@ def login():
             flash(' You have logged in successfully!', 'success')
             return redirect(url_for('main.profile'))
         else:
-            logger.warning(f"Failed to login in user_id: {user.id}, email: {user.email}")
+            logger.warning(f"Failed to login with email: {email}")
             flash('Invalid email or password. Please try again.', 'error')
             return render_template('login.html', form=form)
     return render_template('login.html', form=form, user=current_user)
