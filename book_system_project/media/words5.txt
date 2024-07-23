@@ -1,5 +1,0 @@
-Person
-Family
-Friend
-System
-Moment

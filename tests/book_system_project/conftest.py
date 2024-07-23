@@ -8,12 +8,12 @@ from book_system_project.models import User
 def client():
 
     app = create_app('app_testing_config.py')
-
+    app.config['WTF_CSRF_ENABLED'] = False
     with app.test_client() as client:
         with app.app_context():
             db.create_all()
             yield client
-            # db.drop_all()
+            db.drop_all()
 
 
 @pytest.fixture

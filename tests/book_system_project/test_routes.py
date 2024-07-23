@@ -26,24 +26,3 @@ def test_all_read_listed(client):
     response = client.get("/all_read_listed")
     assert response.status_code == 200
     assert b"All read listed books:" in response.data
-
-# def test_register(client):
-#     test_user_data = {
-#         'email': 'test@example.com',
-#         'name': 'Test User',
-#         'password': 'password',
-#         'confirm_password': 'password',
-#     }
-#
-#     response = client.post('/register', data=test_user_data, follow_redirects=True)
-#
-#
-#     print(response.data.decode())
-#
-#     assert b'You have successfully registered' in response.data
-#
-#     from book_system_project.models import User
-#     with client.application.app_context():
-#         user = User.query.filter_by(email='test@example.com').first()
-#         assert user is not None
-#         assert user.name == 'Test User'

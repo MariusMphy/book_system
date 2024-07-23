@@ -47,7 +47,7 @@ def profile():
     return render_template("profile.html", user=user)
 
 
-@bp.route("/fill_db", methods=["GET", "POST"])
+@bp.route("/fill_db")
 @login_required
 def fill_db():
     if current_user.name != "Admin":
@@ -289,7 +289,7 @@ def add_author():
     return render_template('add_author.html', form=form)
 
 
-@bp.route("/view_users", methods=["GET", "POST"])
+@bp.route("/view_users", methods=["GET"])
 @login_required
 def view_users():
     if current_user.name != "Admin":
@@ -346,7 +346,7 @@ def add_book():
     return render_template('add_book.html', form=form)
 
 
-@bp.route("/view_books", methods=["GET", "POST"])
+@bp.route("/view_books", methods=["GET"])
 def view_books():
     books = Book.query.all()
     return render_template("view_books.html", books=books)
@@ -494,7 +494,7 @@ def your_ratings():
                            ratings_with_books=ratings_with_books)
 
 
-@bp.route("/to_read", methods=["GET", "POST"])
+@bp.route("/to_read", methods=["GET"])
 @login_required
 def to_read():
     toread_list = db.session.query(ToRead, Book).join(Book).filter(ToRead.user_id == current_user.id).all()
@@ -537,7 +537,7 @@ def write_review(book_id):
     return render_template('write_review.html', form=form, review=old_review, book=book, author=author)
 
 
-@bp.route("/your_reviews", methods=["GET", "POST"])
+@bp.route("/your_reviews", methods=["GET"])
 @login_required
 def your_reviews():
     reviews = db.session.query(
@@ -601,7 +601,7 @@ def book_reviews(book_id):
     return render_template('book_reviews.html', form=form, rev_info=sorted_rev_info, book=book, author=author)
 
 
-@bp.route("/admin_page", methods=["GET", "POST"])
+@bp.route("/admin_page", methods=["GET"])
 @login_required
 def admin_page():
     if current_user.name != "Admin":
@@ -720,7 +720,7 @@ def load_saved_search(search_id):
     return redirect(url_for('main.search'))
 
 
-@bp.route("/all_ratings", methods=["GET", "POST"])
+@bp.route("/all_ratings", methods=["GET"])
 def all_ratings():
     books = Book.query.all()
     books_with_avg_rating = [(book, book.avg_rating) for book in books if book.avg_rating is not None]
@@ -728,7 +728,7 @@ def all_ratings():
     return render_template("all_ratings.html", sorted_books=sorted_books)
 
 
-@bp.route("/all_reviews", methods=["GET", "POST"])
+@bp.route("/all_reviews", methods=["GET"])
 def all_reviews():
     books = Book.query.all()
     books_with_review_count = [(book, len(Review.query.filter_by(book_id=book.id).all())) for book in books]
@@ -736,7 +736,7 @@ def all_reviews():
     return render_template("all_reviews.html", sorted_books=sorted_books)
 
 
-@bp.route("/all_read_listed", methods=["GET", "POST"])
+@bp.route("/all_read_listed", methods=["GET"])
 def all_read_listed():
     books = Book.query.all()
     books_with_read_list_count = [(book, len(ToRead.query.filter_by(book_id=book.id).all())) for book in books]
@@ -763,10 +763,13 @@ def recommended_for_each_book(best_book):
         return sorted_books
 
 
-@bp.route("/recommended_for_you", methods=["GET", "POST"])
+@bp.route("/recommended_for_you", methods=["GET"])
 @login_required
 def recommended_for_you():
     your_rated5 = Rating.query.filter_by(user_id=current_user.id, rating=5).all()
+    if not your_rated5:
+        flash("You have not given any book rating 5 yet. No personal recommendations available", "info")
+        return redirect('/')
     book_ids = [rating.book_id for rating in your_rated5]
     your_rated5_books = Book.query.filter(Book.id.in_(book_ids)).all()
     users_alike = Rating.query.filter(Rating.book_id.in_(book_ids), Rating.rating == 5,
