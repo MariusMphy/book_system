@@ -57,4 +57,26 @@ body {
 .alert-info {
     color: Blue;
 }
+a:link {
+    color: Blue;
+}
 
+/* Visited link */
+a:visited {
+    color: Purple; /* Replace #800080 with your desired color for visited links */
+}
+
+/* Mouse over link */
+a:hover {
+    color: #DarkRed; /* Replace #cc0000 with your desired hover color */
+}
+
+/* Selected link (when focused) */
+a:focus {
+    color: #DarkRed; /* Replace #cc0000 with your desired focus color */
+}
+
+/* Active link (when clicked) */
+a:active {
+    color: #DarkRed; /* Replace #cc0000 with your desired active color */
+}

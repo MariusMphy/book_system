@@ -8,23 +8,34 @@
 {% block content %}
      <div class="blocker----">
 
-     <div class="block">
+     <div class="block-----">
         {% for original_book, sub_results in separate_results %}
-         <div class="block_in">Users who liked
+         <div class="block_in------">Users who liked
             <a href="{{ url_for('main.book_details', book_id=original_book.id) }}">{{ original_book.title }} ({{ original_book.avg_rating }})</a>
             also liked:
-            <ul>{% for book, avg_rating in sub_results %}
+            {% if sub_results %}
+            <ol start="{{ start_num }}">{% for book, avg_rating in sub_results %}
                 <li>
                     <a href="{{ url_for('main.book_details', book_id=book.id) }}">{{ book.title }} ({{ avg_rating }})</a>
                     <br>
                 </li>
-            {% endfor %}</ul>
+            {% endfor %}
+            </ol>
+             {% else %}
+             <div style="padding-left: 30px;">No one liked this book.<br><br></div>
+             {% endif %}
+        </div>
         {% endfor %}
-         </div>
-     </div>
+
+
      </div>
 
-    <div class="block">
+        {{ pagination.links }}
+
+
+     </div>
+
+    <div class="block-----">
         Favorite books of all users with similar rates to you:
         <div>
             <ol>
@@ -32,6 +43,7 @@
                 <li><a href="{{ url_for('main.book_details', book_id=book.id) }}">{{ book.title }} ({{ rating }})</a></li>
             {% endfor %}
             </ol>
+
         </div>
     </div>
     {% endblock %}

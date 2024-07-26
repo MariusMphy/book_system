@@ -11,11 +11,12 @@
             <form method="POST" action="{{ url_for('main.your_ratings') }}">
             {{ form.hidden_tag() }}
             {{ form.sorted() }} {{ form.submit() }}
-            <ol>
+            <ol start="{{ start_num }}">
                 {% for book in sorted_books %}
                  <li><a href="{{ url_for('main.book_details', book_id=book['book'].id) }}">{{ book['book'].title }} ({{ book['rating'] }})</a></li>
                 {% endfor %}
             </ol>
+            {{ pagination.links }}
             </form>
         {% else %}
             You have not rated any books yet.

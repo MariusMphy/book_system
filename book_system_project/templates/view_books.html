@@ -11,4 +11,7 @@
         <li><a href="{{ url_for('main.book_details', book_id=book.id) }}">{{ book.title }}</a></li>
     {% endfor %}
     </ol>
+    {{ pagination.links }}
+
+
     {% endblock %}

@@ -59,7 +59,7 @@ class RateBook(FlaskForm):
 
 class SortRating(FlaskForm):
     sorted = SelectField(choices=[('best', 'Best first'), ('worst', 'Worst first'),
-                                  ('newest', 'Newest first'), ('oldest', 'Oldest first')], default='newest')
+                                  ('newest', 'Newest first'), ('oldest', 'Oldest first')], default='best')
     submit = SubmitField("Sort")
 
 

@@ -7,7 +7,7 @@
     {% block content %}
         {% if rev_info %}
             {% for review in rev_info %}
-              <ul>
+              <ul start="{{ start_num }}">
                 <li>
                     <a href="{{ url_for('main.book_details', book_id=review.book_id)  }}"><span style="color: DarkMagenta;">{{ review.book_title }}</span></a>
                     <span style="color: DarkRed;">by {{ review.author_name }}</span> <br>
@@ -16,6 +16,7 @@
                 </li>
               </ul>
             {% endfor %}
+            {{ pagination.links }}
         {% else %}
             You have not reviewed any books yet.
         {% endif %}

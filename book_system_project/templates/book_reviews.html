@@ -12,7 +12,7 @@
             <form method="POST" action="{{ url_for('main.book_reviews', book_id=book.id) }}">
             {{ form.hidden_tag() }}
             {{ form.sorted() }} {{ form.submit() }}
-            <ol>
+            <ol start="{{ start_num }}">
                 {% for review in rev_info %}
                     <li>
                         Reviewed by<span style="color: DarkRed;"> {{ review.name }}</span> Rated: {{ review.rating}}<br>
@@ -20,6 +20,7 @@
                     </li><br>
                 {% endfor %}
             </ol>
+            {{ pagination.links }}
             </form>
 
         {% else %}

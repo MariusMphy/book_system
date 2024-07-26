@@ -468,7 +468,7 @@ def view_users() -> Response:
     users_pagination = users_query.paginate(page=page, per_page=per_page)
     users = users_pagination.items
     total = users_pagination.total
-    pagination = Pagination(page=page, total=total, per_page=per_page, css_framework='bootstrap4')
+    pagination = Pagination(page=page, total=total, per_page=per_page, css_framework='bootstrap5')
     start_num = (page - 1) * per_page + 1
     if users:
         return render_template('view_users.html', users=users, pagination=pagination, start_num=start_num)
@@ -538,8 +538,18 @@ def view_books() -> Response:
     Returns:
         Response: Renders the 'view_books.html' template with a list of all books.
     """
-    books = Book.query.all()
-    return render_template("view_books.html", books=books)
+    books_query = Book.query
+
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    per_page = 20
+    books_pagination = books_query.paginate(page=page, per_page=per_page)
+    books = books_pagination.items
+    total = books_pagination.total
+    pagination = Pagination(page=page, total=total, per_page=per_page, css_framework='bootstrap5')
+    start_num = (page - 1) * per_page + 1
+
+
+    return render_template("view_books.html", books=books, pagination=pagination, start_num=start_num)
 
 
 @bp.route("/book/<int:book_id>", methods=["GET", "POST"])
@@ -748,20 +758,29 @@ def your_ratings() -> Response:
     rated_books = [{'book': book, 'rating': rating.rating, 'rating_id': rating.id} for rating, book in
                    ratings_with_books]
 
-    sorted_books = sorted(rated_books, key=lambda x: x['rating_id'], reverse=True)
+    sorted_books_query = sorted(rated_books, key=lambda x: x['rating'], reverse=True)
     if request.method == 'POST' and form.validate_on_submit():
         sorting = form.sorted.data
         if sorting == "best":
-            sorted_books = sorted(rated_books, key=lambda x: x['rating'], reverse=True)
+            sorted_books_query = sorted(rated_books, key=lambda x: x['rating'], reverse=True)
         elif sorting == "worst":
-            sorted_books = sorted(rated_books, key=lambda x: x['rating'], reverse=False)
+            sorted_books_query = sorted(rated_books, key=lambda x: x['rating'], reverse=False)
         elif sorting == "newest":
-            sorted_books = sorted(rated_books, key=lambda x: x['rating_id'], reverse=True)
+            sorted_books_query = sorted(rated_books, key=lambda x: x['rating_id'], reverse=True)
         elif sorting == "oldest":
-            sorted_books = sorted(rated_books, key=lambda x: x['rating_id'], reverse=False)
+            sorted_books_query = sorted(rated_books, key=lambda x: x['rating_id'], reverse=False)
+
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    per_page = 20
+    total = len(sorted_books_query)
+    start = (page - 1) * per_page
+    end = start + per_page
+    sorted_books = sorted_books_query[start:end]
+    pagination = Pagination(page=page, total=total, per_page=per_page, css_framework='bootstrap5')
+    start_num = start + 1
 
     return render_template("your_ratings.html", form=form, sorted_books=sorted_books,
-                           ratings_with_books=ratings_with_books)
+                           ratings_with_books=ratings_with_books, pagination=pagination, start_num=start_num)
 
 
 @bp.route("/to_read", methods=["GET"])
@@ -785,8 +804,18 @@ def to_read() -> Response:
                   to read by the current user.
     """
     toread_list = db.session.query(ToRead, Book).join(Book).filter(ToRead.user_id == current_user.id).all()
-    books = [{'book': book, 'toread': toread} for toread, book in toread_list]
-    return render_template("to_read.html", books=books)
+    books_query = [{'book': book, 'toread': toread} for toread, book in toread_list]
+
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    per_page = 20
+    total = len(books_query)
+    start = (page - 1) * per_page
+    end = start + per_page
+    books = books_query[start:end]
+    pagination = Pagination(page=page, total=total, per_page=per_page, css_framework='bootstrap5')
+    start_num = start + 1
+
+    return render_template("to_read.html", books=books, pagination=pagination, start_num=start_num)
 
 
 @bp.route("/remove_to_read/<int:book_id>", methods=["GET", "POST"])
@@ -897,7 +926,7 @@ def your_reviews() -> Response:
         .join(User, Review.user_id == User.id) \
         .filter(User.id == current_user.id).all()
 
-    rev_info = [
+    rev_info_query = [
         {
             "review": review.review,
             "book_title": review.title,
@@ -908,7 +937,17 @@ def your_reviews() -> Response:
         }
         for review in reviews
     ]
-    return render_template('your_reviews.html', rev_info=rev_info)
+
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    per_page = 5
+    total = len(rev_info_query)
+    start = (page - 1) * per_page
+    end = start + per_page
+    rev_info = rev_info_query[start:end]
+    pagination = Pagination(page=page, total=total, per_page=per_page, css_framework='bootstrap5')
+    start_num = start + 1
+
+    return render_template('your_reviews.html', rev_info=rev_info, pagination=pagination, start_num=start_num)
 
 
 @bp.route("/book_reviews/<int:book_id>", methods=["GET", "POST"])
@@ -950,19 +989,29 @@ def book_reviews(book_id: int) -> Response:
         for review in reviews
     ]
 
-    sorted_rev_info = sorted(rev_info, key=lambda x: x['rating_id'], reverse=True)
+    sorted_rev_info_query = sorted(rev_info, key=lambda x: x['rating_id'], reverse=True)
     if request.method == 'POST' and form.validate_on_submit():
         sorting = form.sorted.data
         if sorting == "best":
-            sorted_rev_info = sorted(rev_info, key=lambda x: x['rating'], reverse=True)
+            sorted_rev_info_query = sorted(rev_info, key=lambda x: x['rating'], reverse=True)
         elif sorting == "worst":
-            sorted_rev_info = sorted(rev_info, key=lambda x: x['rating'], reverse=False)
+            sorted_rev_info_query = sorted(rev_info, key=lambda x: x['rating'], reverse=False)
         elif sorting == "newest":
-            sorted_rev_info = sorted(rev_info, key=lambda x: x['rating_id'], reverse=True)
+            sorted_rev_info_query = sorted(rev_info, key=lambda x: x['rating_id'], reverse=True)
         elif sorting == "oldest":
-            sorted_rev_info = sorted(rev_info, key=lambda x: x['rating_id'], reverse=False)
+            sorted_rev_info_query = sorted(rev_info, key=lambda x: x['rating_id'], reverse=False)
 
-    return render_template('book_reviews.html', form=form, rev_info=sorted_rev_info, book=book, author=author)
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    per_page = 5
+    total = len(sorted_rev_info_query)
+    start = (page - 1) * per_page
+    end = start + per_page
+    sorted_rev_info = sorted_rev_info_query[start:end]
+    pagination = Pagination(page=page, total=total, per_page=per_page, css_framework='bootstrap5')
+    start_num = start + 1
+
+    return render_template('book_reviews.html', form=form, rev_info=sorted_rev_info, book=book,
+                           author=author, pagination=pagination, start_num=start_num)
 
 
 @bp.route("/admin_page", methods=["GET"])
@@ -1143,8 +1192,18 @@ def all_ratings() -> Response:
     """
     books = Book.query.all()
     books_with_avg_rating = [(book, book.avg_rating) for book in books if book.avg_rating is not None]
-    sorted_books = sorted(books_with_avg_rating, key=lambda x: x[1], reverse=True)
-    return render_template("all_ratings.html", sorted_books=sorted_books)
+    sorted_books_query = sorted(books_with_avg_rating, key=lambda x: x[1], reverse=True)
+
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    per_page = 20
+    total = len(sorted_books_query)
+    start = (page - 1) * per_page
+    end = start + per_page
+    sorted_books = sorted_books_query[start:end]
+    pagination = Pagination(page=page, total=total, per_page=per_page, css_framework='bootstrap5')
+    start_num = start + 1
+
+    return render_template("all_ratings.html", sorted_books=sorted_books, pagination=pagination, start_num=start_num)
 
 
 @bp.route("/all_reviews", methods=["GET"])
@@ -1162,8 +1221,18 @@ def all_reviews() -> Response:
     """
     books = Book.query.all()
     books_with_review_count = [(book, len(Review.query.filter_by(book_id=book.id).all())) for book in books]
-    sorted_books = sorted(books_with_review_count, key=lambda x: x[1], reverse=True)
-    return render_template("all_reviews.html", sorted_books=sorted_books)
+    sorted_books_query = sorted(books_with_review_count, key=lambda x: x[1], reverse=True)
+
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    per_page = 20
+    total = len(sorted_books_query)
+    start = (page - 1) * per_page
+    end = start + per_page
+    sorted_books = sorted_books_query[start:end]
+    pagination = Pagination(page=page, total=total, per_page=per_page, css_framework='bootstrap5')
+    start_num = start + 1
+
+    return render_template("all_reviews.html", sorted_books=sorted_books, pagination=pagination, start_num=start_num)
 
 
 @bp.route("/all_read_listed", methods=["GET"])
@@ -1181,8 +1250,18 @@ def all_read_listed() -> Response:
     """
     books = Book.query.all()
     books_with_read_list_count = [(book, len(ToRead.query.filter_by(book_id=book.id).all())) for book in books]
-    sorted_books = sorted(books_with_read_list_count, key=lambda x: x[1], reverse=True)
-    return render_template("all_read_listed.html", sorted_books=sorted_books)
+    sorted_books_query = sorted(books_with_read_list_count, key=lambda x: x[1], reverse=True)
+
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    per_page = 20
+    total = len(sorted_books_query)
+    start = (page - 1) * per_page
+    end = start + per_page
+    sorted_books = sorted_books_query[start:end]
+    pagination = Pagination(page=page, total=total, per_page=per_page, css_framework='bootstrap5')
+    start_num = start + 1
+
+    return render_template("all_read_listed.html", sorted_books=sorted_books, pagination=pagination, start_num=start_num)
 
 
 def recommended_for_each_book(best_book: int) -> List[Tuple[Book, float]]:
@@ -1260,9 +1339,19 @@ def recommended_for_you() -> Response:
     books_with_avg_rating = [(book, book.avg_rating) for book in books if book.id in recommended_books_ids
                              and book.avg_rating is not None]
     sorted_books = sorted(books_with_avg_rating, key=lambda x: x[1], reverse=True)
-    separate_results = []
+    separate_results_list = []
     for book in your_rated5_books:
         original_book = book
         recommended_books = recommended_for_each_book(book.id)
-        separate_results.append((original_book, recommended_books))
-    return render_template("recommended_for_you.html", sorted_books=sorted_books, separate_results=separate_results)
+        separate_results_list.append((original_book, recommended_books))
+
+    page = request.args.get(get_page_parameter(), type=int, default=1)
+    per_page = 5
+    total = len(separate_results_list)
+    start = (page - 1) * per_page
+    end = start + per_page
+    separate_results = separate_results_list[start:end]
+    pagination = Pagination(page=page, total=total, per_page=per_page, css_framework='bootstrap5')
+    start_num = start + 1
+
+    return render_template("recommended_for_you.html", sorted_books=sorted_books, separate_results=separate_results, pagination=pagination, start_num=start_num)
