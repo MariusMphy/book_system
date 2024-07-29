@@ -33,7 +33,6 @@ body {
 .content {
     background-color: Wheat;
     padding: 5px;
-    padding-right----------removed: 1100px;
 }
 
 .flash {
@@ -75,8 +74,9 @@ a:active {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    justify-content: flex-start;
 }
 .block {
-    flex: auto;
+    flex: 0 0 auto;
     padding: 10px;
 }

@@ -38,7 +38,7 @@ def load_user(user_id: int) -> User:
 
 
 @bp.route("/")
-def home() -> Response:
+def home():
     """
     Render the home page with top books in various categories.
 
@@ -71,7 +71,7 @@ def home() -> Response:
 
 @bp.route("/profile")
 @login_required
-def profile() -> Response:
+def profile():
     """
     Render the profile page for the logged-in user.
 
@@ -87,7 +87,7 @@ def profile() -> Response:
 
 @bp.route("/fill_db")
 @login_required
-def fill_db() -> Response:
+def fill_db():
     """
     Render the fill_db page for the Admin user.
 
@@ -108,7 +108,7 @@ def fill_db() -> Response:
 
 @bp.route("/fill_book_db", methods=["GET", "POST"])
 @login_required
-def fill_book_db() -> Response:
+def fill_book_db():
     """
     Handle the process of filling the book database with new entries.
 
@@ -171,7 +171,7 @@ def fill_book_db() -> Response:
 
 @bp.route("/fill_user_db", methods=["GET", "POST"])
 @login_required
-def fill_user_db() -> Response:
+def fill_user_db():
     """
     Handle the process of filling the user database with new entries.
 
@@ -256,7 +256,7 @@ def randomize_review() -> str:
 
 @bp.route("/fill_ratings", methods=["GET", "POST"])
 @login_required
-def fill_ratings() -> Response:
+def fill_ratings():
     """
     Populate the database with random ratings, read lists, and reviews.
 
@@ -312,7 +312,7 @@ def fill_ratings() -> Response:
 
 
 @bp.route("/register", methods=["GET", "POST"])
-def register() -> Response:
+def register():
     """
     Handle user registration for new accounts.
 
@@ -354,7 +354,7 @@ def register() -> Response:
 
 
 @bp.route("/login", methods=["GET", "POST"])
-def login() -> Response:
+def login():
     """
     Handle user login functionality.
 
@@ -388,7 +388,7 @@ def login() -> Response:
 
 @bp.route('/logout')
 @login_required
-def logout() -> Response:
+def logout():
     """
     Handle user logout functionality.
 
@@ -408,7 +408,7 @@ def logout() -> Response:
 
 @bp.route("/add_author", methods=["GET", "POST"])
 @login_required
-def add_author() -> Response:
+def add_author():
     """
     Handle the addition of a new author to the database.
 
@@ -443,7 +443,7 @@ def add_author() -> Response:
 
 @bp.route("/view_users", methods=["GET"])
 @login_required
-def view_users() -> Response:
+def view_users():
     """
     Display a paginated list of users for admin view.
 
@@ -477,7 +477,7 @@ def view_users() -> Response:
 
 @bp.route("/add_book", methods=["GET", "POST"])
 @login_required
-def add_book() -> Response:
+def add_book():
     """
     Handle the addition of a new book to the database.
 
@@ -528,15 +528,14 @@ def add_book() -> Response:
 
 
 @bp.route("/view_books", methods=["GET"])
-def view_books() -> Response:
+def view_books():
     """
-    Display a list of all books in the database.
+    Display a paginated list of books.
 
-    This function retrieves all books from the database and renders the `view_books.html`
-    template to display them. It does not require user authentication.
+    Retrieves and paginates books, then renders them in the 'view_books.html' template.
 
     Returns:
-        Response: Renders the 'view_books.html' template with a list of all books.
+        Rendered HTML page with a list of books and pagination controls.
     """
     books_query = Book.query
 
@@ -548,12 +547,11 @@ def view_books() -> Response:
     pagination = Pagination(page=page, total=total, per_page=per_page, css_framework='bootstrap5')
     start_num = (page - 1) * per_page + 1
 
-
     return render_template("view_books.html", books=books, pagination=pagination, start_num=start_num)
 
 
 @bp.route("/book/<int:book_id>", methods=["GET", "POST"])
-def book_details(book_id: int) -> Response:
+def book_details(book_id: int):
     """
      Display details of a specific book, including author, genres, ratings, and reviews.
 
@@ -604,7 +602,7 @@ def book_details(book_id: int) -> Response:
 
 @bp.route("/rate_book/<int:book_id>", methods=["GET", "POST"])
 @login_required
-def rate_book(book_id: int) -> Response:
+def rate_book(book_id: int):
     """
     Allow authenticated users to rate a specific book.
 
@@ -646,7 +644,7 @@ def rate_book(book_id: int) -> Response:
 
 @bp.route("/edit_profile", methods=["GET", "POST"])
 @login_required
-def edit_profile() -> Response:
+def edit_profile():
     """
     Allow authenticated users to update their profile information.
 
@@ -692,7 +690,7 @@ def edit_profile() -> Response:
 
 @bp.route("/change_password", methods=["GET", "POST"])
 @login_required
-def change_password() -> Response:
+def change_password():
     """
     Handle the password change request for the authenticated user.
 
@@ -731,27 +729,28 @@ def change_password() -> Response:
 
 @bp.route("/your_ratings", methods=["GET", "POST"])
 @login_required
-def your_ratings() -> Response:
+def your_ratings():
     """
-    Display and sort the ratings given by the current user for books.
+    Display and sort paginated ratings given by the current user for books.
 
-    This function handles both GET and POST requests. For GET requests, it retrieves all ratings given by the
-    current user and displays them along with the corresponding books. For POST requests, it sorts the ratings
+    Handles both GET and POST requests to display ratings given by the current user. For GET requests, it retrieves
+    all ratings and associated books, applies pagination, and renders them. For POST requests, it sorts the ratings
     based on the user's selection and updates the display accordingly.
 
     The function performs the following tasks:
     - Retrieves all ratings given by the current user and their associated books.
     - Formats the ratings and books into a list of dictionaries.
-    - Sorts the list based on the user's selection if a POST request is made.
-      The sorting options include:
+    - Sorts the list based on the user's selection if a POST request is made. Sorting options include:
         - "best": Sort by rating value in descending order.
         - "worst": Sort by rating value in ascending order.
         - "newest": Sort by the rating ID (newest first).
         - "oldest": Sort by the rating ID (oldest first).
+    - Applies pagination to the sorted list of ratings.
+    - Renders the `your_ratings.html` template with the paginated list, sorting form, and relevant data.
 
     Returns:
-        Response: Renders the 'your_ratings.html' template with the sorted list of rated books and the form used for
-        sorting.
+        Response: An HTTP response object that renders the `your_ratings.html` template with the paginated and sorted
+                  list of rated books, the form used for sorting, and pagination controls.
     """
     form = SortRating()
     ratings_with_books = db.session.query(Rating, Book).join(Book).filter(Rating.user_id == current_user.id).all()
@@ -785,23 +784,25 @@ def your_ratings() -> Response:
 
 @bp.route("/to_read", methods=["GET"])
 @login_required
-def to_read() -> Response:
+def to_read():
     """
-    Display the list of books that the current user has marked to read.
+    Display a paginated list of books that the current user has marked to read.
 
-    This function handles GET requests and retrieves the list of books that the current user has marked to read.
-    It joins the `ToRead` and `Book` tables to get the relevant book information for the current user.
+    Handles GET requests to retrieve and display books marked as 'to read' by the current user. The function
+    joins the `ToRead` and `Book` tables to gather the relevant book information for the user, formats it into a
+    list, and applies pagination to the results. It then renders the `to_read.html` template with the paginated list.
 
     The function performs the following tasks:
-    - Retrieves all `ToRead` entries for the current user and the associated `Book` records.
-    - Formats the retrieved data into a list of dictionaries where each dictionary contains:
+    - Retrieves all `ToRead` entries for the current user along with associated `Book` records.
+    - Formats the retrieved data into a list of dictionaries, each containing:
         - `book`: The book object.
         - `toread`: The `ToRead` entry associated with the book.
-    - Renders the `to_read.html` template with the formatted list of books.
+    - Applies pagination to the formatted list of books.
+    - Renders the `to_read.html` template with the paginated list of books and pagination controls.
 
     Returns:
-        Response: An HTTP response object that renders the 'to_read.html' template with the list of books marked
-                  to read by the current user.
+        Response: An HTTP response object that renders the 'to_read.html' template with the paginated list of books
+                  marked to read by the current user, along with pagination information.
     """
     toread_list = db.session.query(ToRead, Book).join(Book).filter(ToRead.user_id == current_user.id).all()
     books_query = [{'book': book, 'toread': toread} for toread, book in toread_list]
@@ -854,7 +855,7 @@ def remove_to_read(book_id: int) -> Response:
 
 @bp.route("/write_review/<int:book_id>", methods=["GET", "POST"])
 @login_required
-def write_review(book_id: int) -> Response:
+def write_review(book_id: int):
     """
     Allow the user to write or update a review for a specific book.
 
@@ -897,23 +898,24 @@ def write_review(book_id: int) -> Response:
 
 @bp.route("/your_reviews", methods=["GET"])
 @login_required
-def your_reviews() -> Response:
+def your_reviews():
     """
-    Retrieve and display all reviews written by the current user.
+    Retrieve and display paginated reviews written by the current user.
 
-    This function queries the database to retrieve all reviews written by the currently logged-in user. It gathers
-    details such as the review text, book title, book ID, author name, and username. The retrieved data is then
+    Queries the database to retrieve reviews written by the logged-in user and paginates the results. The function
+    gathers details such as review text, book title, book ID, author name, and username. The retrieved data is then
     formatted and passed to the `your_reviews.html` template for rendering.
 
     The function performs the following tasks:
     - Queries the `Review`, `Book`, `Author`, and `User` tables to retrieve relevant review information for the
       current user.
     - Formats the retrieved data into a list of dictionaries containing review details.
-    - Renders the `your_reviews.html` template, passing the formatted review information.
+    - Applies pagination to the formatted review data.
+    - Renders the `your_reviews.html` template, passing the paginated review information.
 
     Returns:
-        Response: An HTTP response object that renders the `your_reviews.html` template with the current user's review
-        information.
+        Response: An HTTP response object that renders the `your_reviews.html` template with the current user's
+        paginated review information.
     """
     reviews = db.session.query(
         Review.review,
@@ -951,24 +953,20 @@ def your_reviews() -> Response:
 
 
 @bp.route("/book_reviews/<int:book_id>", methods=["GET", "POST"])
-def book_reviews(book_id: int) -> Response:
+def book_reviews(book_id: int):
     """
-    Display and sort reviews for a specific book.
+    Display and sort paginated reviews for a specific book.
 
-    This function handles both GET and POST requests to display reviews for a specific book. It retrieves the book
-    details, including the book's author and associated reviews. Reviews are optionally sorted based on user input
-    through a form.
-
-    On GET requests, the function retrieves all reviews for the specified book, including associated usernames and
-    ratings. Reviews are initially sorted by their ID in descending order. On POST requests, it processes sorting
-    criteria from the form and re-sorts the reviews accordingly.
+    Handles GET and POST requests to display and sort reviews for a specified book. On GET requests, it retrieves
+    and paginates all reviews for the book. On POST requests, it processes sorting criteria from a form to reorder
+    the reviews accordingly.
 
     Parameters:
-        book_id (int): The ID of the book for which reviews are being displayed.
+        book_id (int): The ID of the book for which reviews are displayed.
 
     Returns:
-        Response: An HTTP response object that renders the `book_reviews.html` template with the book details, author,
-                  and sorted review information.
+        Response: An HTTP response object rendering the `book_reviews.html` template with the book details, author,
+                  sorted and paginated review information, and sorting form.
     """
     form = SortRating()
     book = Book.query.filter_by(id=book_id).first()
@@ -1016,7 +1014,7 @@ def book_reviews(book_id: int) -> Response:
 
 @bp.route("/admin_page", methods=["GET"])
 @login_required
-def admin_page() -> Response:
+def admin_page():
     """
     Render the admin page if the current user is an admin.
 
@@ -1038,7 +1036,7 @@ def admin_page() -> Response:
 
 
 @bp.route("/search", methods=["GET", "POST"])
-def search() -> Response:
+def search():
     """
     Handle search requests for books based on various criteria.
 
@@ -1145,12 +1143,13 @@ def search() -> Response:
         saved_searches = [res for res in saved_searches if res['user_id'] == current_user.id]
     saved_searches = saved_searches[-10:][::-1]
 
-    return render_template('search.html', form=form, results=results, count=len(results), saved_searches=saved_searches)
+    return render_template('search.html', form=form, results=results[:50], count=len(results),
+                           saved_searches=saved_searches)
 
 
 @bp.route("/saved_search/<search_id>", methods=["GET"])
 @login_required
-def load_saved_search(search_id: str) -> Response:
+def load_saved_search(search_id: str):
     """
     Load and display a saved search based on the provided search ID.
 
@@ -1175,24 +1174,24 @@ def load_saved_search(search_id: str) -> Response:
         if saved_search:
             results = saved_search['jsoned_results']
             logger.info(f"Saved search results accessed by user_id: {current_user.id}")
-            return render_template('search.html', form=None, results=results, count=len(results),
+            return render_template('search.html', form=None, results=results[:50], count=len(results),
                                    saved_searches=saved_searches)
     flash("Saved search results not found.", "error")
     return redirect(url_for('main.search'))
 
 
 @bp.route("/all_ratings", methods=["GET"])
-def all_ratings() -> Response:
+def all_ratings():
     """
-    Retrieve and display all books with their average ratings.
+    Retrieve and display paginated books with their average ratings.
 
-    This function queries all books from the database and calculates their average ratings. It filters out books
-    that do not have an average rating, sorts the remaining books by their average rating in descending order,
-    and then renders the `all_ratings.html` template with the sorted list of books.
+    Queries all books from the database, calculates their average ratings, and filters out books without an average rating.
+    The remaining books are sorted by their average rating in descending order and paginated. The function renders the
+    `all_ratings.html` template with the paginated list of books.
 
     Returns:
-        Response: An HTTP response object that renders the `all_ratings.html` template with a list of books sorted
-                  by their average ratings.
+        Response: An HTTP response object that renders the `all_ratings.html` template with a paginated and sorted list
+                  of books based on their average ratings.
     """
     books = Book.query.all()
     books_with_avg_rating = [(book, book.avg_rating) for book in books if book.avg_rating is not None]
@@ -1211,17 +1210,17 @@ def all_ratings() -> Response:
 
 
 @bp.route("/all_reviews", methods=["GET"])
-def all_reviews() -> Response:
+def all_reviews():
     """
-    Retrieve and display all books with their review counts.
+    Retrieve and display paginated books with their review counts.
 
-    This function queries all books from the database and counts the number of reviews associated with each book.
-    It sorts the books by the number of reviews in descending order and renders the `all_reviews.html` template
-    with the sorted list of books.
+    Queries all books from the database and counts the number of reviews associated with each book. The books are
+    then sorted by their review count in descending order and paginated. The function renders the `all_reviews.html`
+    template with the paginated list of books and their review counts.
 
     Returns:
-        Response: An HTTP response object that renders the `all_reviews.html` template with a list of books sorted
-                  by their review counts.
+        Response: An HTTP response object that renders the `all_reviews.html` template with a paginated and sorted list
+                  of books based on their review counts.
     """
     books = Book.query.all()
     books_with_review_count = [(book, len(Review.query.filter_by(book_id=book.id).all())) for book in books]
@@ -1240,17 +1239,17 @@ def all_reviews() -> Response:
 
 
 @bp.route("/all_read_listed", methods=["GET"])
-def all_read_listed() -> Response:
+def all_read_listed():
     """
-    Retrieve and display all books with their read list counts.
+    Retrieve and display paginated books with their read list counts.
 
-    This function queries all books from the database and counts the number of times each book has been added to users'
-    read lists. It sorts the books by the count of read list entries in descending order and renders the
-    `all_read_listed.html` template with the sorted list of books.
+    Queries all books from the database and counts how many times each book has been added to users' read lists.
+    The books are sorted by their read list counts in descending order and paginated. The function renders the
+    `all_read_listed.html` template with the paginated and sorted list of books.
 
     Returns:
-        Response: An HTTP response object that renders the `all_read_listed.html` template with a list of books sorted
-                  by their read list counts.
+        Response: An HTTP response object that renders the `all_read_listed.html` template with a paginated list of
+                  books sorted by their read list counts.
     """
     books = Book.query.all()
     books_with_read_list_count = [(book, len(ToRead.query.filter_by(book_id=book.id).all())) for book in books]
@@ -1265,7 +1264,8 @@ def all_read_listed() -> Response:
     pagination = Pagination(page=page, total=total, per_page=per_page, css_framework='bootstrap5')
     start_num = start + 1
 
-    return render_template("all_read_listed.html", sorted_books=sorted_books, pagination=pagination, start_num=start_num)
+    return render_template("all_read_listed.html", sorted_books=sorted_books, pagination=pagination,
+                           start_num=start_num)
 
 
 def recommended_for_each_book(best_book: int) -> List[Tuple[Book, float]]:
@@ -1307,7 +1307,7 @@ def recommended_for_each_book(best_book: int) -> List[Tuple[Book, float]]:
 
 @bp.route("/recommended_for_you", methods=["GET"])
 @login_required
-def recommended_for_you() -> Response:
+def recommended_for_you():
     """
     Generate book recommendations based on the current user's high-rated books.
 
