@@ -1142,6 +1142,8 @@ def search() -> Response:
             logger.info(f"Search performed by user_id: {current_user.id}")
         if not results:
             flash("No books met your search criteria.", "error")
+        saved_searches = [res for res in saved_searches if res['user_id'] == current_user.id]
+    saved_searches = saved_searches[-10:][::-1]
 
     return render_template('search.html', form=form, results=results, count=len(results), saved_searches=saved_searches)
 
@@ -1167,6 +1169,8 @@ def load_saved_search(search_id: str) -> Response:
     if os.path.exists('instance/search_results.json'):
         with open('instance/search_results.json', 'r') as file:
             saved_searches = json.load(file)
+        saved_searches = [res for res in saved_searches if res['user_id'] == current_user.id]
+        saved_searches = saved_searches[-10:][::-1]
         saved_search = next((item for item in saved_searches if item["search_id"] == search_id), None)
         if saved_search:
             results = saved_search['jsoned_results']

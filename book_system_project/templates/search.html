@@ -37,16 +37,14 @@
     </ol>
 {% endif %}
 {% if current_user.is_authenticated %}
-<h4>Your previous searches:</h4>
+<h4>Your last 10 previous searches:</h4>
 <ul>
     {% for search in saved_searches %}
-        {% if current_user.id == search['user_id'] %}
         <li>
             <a href="{{ url_for('main.load_saved_search', search_id=search['search_id']) }}">
                 Search performed on {{ search['timestamp'][:10] ~ " at " ~ search['timestamp'][11:19] }}
             </a>
         </li>
-        {% endif %}
     {% endfor %}
 </ul>
 {% endif %}
