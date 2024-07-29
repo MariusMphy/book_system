@@ -1339,19 +1339,11 @@ def recommended_for_you() -> Response:
     books_with_avg_rating = [(book, book.avg_rating) for book in books if book.id in recommended_books_ids
                              and book.avg_rating is not None]
     sorted_books = sorted(books_with_avg_rating, key=lambda x: x[1], reverse=True)
-    separate_results_list = []
+    separate_results = []
     for book in your_rated5_books:
         original_book = book
         recommended_books = recommended_for_each_book(book.id)
-        separate_results_list.append((original_book, recommended_books))
+        separate_results.append((original_book, recommended_books))
 
-    page = request.args.get(get_page_parameter(), type=int, default=1)
-    per_page = 5
-    total = len(separate_results_list)
-    start = (page - 1) * per_page
-    end = start + per_page
-    separate_results = separate_results_list[start:end]
-    pagination = Pagination(page=page, total=total, per_page=per_page, css_framework='bootstrap5')
-    start_num = start + 1
-
-    return render_template("recommended_for_you.html", sorted_books=sorted_books, separate_results=separate_results, pagination=pagination, start_num=start_num)
+    return render_template("recommended_for_you.html", sorted_books=sorted_books,
+                           separate_results=separate_results)

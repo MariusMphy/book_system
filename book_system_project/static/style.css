@@ -1,5 +1,5 @@
 body {
-    background-color: Beige;
+    background-color: Wheat;
     padding: 5px
 }
 .user_bar {
@@ -35,9 +35,7 @@ body {
     padding: 5px;
     padding-right----------removed: 1100px;
 }
-.block{
-    display: inline-block;
-}
+
 .flash {
     background-color: Wheat;
 }
@@ -60,23 +58,25 @@ body {
 a:link {
     color: Blue;
 }
-
-/* Visited link */
 a:visited {
-    color: Purple; /* Replace #800080 with your desired color for visited links */
+    color: Purple;
 }
-
-/* Mouse over link */
 a:hover {
-    color: #DarkRed; /* Replace #cc0000 with your desired hover color */
+    color: #DarkRed;
 }
-
-/* Selected link (when focused) */
 a:focus {
-    color: #DarkRed; /* Replace #cc0000 with your desired focus color */
+    color: #DarkRed;
+}
+a:active {
+    color: #DarkRed;
 }
 
-/* Active link (when clicked) */
-a:active {
-    color: #DarkRed; /* Replace #cc0000 with your desired active color */
+.block-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.block {
+    flex: auto;
+    padding: 10px;
 }

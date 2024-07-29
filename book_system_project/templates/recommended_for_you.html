@@ -6,44 +6,32 @@
     {% endblock %}
 
 {% block content %}
-     <div class="blocker----">
-
-     <div class="block-----">
+    <div class="block-container">
         {% for original_book, sub_results in separate_results %}
-         <div class="block_in------">Users who liked
-            <a href="{{ url_for('main.book_details', book_id=original_book.id) }}">{{ original_book.title }} ({{ original_book.avg_rating }})</a>
-            also liked:
-            {% if sub_results %}
-            <ol start="{{ start_num }}">{% for book, avg_rating in sub_results %}
-                <li>
-                    <a href="{{ url_for('main.book_details', book_id=book.id) }}">{{ book.title }} ({{ avg_rating }})</a>
-                    <br>
-                </li>
-            {% endfor %}
-            </ol>
-             {% else %}
-             <div style="padding-left: 30px;">No one liked this book.<br><br></div>
-             {% endif %}
+
+        <div class="block">Users who liked
+        <a href="{{ url_for('main.book_details', book_id=original_book.id) }}">{{ original_book.title }} ({{ original_book.avg_rating }})</a>
+        also liked:
+        {% if sub_results %}
+        <ol start="{{ start_num }}">{% for book, avg_rating in sub_results[:5] %}
+            <li>
+                <a href="{{ url_for('main.book_details', book_id=book.id) }}">{{ book.title }} ({{ avg_rating }})</a>
+                <br>
+            </li>
+        {% endfor %}
+        </ol>
+        {% else %}
+             <br><div style="padding-left: 20px">No one else rated this book 5 yet.</div>
+        {% endif %}
         </div>
         {% endfor %}
-
-
-     </div>
-
-        {{ pagination.links }}
-
-
-     </div>
-
-    <div class="block-----">
+    </div>
+    <div class="block">
         Favorite books of all users with similar rates to you:
-        <div>
-            <ol>
-            {% for book, rating in sorted_books %}
-                <li><a href="{{ url_for('main.book_details', book_id=book.id) }}">{{ book.title }} ({{ rating }})</a></li>
-            {% endfor %}
-            </ol>
-
-        </div>
+        <ol>
+        {% for book, rating in sorted_books[:10] %}
+            <li><a href="{{ url_for('main.book_details', book_id=book.id) }}">{{ book.title }} ({{ rating }})</a></li>
+        {% endfor %}
+        </ol>
     </div>
     {% endblock %}
