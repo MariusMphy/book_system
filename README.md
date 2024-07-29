@@ -74,5 +74,5 @@ Book Recommendation System is web application, designed for book enthusiasts to 
     python run.py # or py run.py
     ```
 
-6**Access the application**:
+6. **Access the application**:
     In your web browser go to: `http://127.0.0.1:5000/`.
