@@ -76,3 +76,5 @@ Book Recommendation System is web application, designed for book enthusiasts to 
 
 6. **Access the application**:
     In your web browser go to: `http://127.0.0.1:5000/`.
+
+7.  Deployed for limited time at https://mariusmphy.pythonanywhere.com/
