@@ -13,6 +13,36 @@ bcrypt = Bcrypt()
 
 
 def create_app(config_filename):
+    """
+    Create and configure a Flask application.
+
+    This function sets up a Flask application with configurations from a given
+    configuration file, initializes extensions (database, login manager, bcrypt),
+    registers blueprints, and sets up Flask-Admin with views for models.
+
+    Args:
+        config_filename (str): The path to the configuration file.
+
+    Returns:
+        Flask: The configured Flask application instance.
+
+    Functionality:
+    1. Creates a Flask application instance.
+    2. Loads configuration settings from the specified file.
+    3. Initializes extensions:
+       - SQLAlchemy database instance
+       - Login manager
+       - Bcrypt for password hashing
+    4. Registers the blueprint for the book system project.
+    5. Sets up the Flask-Admin interface and adds views for the following models:
+       - User
+       - Book
+       - Rating
+       - Author
+       - Genre
+       - ToRead
+       - Review
+    """
     app = Flask(__name__)
     app.config.from_pyfile(config_filename)
 

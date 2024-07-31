@@ -471,7 +471,8 @@ def view_users():
     pagination = Pagination(page=page, total=total, per_page=per_page, css_framework='bootstrap5')
     start_num = (page - 1) * per_page + 1
     if users:
-        return render_template('view_users.html', users=users, pagination=pagination, start_num=start_num)
+        return render_template('view_users.html', users=users, pagination=pagination,
+                               start_num=start_num)
     return render_template('admin_page.html')
 
 
@@ -595,9 +596,9 @@ def book_details(book_id: int):
     toread = ToRead.query.filter_by(user_id=current_user.id, book_id=book_id).first() \
         if current_user.is_authenticated else None
     read_listed = len(ToRead.query.filter_by(book_id=book_id).all())
-    return render_template('book.html', form=form, book=book, author=author, genres=genres, avg_rating=avg_rating,
-                           rating=rating, toread=toread, review=review, review_count=review_count,
-                           read_listed=read_listed)
+    return render_template('book.html', form=form, book=book, author=author, genres=genres,
+                           avg_rating=avg_rating, rating=rating, toread=toread, review=review,
+                           review_count=review_count, read_listed=read_listed)
 
 
 @bp.route("/rate_book/<int:book_id>", methods=["GET", "POST"])
@@ -638,8 +639,8 @@ def rate_book(book_id: int):
         logger.info(f"User_id: {current_user.id}, rated book_id: {book_id}, book_name: {book.title}")
         flash('Thank you for your rating!', 'success')
         return redirect(url_for('main.book_details', book_id=book_id))
-    return render_template('rate_book.html', book=book, author=author, genres=genres, avg_rating=avg_rating,
-                           current_rating=current_rating, form=form)
+    return render_template('rate_book.html', book=book, author=author, genres=genres,
+                           avg_rating=avg_rating, current_rating=current_rating, form=form)
 
 
 @bp.route("/edit_profile", methods=["GET", "POST"])
@@ -683,9 +684,9 @@ def edit_profile():
             logger.warning(f"User_id: {current_user.id} failed password, while updating profile")
             flash("Password is incorrect", "error")
             return redirect(url_for('main.edit_profile'))
-    return render_template("edit_profile.html", form=form, current_email=current_email, current_name=current_name,
-                           current_phone=current_phone, current_date_of_birth=current_date_of_birth,
-                           current_gender=current_gender)
+    return render_template("edit_profile.html", form=form, current_email=current_email,
+                           current_name=current_name, current_phone=current_phone,
+                           current_date_of_birth=current_date_of_birth, current_gender=current_gender)
 
 
 @bp.route("/change_password", methods=["GET", "POST"])
@@ -876,7 +877,8 @@ def write_review(book_id: int):
         book_id (int): The ID of the book for which the review is being written or updated.
 
     Returns:
-        Response: An HTTP response object that either renders the review form or performs a redirection to the book details page.
+        Response: An HTTP response object that either renders the review form or performs a redirection to the book
+        details page.
     """
     form = WriteReviewForm()
     old_review = Review.query.filter_by(book_id=book_id, user_id=current_user.id).first()
@@ -949,7 +951,8 @@ def your_reviews():
     pagination = Pagination(page=page, total=total, per_page=per_page, css_framework='bootstrap5')
     start_num = start + 1
 
-    return render_template('your_reviews.html', rev_info=rev_info, pagination=pagination, start_num=start_num)
+    return render_template('your_reviews.html', rev_info=rev_info, pagination=pagination,
+                           start_num=start_num)
 
 
 @bp.route("/book_reviews/<int:book_id>", methods=["GET", "POST"])
@@ -1185,7 +1188,8 @@ def all_ratings():
     """
     Retrieve and display paginated books with their average ratings.
 
-    Queries all books from the database, calculates their average ratings, and filters out books without an average rating.
+    Queries all books from the database, calculates their average ratings, and filters out books without an average
+    rating.
     The remaining books are sorted by their average rating in descending order and paginated. The function renders the
     `all_ratings.html` template with the paginated list of books.
 
@@ -1206,7 +1210,8 @@ def all_ratings():
     pagination = Pagination(page=page, total=total, per_page=per_page, css_framework='bootstrap5')
     start_num = start + 1
 
-    return render_template("all_ratings.html", sorted_books=sorted_books, pagination=pagination, start_num=start_num)
+    return render_template("all_ratings.html", sorted_books=sorted_books, pagination=pagination,
+                           start_num=start_num)
 
 
 @bp.route("/all_reviews", methods=["GET"])
@@ -1235,7 +1240,8 @@ def all_reviews():
     pagination = Pagination(page=page, total=total, per_page=per_page, css_framework='bootstrap5')
     start_num = start + 1
 
-    return render_template("all_reviews.html", sorted_books=sorted_books, pagination=pagination, start_num=start_num)
+    return render_template("all_reviews.html", sorted_books=sorted_books, pagination=pagination,
+                           start_num=start_num)
 
 
 @bp.route("/all_read_listed", methods=["GET"])
